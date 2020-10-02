@@ -1,0 +1,10 @@
+---
+name: "Logging JSON Jackson"
+metadata:
+  keywords:
+    - "logging"
+    - "json"
+    - "formatter"
+  categories:
+    - "core"
+  status: "preview"

@@ -1,16 +1,17 @@
 package io.quarkiverse.loggingjson;
 
-import io.quarkiverse.loggingjson.jackson.JacksonJsonFactory;
-import io.quarkiverse.loggingjson.jsonb.JsonbJsonFactory;
-import io.quarkiverse.loggingjson.providers.KeyValueStructuredArgument;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+
+import io.quarkiverse.loggingjson.jackson.JacksonJsonFactory;
+import io.quarkiverse.loggingjson.jsonb.JsonbJsonFactory;
+import io.quarkiverse.loggingjson.providers.KeyValueStructuredArgument;
 
 class KeyValueStructuredArgumentTest {
 
@@ -35,7 +36,7 @@ class KeyValueStructuredArgumentTest {
         assertEquals("{\"key\":324}", run(factory, "key", BigInteger.valueOf(324)));
         assertEquals("{\"key\":324.348}", run(factory, "key", BigDecimal.valueOf(324.348d)));
         assertEquals("{\"key\":\"value\"}", run(factory, "key", "value"));
-        assertEquals("{\"key\":[\"value\",\"value2\"]}", run(factory, "key", new String[]{"value", "value2"}));
+        assertEquals("{\"key\":[\"value\",\"value2\"]}", run(factory, "key", new String[] { "value", "value2" }));
         assertEquals("{\"key\":[\"value\",\"value2\"]}", run(factory, "key", Arrays.asList("value", "value2")));
         assertEquals("{\"key\":{}}", run(factory, "key", new Object()));
         assertEquals("{\"key\":{\"field1\":\"field1\",\"field2\":2389472389}}", run(factory, "key", new TestPojo()));

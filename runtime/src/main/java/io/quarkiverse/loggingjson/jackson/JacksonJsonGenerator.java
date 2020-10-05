@@ -1,10 +1,10 @@
 package io.quarkiverse.loggingjson.jackson;
 
-import io.quarkiverse.loggingjson.JsonGenerator;
-
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+
+import io.quarkiverse.loggingjson.JsonGenerator;
 
 public class JacksonJsonGenerator implements JsonGenerator {
     private final com.fasterxml.jackson.core.JsonGenerator generator;

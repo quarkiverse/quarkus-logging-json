@@ -1,11 +1,12 @@
 package io.quarkiverse.loggingjson.providers;
 
+import java.io.IOException;
+
+import org.jboss.logmanager.ExtLogRecord;
+
 import io.quarkiverse.loggingjson.JsonGenerator;
 import io.quarkiverse.loggingjson.JsonProvider;
 import io.quarkiverse.loggingjson.JsonWritingUtils;
-import org.jboss.logmanager.ExtLogRecord;
-
-import java.io.IOException;
 
 public class LogLevelJsonProvider implements JsonProvider {
     public static final String FIELD_LEVEL = "level";

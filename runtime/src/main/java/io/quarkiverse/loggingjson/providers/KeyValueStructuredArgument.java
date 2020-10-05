@@ -1,8 +1,8 @@
 package io.quarkiverse.loggingjson.providers;
 
-import io.quarkiverse.loggingjson.JsonGenerator;
-
 import java.io.IOException;
+
+import io.quarkiverse.loggingjson.JsonGenerator;
 
 public class KeyValueStructuredArgument implements StructuredArgument {
     private final String key;

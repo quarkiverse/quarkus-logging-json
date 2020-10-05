@@ -1,14 +1,15 @@
 package io.quarkiverse.loggingjson.providers;
 
-import io.quarkiverse.loggingjson.JsonGenerator;
-import io.quarkiverse.loggingjson.JsonProvider;
-import io.quarkiverse.loggingjson.JsonWritingUtils;
-import org.jboss.logmanager.ExtLogRecord;
-
 import java.io.IOException;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+
+import org.jboss.logmanager.ExtLogRecord;
+
+import io.quarkiverse.loggingjson.JsonGenerator;
+import io.quarkiverse.loggingjson.JsonProvider;
+import io.quarkiverse.loggingjson.JsonWritingUtils;
 
 public class TimestampJsonProvider implements JsonProvider {
 

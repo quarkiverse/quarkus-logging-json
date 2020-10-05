@@ -35,7 +35,7 @@ public class JsonWritingUtils {
      * @param lowerCaseKeys when true, the map keys will be written in lowercase.
      */
     public static void writeMapStringFields(JsonGenerator generator, String fieldName, Map<String, String> map,
-                                            boolean lowerCaseKeys) throws IOException {
+            boolean lowerCaseKeys) throws IOException {
         if (shouldWriteField(fieldName) && map != null && !map.isEmpty()) {
             generator.writeObjectFieldStart(fieldName);
             for (Map.Entry<String, String> entry : map.entrySet()) {

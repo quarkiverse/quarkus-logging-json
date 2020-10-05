@@ -1,13 +1,14 @@
 package io.quarkiverse.loggingjson.deployment;
 
-import io.quarkus.bootstrap.model.AppArtifact;
-import io.quarkus.test.QuarkusUnitTest;
+import java.util.Arrays;
+
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 
-import java.util.Arrays;
+import io.quarkus.bootstrap.model.AppArtifact;
+import io.quarkus.test.QuarkusUnitTest;
 
 public class JsonFormatterJsonbTest extends JsonFormatterBaseTest {
 

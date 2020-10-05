@@ -21,14 +21,16 @@ class LoggingJsonProcessor {
 
     @BuildStep
     @Record(ExecutionTime.RUNTIME_INIT)
-    LogConsoleFormatBuildItem setUpFormatter(Capabilities capabilities, LoggingJsonRecorder recorder, JsonStructuredConfig config) {
+    LogConsoleFormatBuildItem setUpFormatter(Capabilities capabilities, LoggingJsonRecorder recorder,
+            JsonStructuredConfig config) {
         boolean useJackson;
         if (capabilities.isPresent(Capability.JACKSON)) {
             useJackson = true;
         } else if (capabilities.isPresent(Capability.JSONB)) {
             useJackson = false;
         } else {
-            throw new RuntimeException("Missing json implementation to use for logging-json. Supported: [quarkus-jackson, quarkus-jsonb]");
+            throw new RuntimeException(
+                    "Missing json implementation to use for logging-json. Supported: [quarkus-jackson, quarkus-jsonb]");
         }
         return new LogConsoleFormatBuildItem(recorder.initializeJsonLogging(config, useJackson));
     }

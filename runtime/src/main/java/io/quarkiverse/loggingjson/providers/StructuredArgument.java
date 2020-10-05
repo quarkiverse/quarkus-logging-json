@@ -1,9 +1,10 @@
 package io.quarkiverse.loggingjson.providers;
 
-import io.quarkiverse.loggingjson.JsonGenerator;
+import java.io.IOException;
+
 import org.slf4j.Logger;
 
-import java.io.IOException;
+import io.quarkiverse.loggingjson.JsonGenerator;
 
 /**
  * A wrapper for an argument passed to a log method (e.g. {@link Logger#info(String, Object...)})

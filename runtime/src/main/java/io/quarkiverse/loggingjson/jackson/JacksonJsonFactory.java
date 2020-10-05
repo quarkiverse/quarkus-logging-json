@@ -1,13 +1,14 @@
 package io.quarkiverse.loggingjson.jackson;
 
+import java.io.IOException;
+import java.util.ServiceConfigurationError;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+
 import io.quarkiverse.loggingjson.JsonFactory;
 import io.quarkiverse.loggingjson.JsonGenerator;
 import io.quarkiverse.loggingjson.StringBuilderWriter;
-
-import java.io.IOException;
-import java.util.ServiceConfigurationError;
 
 public class JacksonJsonFactory implements JsonFactory {
 

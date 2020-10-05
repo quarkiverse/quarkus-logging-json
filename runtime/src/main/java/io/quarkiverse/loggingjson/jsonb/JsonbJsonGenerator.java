@@ -1,14 +1,16 @@
 package io.quarkiverse.loggingjson.jsonb;
 
-import io.quarkiverse.loggingjson.JsonGenerator;
-import org.eclipse.yasson.YassonJsonb;
-
-import javax.json.JsonStructure;
-import javax.json.JsonValue;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
+
+import javax.json.JsonStructure;
+import javax.json.JsonValue;
+
+import org.eclipse.yasson.YassonJsonb;
+
+import io.quarkiverse.loggingjson.JsonGenerator;
 
 public class JsonbJsonGenerator implements JsonGenerator {
     private final javax.json.stream.JsonGenerator generator;
@@ -18,7 +20,6 @@ public class JsonbJsonGenerator implements JsonGenerator {
         this.generator = generator;
         this.jsonb = jsonb;
     }
-
 
     @Override
     public void writeStartObject() {

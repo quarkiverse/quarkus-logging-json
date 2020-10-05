@@ -1,8 +1,8 @@
 package io.quarkiverse.loggingjson;
 
-import org.jboss.logmanager.ExtLogRecord;
-
 import java.io.IOException;
+
+import org.jboss.logmanager.ExtLogRecord;
 
 public interface JsonProvider {
 

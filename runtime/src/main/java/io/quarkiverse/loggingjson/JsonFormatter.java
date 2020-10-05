@@ -1,9 +1,9 @@
 package io.quarkiverse.loggingjson;
 
+import java.util.List;
+
 import org.jboss.logmanager.ExtFormatter;
 import org.jboss.logmanager.ExtLogRecord;
-
-import java.util.List;
 
 public class JsonFormatter extends ExtFormatter {
     private final StringBuilderWriter writer = new StringBuilderWriter();

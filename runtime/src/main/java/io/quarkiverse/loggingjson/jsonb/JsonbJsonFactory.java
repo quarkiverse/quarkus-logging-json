@@ -1,14 +1,16 @@
 package io.quarkiverse.loggingjson.jsonb;
 
-import io.quarkiverse.loggingjson.JsonFactory;
-import io.quarkiverse.loggingjson.JsonGenerator;
-import io.quarkiverse.loggingjson.StringBuilderWriter;
-import org.eclipse.yasson.YassonJsonb;
-import org.eclipse.yasson.internal.JsonBindingBuilder;
+import java.util.HashMap;
 
 import javax.json.Json;
 import javax.json.stream.JsonGeneratorFactory;
-import java.util.HashMap;
+
+import org.eclipse.yasson.YassonJsonb;
+import org.eclipse.yasson.internal.JsonBindingBuilder;
+
+import io.quarkiverse.loggingjson.JsonFactory;
+import io.quarkiverse.loggingjson.JsonGenerator;
+import io.quarkiverse.loggingjson.StringBuilderWriter;
 
 public class JsonbJsonFactory implements JsonFactory {
 

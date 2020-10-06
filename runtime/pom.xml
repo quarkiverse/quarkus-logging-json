@@ -10,7 +10,7 @@
 
     <artifactId>quarkiverse-logging-json</artifactId>
     <name>Logging in json with support for custom fields - Runtime</name>
-
+    <description>Logging in json with support for custom fields</description>
     <dependencies>
         <dependency>
             <groupId>io.quarkus</groupId>

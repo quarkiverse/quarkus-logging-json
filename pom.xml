@@ -27,7 +27,6 @@
     <modules>
         <module>deployment</module>
         <module>runtime</module>
-        <module>integration-test</module>
     </modules>
 
     <dependencyManagement>
@@ -53,4 +52,19 @@
             </plugins>
         </pluginManagement>
     </build>
+
+    <profiles>
+        <profile>
+            <id>release</id>
+        </profile>
+        <profile>
+            <id>default</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <modules>
+                <module>integration-test</module>
+            </modules>
+        </profile>
+    </profiles>
 </project>

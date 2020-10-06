@@ -55,12 +55,12 @@
 
     <profiles>
         <profile>
-            <id>release</id>
-        </profile>
-        <profile>
-            <id>default</id>
+            <id>perform-release</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <property>
+                    <name>performRelease</name>
+                    <value>!true</value>
+                </property>
             </activation>
             <modules>
                 <module>integration-test</module>

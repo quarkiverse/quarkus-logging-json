@@ -1,16 +1,18 @@
 package io.quarkiverse.loggingjson.providers;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import io.quarkiverse.loggingjson.Config;
-import org.jboss.logmanager.ExtLogRecord;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import java.util.logging.Level;
+
+import org.jboss.logmanager.ExtLogRecord;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import com.fasterxml.jackson.databind.JsonNode;
+
+import io.quarkiverse.loggingjson.Config;
 
 public class TimestampJsonProviderJsonbTest extends JsonProviderBaseTest {
     @Override

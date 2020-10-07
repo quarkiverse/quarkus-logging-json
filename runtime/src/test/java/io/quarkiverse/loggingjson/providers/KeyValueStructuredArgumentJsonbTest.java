@@ -1,16 +1,17 @@
 package io.quarkiverse.loggingjson.providers;
 
-import io.quarkiverse.loggingjson.JsonGenerator;
-import io.quarkiverse.loggingjson.StringBuilderWriter;
-import org.junit.jupiter.api.Test;
+import static io.quarkiverse.loggingjson.providers.KeyValueStructuredArgument.kv;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Arrays;
 
-import static io.quarkiverse.loggingjson.providers.KeyValueStructuredArgument.kv;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+
+import io.quarkiverse.loggingjson.JsonGenerator;
+import io.quarkiverse.loggingjson.StringBuilderWriter;
 
 public class KeyValueStructuredArgumentJsonbTest extends JsonProviderBaseTest {
     @Override

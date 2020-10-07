@@ -1,15 +1,17 @@
 package io.quarkiverse.loggingjson.providers;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import io.quarkiverse.loggingjson.Config;
-import org.jboss.logmanager.ExtLogRecord;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Optional;
 import java.util.logging.Level;
+
+import org.jboss.logmanager.ExtLogRecord;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import com.fasterxml.jackson.databind.JsonNode;
+
+import io.quarkiverse.loggingjson.Config;
 
 public class StackTraceJsonProviderJsonbTest extends JsonProviderBaseTest {
     @Override

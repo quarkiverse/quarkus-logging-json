@@ -1,15 +1,16 @@
 package io.quarkiverse.loggingjson.providers;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import org.jboss.logmanager.ExtLogRecord;
+
 import io.quarkiverse.loggingjson.Config;
 import io.quarkiverse.loggingjson.Enabled;
 import io.quarkiverse.loggingjson.JsonGenerator;
 import io.quarkiverse.loggingjson.JsonProvider;
 import io.quarkiverse.loggingjson.JsonWritingUtils;
 import io.quarkiverse.loggingjson.StringBuilderWriter;
-import org.jboss.logmanager.ExtLogRecord;
-
-import java.io.IOException;
-import java.io.PrintWriter;
 
 public class StackTraceJsonProvider implements JsonProvider, Enabled {
 

@@ -1,13 +1,14 @@
 package io.quarkiverse.loggingjson.providers;
 
+import java.io.IOException;
+import java.util.Optional;
+
+import org.jboss.logmanager.ExtLogRecord;
+
 import io.quarkiverse.loggingjson.Config;
 import io.quarkiverse.loggingjson.Enabled;
 import io.quarkiverse.loggingjson.JsonGenerator;
 import io.quarkiverse.loggingjson.JsonProvider;
-import org.jboss.logmanager.ExtLogRecord;
-
-import java.io.IOException;
-import java.util.Optional;
 
 public class ArgumentsJsonProvider implements JsonProvider, Enabled {
     private final boolean includeStructuredArguments;

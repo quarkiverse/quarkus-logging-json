@@ -1,13 +1,15 @@
 package io.quarkiverse.loggingjson.providers;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import io.quarkiverse.loggingjson.Config;
+import java.util.Optional;
+import java.util.logging.Level;
+
 import org.jboss.logmanager.ExtLogRecord;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.Optional;
-import java.util.logging.Level;
+import com.fasterxml.jackson.databind.JsonNode;
+
+import io.quarkiverse.loggingjson.Config;
 
 public class ProcessIdJsonProviderJsonbTest extends JsonProviderBaseTest {
     @Override

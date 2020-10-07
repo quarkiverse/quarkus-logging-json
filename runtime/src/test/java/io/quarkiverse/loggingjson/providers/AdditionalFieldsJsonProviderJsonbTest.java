@@ -1,16 +1,18 @@
 package io.quarkiverse.loggingjson.providers;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.google.common.collect.ImmutableList;
-import io.quarkiverse.loggingjson.Config;
-import org.jboss.logmanager.ExtLogRecord;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
+
+import org.jboss.logmanager.ExtLogRecord;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.google.common.collect.ImmutableList;
+
+import io.quarkiverse.loggingjson.Config;
 
 public class AdditionalFieldsJsonProviderJsonbTest extends JsonProviderBaseTest {
     @Override

@@ -1,16 +1,18 @@
 package io.quarkiverse.loggingjson.providers;
 
+import java.io.IOException;
+
+import org.jboss.logmanager.ExtLogRecord;
+
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import io.quarkiverse.loggingjson.JsonFactory;
 import io.quarkiverse.loggingjson.JsonGenerator;
 import io.quarkiverse.loggingjson.JsonProvider;
 import io.quarkiverse.loggingjson.StringBuilderWriter;
 import io.quarkiverse.loggingjson.jackson.JacksonJsonFactory;
 import io.quarkiverse.loggingjson.jsonb.JsonbJsonFactory;
-import org.jboss.logmanager.ExtLogRecord;
-
-import java.io.IOException;
 
 abstract class JsonProviderBaseTest {
 

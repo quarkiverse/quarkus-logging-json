@@ -1,13 +1,14 @@
 package io.quarkiverse.loggingjson.providers;
 
+import java.io.IOException;
+
+import org.jboss.logmanager.ExtLogRecord;
+
 import io.quarkiverse.loggingjson.Config;
 import io.quarkiverse.loggingjson.Enabled;
 import io.quarkiverse.loggingjson.JsonGenerator;
 import io.quarkiverse.loggingjson.JsonProvider;
 import io.quarkiverse.loggingjson.JsonWritingUtils;
-import org.jboss.logmanager.ExtLogRecord;
-
-import java.io.IOException;
 
 public class LoggerNameJsonProvider implements JsonProvider, Enabled {
 

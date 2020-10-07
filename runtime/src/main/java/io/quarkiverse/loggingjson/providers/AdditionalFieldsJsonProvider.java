@@ -1,13 +1,14 @@
 package io.quarkiverse.loggingjson.providers;
 
+import java.io.IOException;
+import java.util.Map;
+
+import org.jboss.logmanager.ExtLogRecord;
+
 import io.quarkiverse.loggingjson.Config;
 import io.quarkiverse.loggingjson.Enabled;
 import io.quarkiverse.loggingjson.JsonGenerator;
 import io.quarkiverse.loggingjson.JsonProvider;
-import org.jboss.logmanager.ExtLogRecord;
-
-import java.io.IOException;
-import java.util.Map;
 
 public class AdditionalFieldsJsonProvider implements JsonProvider, Enabled {
     private final boolean enabled;

@@ -1,5 +1,19 @@
 package io.quarkiverse.loggingjson.deployment;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.collect.ImmutableList;
+import io.quarkiverse.loggingjson.JsonFormatter;
+import io.quarkiverse.loggingjson.providers.KeyValueStructuredArgument;
+import io.quarkus.bootstrap.logging.InitialConfigurator;
+import org.jboss.logmanager.handlers.ConsoleHandler;
+import org.jboss.logmanager.handlers.DelayedHandler;
+import org.jboss.logmanager.handlers.WriterHandler;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
+
 import java.io.StringWriter;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
@@ -9,22 +23,6 @@ import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
-
-import org.jboss.logmanager.handlers.ConsoleHandler;
-import org.jboss.logmanager.handlers.DelayedHandler;
-import org.jboss.logmanager.handlers.WriterHandler;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.slf4j.LoggerFactory;
-import org.slf4j.MDC;
-
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.collect.ImmutableList;
-
-import io.quarkiverse.loggingjson.JsonFormatter;
-import io.quarkiverse.loggingjson.providers.KeyValueStructuredArgument;
-import io.quarkus.bootstrap.logging.InitialConfigurator;
 
 public abstract class JsonFormatterBaseTest {
     private static StringWriter writer = new StringWriter();
@@ -97,7 +95,8 @@ public abstract class JsonFormatterBaseTest {
                 "processId",
                 "stackTrace",
                 "arg0",
-                "structuredKey");
+                "structuredKey",
+                "serviceName");
         Assertions.assertEquals(expectedFields, ImmutableList.copyOf(jsonNode.fieldNames()));
 
         String timestamp = jsonNode.findValue("timestamp").asText();
@@ -145,5 +144,8 @@ public abstract class JsonFormatterBaseTest {
 
         Assertions.assertTrue(jsonNode.findValue("structuredKey").isTextual());
         Assertions.assertEquals("structuredValue", jsonNode.findValue("structuredKey").asText());
+
+        Assertions.assertTrue(jsonNode.findValue("serviceName").isTextual());
+        Assertions.assertEquals("deployment-test", jsonNode.findValue("serviceName").asText());
     }
 }

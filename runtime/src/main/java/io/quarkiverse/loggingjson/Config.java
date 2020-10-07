@@ -2,11 +2,14 @@ package io.quarkiverse.loggingjson;
 
 import io.quarkiverse.loggingjson.providers.ArgumentsJsonProvider;
 import io.quarkiverse.loggingjson.providers.StructuredArgument;
+import io.quarkus.runtime.annotations.ConfigDocMapKey;
+import io.quarkus.runtime.annotations.ConfigDocSection;
 import io.quarkus.runtime.annotations.ConfigGroup;
 import io.quarkus.runtime.annotations.ConfigItem;
 import io.quarkus.runtime.annotations.ConfigPhase;
 import io.quarkus.runtime.annotations.ConfigRoot;
 
+import java.util.Map;
 import java.util.Optional;
 
 @ConfigRoot(phase = ConfigPhase.RUN_TIME, name = "log.console.json")
@@ -31,6 +34,13 @@ public class Config {
      */
     @ConfigItem(defaultValue = "\n")
     String recordDelimiter;
+    /**
+     * For adding fields to the json output directly from the config.
+     */
+    @ConfigItem
+    @ConfigDocMapKey("field-name")
+    @ConfigDocSection
+    public Map<String, AdditionalFieldConfig> additionalField;
 
     @ConfigGroup
     public static class FieldsConfig {
@@ -165,5 +175,28 @@ public class Config {
          */
         @ConfigItem(defaultValue = "arg")
         public String nonStructuredArgumentsFieldPrefix;
+    }
+
+    @ConfigGroup
+    public static class AdditionalFieldConfig {
+        /**
+         * Additional field value.
+         */
+        @ConfigItem
+        public String value;
+        /**
+         * Type of the field, default is STRING.
+         * Supported types: STRING, INT, LONG, FLOAT, DOUBLE.
+         */
+        @ConfigItem(defaultValue = "STRING")
+        public AdditionalFieldType type;
+    }
+
+    public enum AdditionalFieldType {
+        STRING,
+        INT,
+        LONG,
+        FLOAT,
+        DOUBLE
     }
 }

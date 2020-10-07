@@ -2,6 +2,7 @@ package io.quarkiverse.loggingjson;
 
 import io.quarkiverse.loggingjson.jackson.JacksonJsonFactory;
 import io.quarkiverse.loggingjson.jsonb.JsonbJsonFactory;
+import io.quarkiverse.loggingjson.providers.AdditionalFieldsJsonProvider;
 import io.quarkiverse.loggingjson.providers.ArgumentsJsonProvider;
 import io.quarkiverse.loggingjson.providers.HostNameJsonProvider;
 import io.quarkiverse.loggingjson.providers.LogLevelJsonProvider;
@@ -47,6 +48,7 @@ public class LoggingJsonRecorder {
         providers.add(new ProcessIdJsonProvider(config.fields.processId));
         providers.add(new StackTraceJsonProvider(config.fields.stackTrace));
         providers.add(new ArgumentsJsonProvider(config.fields.arguments));
+        providers.add(new AdditionalFieldsJsonProvider(config.additionalField));
 
         providers.removeIf(p -> {
             if (p instanceof Enabled) {

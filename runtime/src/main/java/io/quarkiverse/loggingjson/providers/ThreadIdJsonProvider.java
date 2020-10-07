@@ -9,21 +9,19 @@ import org.jboss.logmanager.ExtLogRecord;
 
 import java.io.IOException;
 
-public class ProcessNameJsonProvider implements JsonProvider, Enabled {
+public class ThreadIdJsonProvider implements JsonProvider, Enabled {
 
     private final String fieldName;
     private final Config.FieldConfig config;
 
-    public ProcessNameJsonProvider(Config.FieldConfig config) {
+    public ThreadIdJsonProvider(Config.FieldConfig config) {
         this.config = config;
-        this.fieldName = config.fieldName.orElse("processName");
+        this.fieldName = config.fieldName.orElse("threadId");
     }
 
     @Override
     public void writeTo(JsonGenerator generator, ExtLogRecord event) throws IOException {
-        if (JsonWritingUtils.isNotNullOrEmpty(event.getProcessName())) {
-            JsonWritingUtils.writeStringField(generator, fieldName, event.getProcessName());
-        }
+        JsonWritingUtils.writeNumberField(generator, fieldName, event.getThreadID());
     }
 
     @Override

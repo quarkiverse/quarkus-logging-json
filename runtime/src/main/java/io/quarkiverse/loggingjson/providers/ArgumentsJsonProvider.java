@@ -1,27 +1,25 @@
 package io.quarkiverse.loggingjson.providers;
 
-import java.io.IOException;
-
-import org.jboss.logmanager.ExtLogRecord;
-
+import io.quarkiverse.loggingjson.Config;
+import io.quarkiverse.loggingjson.Enabled;
 import io.quarkiverse.loggingjson.JsonGenerator;
 import io.quarkiverse.loggingjson.JsonProvider;
-import io.quarkiverse.loggingjson.JsonStructuredConfig;
+import org.jboss.logmanager.ExtLogRecord;
 
-public class ArgumentsJsonProvider implements JsonProvider {
-    private boolean includeStructuredArguments = true;
-    private boolean includeNonStructuredArguments;
-    private String nonStructuredArgumentsFieldPrefix = "arg";
-    private String fieldName;
+import java.io.IOException;
+import java.util.Optional;
 
-    public ArgumentsJsonProvider(JsonStructuredConfig config) {
-        if (config.fields != null && config.fields.arguments != null) {
-            JsonStructuredConfig.ArgumentsConfig arguments = config.fields.arguments;
-            arguments.fieldName.ifPresent(f -> fieldName = f);
-            this.includeStructuredArguments = arguments.includeStructuredArguments;
-            this.includeNonStructuredArguments = arguments.includeNonStructuredArguments;
-            this.nonStructuredArgumentsFieldPrefix = arguments.nonStructuredArgumentsFieldPrefix;
-        }
+public class ArgumentsJsonProvider implements JsonProvider, Enabled {
+    private final boolean includeStructuredArguments;
+    private final boolean includeNonStructuredArguments;
+    private final String nonStructuredArgumentsFieldPrefix;
+    private final Optional<String> fieldName;
+
+    public ArgumentsJsonProvider(Config.ArgumentsConfig config) {
+        this.fieldName = config.fieldName;
+        this.includeStructuredArguments = config.includeStructuredArguments;
+        this.includeNonStructuredArguments = config.includeNonStructuredArguments;
+        this.nonStructuredArgumentsFieldPrefix = config.nonStructuredArgumentsFieldPrefix;
     }
 
     @Override
@@ -50,16 +48,16 @@ public class ArgumentsJsonProvider implements JsonProvider {
 
             if (arg instanceof StructuredArgument) {
                 if (includeStructuredArguments) {
-                    if (!hasWrittenFieldName && fieldName != null) {
-                        generator.writeObjectFieldStart(fieldName);
+                    if (!hasWrittenFieldName && fieldName.isPresent()) {
+                        generator.writeObjectFieldStart(fieldName.get());
                         hasWrittenFieldName = true;
                     }
                     StructuredArgument structuredArgument = (StructuredArgument) arg;
                     structuredArgument.writeTo(generator);
                 }
             } else if (includeNonStructuredArguments) {
-                if (!hasWrittenFieldName && fieldName != null) {
-                    generator.writeObjectFieldStart(fieldName);
+                if (!hasWrittenFieldName && fieldName.isPresent()) {
+                    generator.writeObjectFieldStart(fieldName.get());
                     hasWrittenFieldName = true;
                 }
                 String innerFieldName = nonStructuredArgumentsFieldPrefix + argIndex;
@@ -70,5 +68,10 @@ public class ArgumentsJsonProvider implements JsonProvider {
         if (hasWrittenFieldName) {
             generator.writeEndObject();
         }
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return includeStructuredArguments || includeNonStructuredArguments;
     }
 }

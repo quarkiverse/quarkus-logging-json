@@ -1,19 +1,31 @@
 package io.quarkiverse.loggingjson.providers;
 
-import java.io.IOException;
-
-import org.jboss.logmanager.ExtLogRecord;
-
+import io.quarkiverse.loggingjson.Config;
+import io.quarkiverse.loggingjson.Enabled;
 import io.quarkiverse.loggingjson.JsonGenerator;
 import io.quarkiverse.loggingjson.JsonProvider;
 import io.quarkiverse.loggingjson.JsonWritingUtils;
+import org.jboss.logmanager.ExtLogRecord;
 
-public class LoggerNameJsonProvider implements JsonProvider {
+import java.io.IOException;
 
-    public static final String FIELD_LOGGER_NAME = "loggerName";
+public class LoggerNameJsonProvider implements JsonProvider, Enabled {
+
+    private final String fieldName;
+    private final Config.FieldConfig config;
+
+    public LoggerNameJsonProvider(Config.FieldConfig config) {
+        this.fieldName = config.fieldName.orElse("loggerName");
+        this.config = config;
+    }
 
     @Override
     public void writeTo(JsonGenerator generator, ExtLogRecord event) throws IOException {
-        JsonWritingUtils.writeStringField(generator, FIELD_LOGGER_NAME, event.getLoggerName());
+        JsonWritingUtils.writeStringField(generator, fieldName, event.getLoggerName());
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return config.enabled.orElse(true);
     }
 }

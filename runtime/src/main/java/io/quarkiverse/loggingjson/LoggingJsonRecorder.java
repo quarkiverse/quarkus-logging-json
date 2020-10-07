@@ -1,10 +1,5 @@
 package io.quarkiverse.loggingjson;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.logging.Formatter;
-
 import io.quarkiverse.loggingjson.jackson.JacksonJsonFactory;
 import io.quarkiverse.loggingjson.jsonb.JsonbJsonFactory;
 import io.quarkiverse.loggingjson.providers.ArgumentsJsonProvider;
@@ -19,34 +14,47 @@ import io.quarkiverse.loggingjson.providers.ProcessIdJsonProvider;
 import io.quarkiverse.loggingjson.providers.ProcessNameJsonProvider;
 import io.quarkiverse.loggingjson.providers.SequenceJsonProvider;
 import io.quarkiverse.loggingjson.providers.StackTraceJsonProvider;
-import io.quarkiverse.loggingjson.providers.ThreadIDJsonProvider;
+import io.quarkiverse.loggingjson.providers.ThreadIdJsonProvider;
 import io.quarkiverse.loggingjson.providers.ThreadNameJsonProvider;
 import io.quarkiverse.loggingjson.providers.TimestampJsonProvider;
 import io.quarkus.runtime.RuntimeValue;
 import io.quarkus.runtime.annotations.Recorder;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.logging.Formatter;
+
 @Recorder
 public class LoggingJsonRecorder {
-    public RuntimeValue<Optional<Formatter>> initializeJsonLogging(JsonStructuredConfig config, boolean useJackson) {
+    public RuntimeValue<Optional<Formatter>> initializeJsonLogging(Config config, boolean useJackson) {
         if (!config.enable) {
             return new RuntimeValue<>(Optional.empty());
         }
         List<JsonProvider> providers = new ArrayList<>();
-        providers.add(new TimestampJsonProvider(config.dateFormat));
-        providers.add(new SequenceJsonProvider());
-        providers.add(new LoggerClassNameJsonProvider());
-        providers.add(new LoggerNameJsonProvider());
-        providers.add(new LogLevelJsonProvider());
-        providers.add(new MessageJsonProvider());
-        providers.add(new ThreadNameJsonProvider());
-        providers.add(new ThreadIDJsonProvider());
-        providers.add(new MDCJsonProvider());
-        providers.add(new NDCJsonProvider());
-        providers.add(new HostNameJsonProvider());
-        providers.add(new ProcessNameJsonProvider());
-        providers.add(new ProcessIdJsonProvider());
-        providers.add(new StackTraceJsonProvider());
-        providers.add(new ArgumentsJsonProvider(config));
+        providers.add(new TimestampJsonProvider(config.fields.timestamp));
+        providers.add(new SequenceJsonProvider(config.fields.sequence));
+        providers.add(new LoggerClassNameJsonProvider(config.fields.loggerClassName));
+        providers.add(new LoggerNameJsonProvider(config.fields.loggerName));
+        providers.add(new LogLevelJsonProvider(config.fields.level));
+        providers.add(new MessageJsonProvider(config.fields.message));
+        providers.add(new ThreadNameJsonProvider(config.fields.threadName));
+        providers.add(new ThreadIdJsonProvider(config.fields.threadId));
+        providers.add(new MDCJsonProvider(config.fields.mdc));
+        providers.add(new NDCJsonProvider(config.fields.ndc));
+        providers.add(new HostNameJsonProvider(config.fields.hostname));
+        providers.add(new ProcessNameJsonProvider(config.fields.processName));
+        providers.add(new ProcessIdJsonProvider(config.fields.processId));
+        providers.add(new StackTraceJsonProvider(config.fields.stackTrace));
+        providers.add(new ArgumentsJsonProvider(config.fields.arguments));
+
+        providers.removeIf(p -> {
+            if (p instanceof Enabled) {
+                return !((Enabled) p).isEnabled();
+            } else {
+                return false;
+            }
+        });
 
         JsonFactory jsonFactory;
         if (useJackson) {

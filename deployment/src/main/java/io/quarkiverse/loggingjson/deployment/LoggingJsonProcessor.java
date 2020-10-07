@@ -1,6 +1,6 @@
 package io.quarkiverse.loggingjson.deployment;
 
-import io.quarkiverse.loggingjson.JsonStructuredConfig;
+import io.quarkiverse.loggingjson.Config;
 import io.quarkiverse.loggingjson.LoggingJsonRecorder;
 import io.quarkus.deployment.Capabilities;
 import io.quarkus.deployment.Capability;
@@ -21,8 +21,7 @@ class LoggingJsonProcessor {
 
     @BuildStep
     @Record(ExecutionTime.RUNTIME_INIT)
-    LogConsoleFormatBuildItem setUpFormatter(Capabilities capabilities, LoggingJsonRecorder recorder,
-            JsonStructuredConfig config) {
+    LogConsoleFormatBuildItem setUpFormatter(Capabilities capabilities, LoggingJsonRecorder recorder, Config config) {
         boolean useJackson;
         if (capabilities.isPresent(Capability.JACKSON)) {
             useJackson = true;

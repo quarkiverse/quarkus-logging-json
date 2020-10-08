@@ -6,4 +6,4 @@ updates:
       interval: "daily"
     ignore:
       - dependency-name: "maven-compiler-plugin"
-        versions: ["*-jboss*"]
+        versions: [".*-jboss.*"]

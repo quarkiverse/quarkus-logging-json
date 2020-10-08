@@ -1,0 +1,25 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "SlyngDK",
+      "name": "Simon Bengtsson",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/6666094?v=4",
+      "profile": "https://github.com/SlyngDK",
+      "contributions": [
+        "code",
+        "maintenance"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "quarkiverse-logging-json",
+  "projectOwner": "quarkiverse",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}

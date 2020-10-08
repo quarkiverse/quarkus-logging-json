@@ -4,6 +4,3 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-    ignore:
-      - dependency-name: "maven-compiler-plugin"
-        versions: [".*-jboss.*"]

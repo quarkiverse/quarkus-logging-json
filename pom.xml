@@ -21,8 +21,6 @@
         <maven.compiler.parameters>true</maven.compiler.parameters>
         <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
         <quarkus.version>1.8.2.Final</quarkus.version>
-        <compiler-plugin.version>3.8.1</compiler-plugin.version>
-        <surefire-plugin.version>3.0.0-M5</surefire-plugin.version>
     </properties>
 
     <modules>
@@ -48,7 +46,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>${compiler-plugin.version}</version>
+                    <version>${version.compiler.plugin}</version>
                 </plugin>
             </plugins>
         </pluginManagement>

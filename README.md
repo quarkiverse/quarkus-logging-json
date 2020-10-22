@@ -29,6 +29,20 @@ import static io.quarkus.logging.json.structured.KeyValueStructuredArgument.*;
 ...
 log.info("Test log of structured arg", kv("key", "value"));
 ```
+# Custom log handler
+If you want to add your own custom way to handle the LogRecords.
+You can create your own implementations of `io.quarkiverse.loggingjson.JsonProvider`, and provide it using CDI.
+Example implementation:
+```java
+import io.quarkiverse.loggingjson.JsonProvider;
+
+public class MyJsonProvider implements JsonProvider {
+
+    void writeTo(JsonGenerator generator, ExtLogRecord event) throws IOException {
+        generator.writeStringField("myCustomField", "and my custom value"); // Will be added to every log, as a field on the json.
+    }
+}
+```
 
 ## Contributors ✨
 

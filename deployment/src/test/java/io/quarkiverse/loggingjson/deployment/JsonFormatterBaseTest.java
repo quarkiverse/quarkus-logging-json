@@ -42,6 +42,10 @@ public abstract class JsonFormatterBaseTest {
         InitialConfigurator.DELAYED_HANDLER.addHandler(handler);
     }
 
+    protected String[] logLines() {
+        return writer.toString().split("\n");
+    }
+
     public static JsonFormatter getJsonFormatter() {
         LogManager logManager = LogManager.getLogManager();
         Assertions.assertTrue(logManager instanceof org.jboss.logmanager.LogManager);
@@ -76,7 +80,7 @@ public abstract class JsonFormatterBaseTest {
         OffsetDateTime afterLastLog = OffsetDateTime.now();
 
         ObjectMapper mapper = new ObjectMapper();
-        String[] lines = writer.toString().split("\n");
+        String[] lines = logLines();
 
         Assertions.assertEquals(1, lines.length);
         JsonNode jsonNode = mapper.readValue(lines[0], JsonNode.class);

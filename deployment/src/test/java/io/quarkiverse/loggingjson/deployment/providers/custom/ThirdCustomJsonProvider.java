@@ -12,8 +12,8 @@ import io.quarkiverse.loggingjson.JsonProvider;
 
 @Singleton
 public class ThirdCustomJsonProvider implements JsonProvider, Enabled {
-    private volatile long isEnabledNumberOfCalls = 0;
-    private volatile long writeToNumberOfCalls = 0;
+    private long isEnabledNumberOfCalls = 0;
+    private long writeToNumberOfCalls = 0;
 
     @Override
     public void writeTo(JsonGenerator generator, ExtLogRecord event) throws IOException {

@@ -11,7 +11,7 @@ import io.quarkiverse.loggingjson.JsonProvider;
 
 @ApplicationScoped
 public class FirstCustomJsonProvider implements JsonProvider {
-    private volatile long writeToNumberOfCalls = 0;
+    private long writeToNumberOfCalls = 0;
 
     @Override
     public void writeTo(JsonGenerator generator, ExtLogRecord event) throws IOException {

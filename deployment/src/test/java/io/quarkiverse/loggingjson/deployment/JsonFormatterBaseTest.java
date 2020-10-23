@@ -28,6 +28,7 @@ import io.quarkus.bootstrap.logging.InitialConfigurator;
 
 public abstract class JsonFormatterBaseTest {
     private static StringWriter writer = new StringWriter();
+    private static WriterHandler handler;
 
     static {
         System.setProperty("java.util.logging.manager", org.jboss.logmanager.LogManager.class.getName());
@@ -36,13 +37,14 @@ public abstract class JsonFormatterBaseTest {
     @BeforeAll
     static void setUp() {
         Formatter formatter = InitialConfigurator.DELAYED_HANDLER.getHandlers()[0].getFormatter();
-        WriterHandler handler = new WriterHandler();
+        handler = new WriterHandler();
         handler.setFormatter(formatter);
         handler.setWriter(writer);
         InitialConfigurator.DELAYED_HANDLER.addHandler(handler);
     }
 
     protected String[] logLines() {
+        handler.flush();
         return writer.toString().split("\n");
     }
 

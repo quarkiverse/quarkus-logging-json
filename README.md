@@ -34,8 +34,10 @@ If you want to add your own custom way to handle the LogRecords.
 You can create your own implementations of `io.quarkiverse.loggingjson.JsonProvider`, and provide it using CDI.
 Example implementation:
 ```java
+import javax.inject.Singleton;
 import io.quarkiverse.loggingjson.JsonProvider;
 
+@Singleton
 public class MyJsonProvider implements JsonProvider {
 
     void writeTo(JsonGenerator generator, ExtLogRecord event) throws IOException {

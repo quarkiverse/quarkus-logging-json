@@ -19,10 +19,18 @@ public class TimestampJsonProvider implements JsonProvider {
 
     public TimestampJsonProvider(Config.TimestampField config) {
         fieldName = config.fieldName.orElse("timestamp");
-        if (!config.dateFormat.equals("default")) {
-            dateTimeFormatter = DateTimeFormatter.ofPattern(config.dateFormat).withZone(ZoneId.systemDefault());
+
+        ZoneId zoneId;
+        if (config.zoneId == null || "default".equals(config.zoneId)) {
+            zoneId = ZoneId.systemDefault();
         } else {
-            dateTimeFormatter = DateTimeFormatter.ISO_OFFSET_DATE_TIME.withZone(ZoneId.systemDefault());
+            zoneId = ZoneId.of(config.zoneId);
+        }
+
+        if (config.dateFormat != null && !config.dateFormat.equals("default")) {
+            dateTimeFormatter = DateTimeFormatter.ofPattern(config.dateFormat).withZone(zoneId);
+        } else {
+            dateTimeFormatter = DateTimeFormatter.ISO_OFFSET_DATE_TIME.withZone(zoneId);
         }
 
     }

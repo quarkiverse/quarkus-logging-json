@@ -147,6 +147,11 @@ public class Config {
          */
         @ConfigItem(defaultValue = "default")
         public String dateFormat;
+        /**
+         * The zone to use when formatting the timestamp.
+         */
+        @ConfigItem(defaultValue = "default")
+        public String zoneId;
     }
 
     @ConfigGroup

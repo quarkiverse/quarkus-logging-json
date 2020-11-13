@@ -2,7 +2,10 @@ package io.quarkiverse.loggingjson.providers;
 
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.zone.ZoneRulesException;
 import java.util.Optional;
 import java.util.logging.Level;
 
@@ -63,9 +66,41 @@ public class TimestampJsonProviderJsonbTest extends JsonProviderBaseTest {
         config.dateFormat = "sdkfjl";
 
         try {
-            final TimestampJsonProvider timestampJsonProvider = new TimestampJsonProvider(config);
+            new TimestampJsonProvider(config);
             Assertions.fail("Expected the format to be invalid");
         } catch (IllegalArgumentException ignored) {
+        }
+    }
+
+    @Test
+    void testCustomZoneIdConfig() throws Exception {
+        final Config.TimestampField config = new Config.TimestampField();
+        config.fieldName = Optional.of("timestamp");
+        config.zoneId = "Antarctica/Davis";
+        final TimestampJsonProvider timestampJsonProvider = new TimestampJsonProvider(config);
+
+        ZonedDateTime beforeLog = ZonedDateTime.now().minusSeconds(1).withZoneSameInstant(ZoneId.of("+7"));
+        final JsonNode result = getResultAsJsonNode(timestampJsonProvider, new ExtLogRecord(Level.ALL, "", ""));
+        ZonedDateTime afterLog = ZonedDateTime.now().withZoneSameInstant(ZoneId.of("+7"));
+
+        String timestamp = result.findValue("timestamp").asText();
+        Assertions.assertNotNull(timestamp);
+        ZonedDateTime logTimestamp = ZonedDateTime.parse(timestamp);
+        Assertions.assertEquals(ZoneId.of("+7"), logTimestamp.getZone());
+        Assertions.assertTrue(beforeLog.isBefore(logTimestamp) || beforeLog.isEqual(logTimestamp));
+        Assertions.assertTrue(afterLog.isAfter(logTimestamp) || afterLog.isEqual(logTimestamp));
+    }
+
+    @Test
+    void testCustomZoneIdConfigFail() {
+        final Config.TimestampField config = new Config.TimestampField();
+        config.fieldName = Optional.of("timestamp");
+        config.zoneId = "sdkfjl";
+
+        try {
+            new TimestampJsonProvider(config);
+            Assertions.fail("Expected the zoneId to be invalid");
+        } catch (ZoneRulesException ignored) {
         }
     }
 }

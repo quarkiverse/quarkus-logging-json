@@ -1,6 +1,6 @@
 package io.quarkiverse.loggingjson.deployment.providers.custom;
 
-import java.util.Arrays;
+import java.util.Collections;
 
 import javax.inject.Inject;
 
@@ -24,10 +24,8 @@ class CustomJsonProviderJsonbTest extends JsonFormatterBaseTest {
     static final QuarkusUnitTest config = new QuarkusUnitTest()
             .setArchiveProducer(() -> ShrinkWrap.create(JavaArchive.class)
                     .addClasses(FirstCustomJsonProvider.class, SecondCustomJsonProvider.class, ThirdCustomJsonProvider.class))
-            .setForcedDependencies(Arrays.asList(
-                    new AppArtifact("io.quarkus", "quarkus-jsonb-deployment", System.getProperty("test.quarkus.version")),
-                    new AppArtifact("org.jboss.slf4j", "slf4j-jboss-logging", "1.2.1.Final") // FIXME Remove when quarkus is updated
-            ))
+            .setForcedDependencies(Collections.singletonList(
+                    new AppArtifact("io.quarkus", "quarkus-jsonb-deployment", System.getProperty("test.quarkus.version"))))
             .withConfigurationResource("application-json.properties");
 
     @Inject

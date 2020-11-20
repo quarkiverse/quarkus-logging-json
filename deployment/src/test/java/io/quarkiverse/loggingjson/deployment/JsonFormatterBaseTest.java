@@ -71,7 +71,7 @@ public abstract class JsonFormatterBaseTest {
         JsonFormatter jsonFormatter = getJsonFormatter();
 
         org.slf4j.Logger log = LoggerFactory.getLogger("JsonStructuredTest");
-        OffsetDateTime beforeFirstLog = OffsetDateTime.now();
+        OffsetDateTime beforeFirstLog = OffsetDateTime.now().minusSeconds(1);
 
         try (MDC.MDCCloseable closeable = MDC.putCloseable("mdcKey", "mdcVal")) {
             log.error("Test {}", "message",
@@ -116,7 +116,7 @@ public abstract class JsonFormatterBaseTest {
         Assertions.assertTrue(jsonNode.findValue("sequence").isNumber());
 
         Assertions.assertTrue(jsonNode.findValue("loggerClassName").isTextual());
-        Assertions.assertEquals("org.jboss.slf4j.JBossLoggerAdapter", jsonNode.findValue("loggerClassName").asText());
+        Assertions.assertEquals("org.slf4j.impl.Slf4jLogger", jsonNode.findValue("loggerClassName").asText());
 
         Assertions.assertTrue(jsonNode.findValue("loggerName").isTextual());
         Assertions.assertEquals("JsonStructuredTest", jsonNode.findValue("loggerName").asText());

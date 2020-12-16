@@ -35,12 +35,16 @@ You can create your own implementations of `io.quarkiverse.loggingjson.JsonProvi
 Example implementation:
 ```java
 import javax.inject.Singleton;
+import java.io.IOException;
+
 import io.quarkiverse.loggingjson.JsonProvider;
+import io.quarkiverse.loggingjson.JsonGenerator;
+import org.jboss.logmanager.ExtLogRecord;
 
 @Singleton
 public class MyJsonProvider implements JsonProvider {
 
-    void writeTo(JsonGenerator generator, ExtLogRecord event) throws IOException {
+    public void writeTo(JsonGenerator generator, ExtLogRecord event) throws IOException {
         generator.writeStringField("myCustomField", "and my custom value"); // Will be added to every log, as a field on the json.
     }
 }

@@ -11,9 +11,9 @@ public class JsonWritingUtils {
      * Writes entries of the map as fields.
      */
     public static void writeMapEntries(JsonGenerator generator, Map<?, ?> map) throws IOException {
-        if (map != null) {
+        if (map != null && !map.isEmpty()) {
             for (Map.Entry<?, ?> entry : map.entrySet()) {
-                if (entry.getKey() != null && entry.getValue() != null) {
+                if (entry.getKey() != null && entry.getValue() != null && shouldWriteField(entry.getKey().toString())) {
                     generator.writeFieldName(entry.getKey().toString());
                     generator.writeObject(entry.getValue());
                 }

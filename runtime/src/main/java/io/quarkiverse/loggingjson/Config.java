@@ -98,7 +98,7 @@ public class Config {
          * Options for mdc.
          */
         @ConfigItem
-        public FieldConfig mdc;
+        public MDCConfig mdc;
         /**
          * Options for ndc.
          */
@@ -133,6 +133,25 @@ public class Config {
          */
         @ConfigItem
         public Optional<Boolean> enabled;
+    }
+
+    @ConfigGroup
+    public static class MDCConfig {
+        /**
+         * Used to change the json key for the field.
+         */
+        @ConfigItem
+        public Optional<String> fieldName;
+        /**
+         * Enable or disable the field.
+         */
+        @ConfigItem
+        public Optional<Boolean> enabled;
+        /**
+         * Will write the values at the top level of the JSON log object.
+         */
+        @ConfigItem
+        public Optional<Boolean> flatFields;
     }
 
     @ConfigGroup

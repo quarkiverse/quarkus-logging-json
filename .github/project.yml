@@ -1,4 +1,4 @@
 name: Quarkiverse Logging JSON
 release:
-  current-version: 0.2.1
-  next-version: 0.2.2-SNAPSHOT
+  current-version: 0.2.2
+  next-version: 0.2.3-SNAPSHOT

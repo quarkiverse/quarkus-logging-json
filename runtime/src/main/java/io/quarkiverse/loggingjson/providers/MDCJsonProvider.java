@@ -13,22 +13,20 @@ import io.quarkiverse.loggingjson.JsonWritingUtils;
 public class MDCJsonProvider implements JsonProvider, Enabled {
 
     private final String fieldName;
-    private final Boolean flatFields;
     private final Config.MDCConfig config;
 
     public MDCJsonProvider(Config.MDCConfig config) {
         this.config = config;
-        this.fieldName = config.fieldName.orElse("mdc");
-        this.flatFields = config.flatFields.orElse(false);
+        if (config.flatFields) {
+            this.fieldName = null;
+        } else {
+            this.fieldName = config.fieldName.orElse("mdc");
+        }
     }
 
     @Override
     public void writeTo(JsonGenerator generator, ExtLogRecord event) throws IOException {
-        if (flatFields) {
-            JsonWritingUtils.writeMapEntries(generator, event.getMdcCopy());
-        } else {
-            JsonWritingUtils.writeMapStringFields(generator, fieldName, event.getMdcCopy());
-        }
+        JsonWritingUtils.writeMapStringFields(generator, fieldName, event.getMdcCopy());
     }
 
     @Override

@@ -5,15 +5,13 @@ import java.util.Map;
 
 public class JsonWritingUtils {
 
-    public static final String IGNORE_FIELD_INDICATOR = "[ignore]";
-
     /**
      * Writes entries of the map as fields.
      */
     public static void writeMapEntries(JsonGenerator generator, Map<?, ?> map) throws IOException {
-        if (map != null && !map.isEmpty()) {
+        if (map != null) {
             for (Map.Entry<?, ?> entry : map.entrySet()) {
-                if (entry.getKey() != null && entry.getValue() != null && shouldWriteField(entry.getKey().toString())) {
+                if (entry.getKey() != null && entry.getValue() != null) {
                     generator.writeFieldName(entry.getKey().toString());
                     generator.writeObject(entry.getValue());
                 }
@@ -36,15 +34,17 @@ public class JsonWritingUtils {
      */
     public static void writeMapStringFields(JsonGenerator generator, String fieldName, Map<String, String> map,
             boolean lowerCaseKeys) throws IOException {
-        if (shouldWriteField(fieldName) && map != null && !map.isEmpty()) {
-            generator.writeObjectFieldStart(fieldName);
+        if (map != null && !map.isEmpty()) {
+            if (fieldName != null)
+                generator.writeObjectFieldStart(fieldName);
             for (Map.Entry<String, String> entry : map.entrySet()) {
                 String key = entry.getKey() != null && lowerCaseKeys
                         ? entry.getKey().toLowerCase()
                         : entry.getKey();
                 writeStringField(generator, key, entry.getValue());
             }
-            generator.writeEndObject();
+            if (fieldName != null)
+                generator.writeEndObject();
         }
     }
 
@@ -53,7 +53,7 @@ public class JsonWritingUtils {
      */
     public static void writeStringArrayField(JsonGenerator generator, String fieldName, String[] fieldValues)
             throws IOException {
-        if (shouldWriteField(fieldName) && fieldValues != null && fieldValues.length > 0) {
+        if (fieldName != null && fieldValues != null && fieldValues.length > 0) {
             generator.writeArrayFieldStart(fieldName);
             for (String fieldValue : fieldValues) {
                 generator.writeString(fieldValue);
@@ -66,7 +66,7 @@ public class JsonWritingUtils {
      * Writes the field to the generator if and only if the fieldName and fieldValue are not null.
      */
     public static void writeStringField(JsonGenerator generator, String fieldName, String fieldValue) throws IOException {
-        if (shouldWriteField(fieldName) && fieldValue != null) {
+        if (fieldName != null && fieldValue != null) {
             generator.writeStringField(fieldName, fieldValue);
         }
     }
@@ -75,7 +75,7 @@ public class JsonWritingUtils {
      * Writes the field to the generator if and only if the fieldName is not null.
      */
     public static void writeNumberField(JsonGenerator generator, String fieldName, int fieldValue) throws IOException {
-        if (shouldWriteField(fieldName)) {
+        if (fieldName != null) {
             generator.writeNumberField(fieldName, fieldValue);
         }
     }
@@ -84,13 +84,9 @@ public class JsonWritingUtils {
      * Writes the field to the generator if and only if the fieldName is not null.
      */
     public static void writeNumberField(JsonGenerator generator, String fieldName, long fieldValue) throws IOException {
-        if (shouldWriteField(fieldName)) {
+        if (fieldName != null) {
             generator.writeNumberField(fieldName, fieldValue);
         }
-    }
-
-    public static boolean shouldWriteField(String fieldName) {
-        return fieldName != null && !fieldName.equals(IGNORE_FIELD_INDICATOR);
     }
 
     public static boolean isNotNullOrEmpty(final String value) {

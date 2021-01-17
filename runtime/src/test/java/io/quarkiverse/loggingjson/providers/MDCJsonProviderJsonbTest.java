@@ -24,7 +24,6 @@ public class MDCJsonProviderJsonbTest extends JsonProviderBaseTest {
         final Config.MDCConfig config = new Config.MDCConfig();
         config.fieldName = Optional.empty();
         config.enabled = Optional.empty();
-        config.flatFields = Optional.empty();
         final MDCJsonProvider provider = new MDCJsonProvider(config);
 
         final ExtLogRecord event = new ExtLogRecord(Level.ALL, "", "");
@@ -46,7 +45,6 @@ public class MDCJsonProviderJsonbTest extends JsonProviderBaseTest {
         final Config.MDCConfig config = new Config.MDCConfig();
         config.fieldName = Optional.of("m");
         config.enabled = Optional.of(false);
-        config.flatFields = Optional.of(false);
         final MDCJsonProvider provider = new MDCJsonProvider(config);
 
         final ExtLogRecord event = new ExtLogRecord(Level.ALL, "", "");
@@ -71,8 +69,8 @@ public class MDCJsonProviderJsonbTest extends JsonProviderBaseTest {
     void testFlatCustomConfig() throws Exception {
         final Config.MDCConfig config = new Config.MDCConfig();
         config.fieldName = Optional.of("m");
-        config.enabled = Optional.of(false);
-        config.flatFields = Optional.of(true);
+        config.enabled = Optional.empty();
+        config.flatFields = true;
         final MDCJsonProvider provider = new MDCJsonProvider(config);
 
         final ExtLogRecord event = new ExtLogRecord(Level.ALL, "", "");
@@ -80,19 +78,10 @@ public class MDCJsonProviderJsonbTest extends JsonProviderBaseTest {
         event.putMdc("mdcKey2", "mdcValue2");
         final JsonNode result = getResultAsJsonNode(provider, event);
 
-        final JsonNode mdc = result.findValue("m");
-        Assertions.assertNull(mdc);
-
-        final JsonNode mdcValue1 = result.findValue("mdcKey1");
-        Assertions.assertEquals(mdcValue1.textValue(), "mdcValue1");
-
-        final JsonNode mdcValue2 = result.findValue("mdcKey2");
-        Assertions.assertEquals(mdcValue2.textValue(), "mdcValue2");
-
-        Assertions.assertFalse(provider.isEnabled());
-
-        config.enabled = Optional.of(true);
-        Assertions.assertTrue(new MDCJsonProvider(config).isEnabled());
+        Assertions.assertFalse(result.has("m"));
+        Assertions.assertEquals(Arrays.asList("mdcKey1", "mdcKey2"), ImmutableList.copyOf(result.fieldNames()));
+        Assertions.assertEquals("mdcValue1", result.get("mdcKey1").asText());
+        Assertions.assertEquals("mdcValue2", result.get("mdcKey2").asText());
     }
 
 }

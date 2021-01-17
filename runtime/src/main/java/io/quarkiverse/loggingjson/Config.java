@@ -150,8 +150,8 @@ public class Config {
         /**
          * Will write the values at the top level of the JSON log object.
          */
-        @ConfigItem
-        public Optional<Boolean> flatFields;
+        @ConfigItem(defaultValue = "false")
+        public boolean flatFields;
     }
 
     @ConfigGroup

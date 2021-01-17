@@ -21,7 +21,7 @@ public class MDCJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testDefaultConfig() throws Exception {
-        final Config.FieldConfig config = new Config.FieldConfig();
+        final Config.MDCConfig config = new Config.MDCConfig();
         config.fieldName = Optional.empty();
         config.enabled = Optional.empty();
         final MDCJsonProvider provider = new MDCJsonProvider(config);
@@ -42,7 +42,7 @@ public class MDCJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testCustomConfig() throws Exception {
-        final Config.FieldConfig config = new Config.FieldConfig();
+        final Config.MDCConfig config = new Config.MDCConfig();
         config.fieldName = Optional.of("m");
         config.enabled = Optional.of(false);
         final MDCJsonProvider provider = new MDCJsonProvider(config);
@@ -63,6 +63,25 @@ public class MDCJsonProviderJsonbTest extends JsonProviderBaseTest {
 
         config.enabled = Optional.of(true);
         Assertions.assertTrue(new MDCJsonProvider(config).isEnabled());
+    }
+
+    @Test
+    void testFlatCustomConfig() throws Exception {
+        final Config.MDCConfig config = new Config.MDCConfig();
+        config.fieldName = Optional.of("m");
+        config.enabled = Optional.empty();
+        config.flatFields = true;
+        final MDCJsonProvider provider = new MDCJsonProvider(config);
+
+        final ExtLogRecord event = new ExtLogRecord(Level.ALL, "", "");
+        event.putMdc("mdcKey1", "mdcValue1");
+        event.putMdc("mdcKey2", "mdcValue2");
+        final JsonNode result = getResultAsJsonNode(provider, event);
+
+        Assertions.assertFalse(result.has("m"));
+        Assertions.assertEquals(Arrays.asList("mdcKey1", "mdcKey2"), ImmutableList.copyOf(result.fieldNames()));
+        Assertions.assertEquals("mdcValue1", result.get("mdcKey1").asText());
+        Assertions.assertEquals("mdcValue2", result.get("mdcKey2").asText());
     }
 
 }

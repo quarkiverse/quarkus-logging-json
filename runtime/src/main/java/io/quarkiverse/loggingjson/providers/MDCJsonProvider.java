@@ -13,11 +13,15 @@ import io.quarkiverse.loggingjson.JsonWritingUtils;
 public class MDCJsonProvider implements JsonProvider, Enabled {
 
     private final String fieldName;
-    private final Config.FieldConfig config;
+    private final Config.MDCConfig config;
 
-    public MDCJsonProvider(Config.FieldConfig config) {
+    public MDCJsonProvider(Config.MDCConfig config) {
         this.config = config;
-        this.fieldName = config.fieldName.orElse("mdc");
+        if (config.flatFields) {
+            this.fieldName = null;
+        } else {
+            this.fieldName = config.fieldName.orElse("mdc");
+        }
     }
 
     @Override

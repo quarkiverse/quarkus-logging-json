@@ -11,6 +11,7 @@ Can be disabled using configuration: `quarkus.log.console.json=false`
 
 To see additional configuration options take a look at [Config](runtime/src/main/java/io/quarkiverse/loggingjson/Config.java)
 
+
 # Add additional fields to all log messages
 If you want to add a static field to all the log message, that is possible using the configuration.
 ```properties

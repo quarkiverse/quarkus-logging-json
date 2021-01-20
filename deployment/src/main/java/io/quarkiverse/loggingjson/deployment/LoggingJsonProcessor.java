@@ -19,7 +19,7 @@ import io.quarkus.deployment.builditem.LogConsoleFormatBuildItem;
 
 class LoggingJsonProcessor {
 
-    private static final String FEATURE = "quarkiverse-logging-json";
+    private static final String FEATURE = "logging-json";
 
     @BuildStep
     FeatureBuildItem feature() {

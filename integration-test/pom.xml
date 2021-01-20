@@ -3,13 +3,13 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>io.quarkiverse.loggingjson</groupId>
-        <artifactId>quarkiverse-logging-json-parent</artifactId>
+        <artifactId>quarkus-logging-json-parent</artifactId>
         <version>0.2.4-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>quarkiverse-logging-json-integration-test</artifactId>
-    <name>Logging in json with support for custom fields - Integration test</name>
+    <artifactId>quarkus-logging-json-integration-test</artifactId>
+    <name>Quarkus Logging JSON - Integration test</name>
 
     <properties>
         <maven.deploy.skip>true</maven.deploy.skip>
@@ -29,7 +29,7 @@
         </dependency>
         <dependency>
             <groupId>io.quarkiverse.loggingjson</groupId>
-            <artifactId>quarkiverse-logging-json</artifactId>
+            <artifactId>quarkus-logging-json</artifactId>
             <version>${project.version}</version>
         </dependency>
 
@@ -74,7 +74,7 @@
         </dependency>
         <dependency>
             <groupId>io.quarkiverse.loggingjson</groupId>
-            <artifactId>quarkiverse-logging-json-deployment</artifactId>
+            <artifactId>quarkus-logging-json-deployment</artifactId>
             <version>${project.version}</version>
             <type>pom</type>
             <scope>test</scope>

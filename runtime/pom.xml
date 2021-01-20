@@ -3,14 +3,14 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>io.quarkiverse.loggingjson</groupId>
-        <artifactId>quarkiverse-logging-json-parent</artifactId>
+        <artifactId>quarkus-logging-json-parent</artifactId>
         <version>0.2.4-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>quarkiverse-logging-json</artifactId>
-    <name>Logging in json with support for custom fields - Runtime</name>
-    <description>Logging in json with support for custom fields</description>
+    <artifactId>quarkus-logging-json</artifactId>
+    <name>Quarkus Logging JSON - Runtime</name>
+    <description>Logging in JSON with support for custom fields</description>
     <dependencies>
         <dependency>
             <groupId>io.quarkus</groupId>

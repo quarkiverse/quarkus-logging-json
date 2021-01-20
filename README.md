@@ -1,8 +1,8 @@
-[![Maven Central](https://img.shields.io/maven-central/v/io.quarkiverse.loggingjson/quarkiverse-logging-json?logo=apache-maven&style=for-the-badge)](https://search.maven.org/artifact/io.quarkiverse.loggingjson/quarkiverse-logging-json)
+[![Maven Central](https://img.shields.io/maven-central/v/io.quarkiverse.loggingjson/quarkus-logging-json?logo=apache-maven&style=for-the-badge)](https://search.maven.org/artifact/io.quarkiverse.loggingjson/quarkus-logging-json)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-# Quarkiverse Logging Json
+# Quarkus Logging Json
 Quarkus logging extension outputting the logging in json.
 
 # Configuration
@@ -59,7 +59,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/SlyngDK"><img src="https://avatars2.githubusercontent.com/u/6666094?v=4" width="100px;" alt=""/><br /><sub><b>Simon Bengtsson</b></sub></a><br /><a href="https://github.com/quarkiverse/quarkiverse-logging-json/commits?author=SlyngDK" title="Code">💻</a> <a href="#maintenance-SlyngDK" title="Maintenance">🚧</a></td>
+    <td align="center"><a href="https://github.com/SlyngDK"><img src="https://avatars2.githubusercontent.com/u/6666094?v=4" width="100px;" alt=""/><br /><sub><b>Simon Bengtsson</b></sub></a><br /><a href="https://github.com/quarkiverse/quarkus-logging-json/commits?author=SlyngDK" title="Code">💻</a> <a href="#maintenance-SlyngDK" title="Maintenance">🚧</a></td>
   </tr>
 </table>
 

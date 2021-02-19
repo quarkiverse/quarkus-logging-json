@@ -8,8 +8,8 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>quarkus-logging-json-integration-test</artifactId>
-    <name>Quarkus Logging JSON - Integration test</name>
+    <artifactId>quarkus-logging-json-integration-tests</artifactId>
+    <name>Quarkus Logging JSON - Integration tests</name>
 
     <properties>
         <maven.deploy.skip>true</maven.deploy.skip>

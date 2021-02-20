@@ -8,16 +8,19 @@ import java.time.format.DateTimeFormatter;
 import org.jboss.logmanager.ExtLogRecord;
 
 import io.quarkiverse.loggingjson.Config;
+import io.quarkiverse.loggingjson.Enabled;
 import io.quarkiverse.loggingjson.JsonGenerator;
 import io.quarkiverse.loggingjson.JsonProvider;
 import io.quarkiverse.loggingjson.JsonWritingUtils;
 
-public class TimestampJsonProvider implements JsonProvider {
+public class TimestampJsonProvider implements JsonProvider, Enabled {
 
     private final String fieldName;
     private final DateTimeFormatter dateTimeFormatter;
+    private final Config.TimestampField config;
 
     public TimestampJsonProvider(Config.TimestampField config) {
+        this.config = config;
         fieldName = config.fieldName.orElse("timestamp");
 
         ZoneId zoneId;
@@ -39,5 +42,10 @@ public class TimestampJsonProvider implements JsonProvider {
     public void writeTo(JsonGenerator generator, ExtLogRecord event) throws IOException {
         long millis = event.getMillis();
         JsonWritingUtils.writeStringField(generator, fieldName, dateTimeFormatter.format(Instant.ofEpochMilli(millis)));
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return config.enabled.orElse(true);
     }
 }

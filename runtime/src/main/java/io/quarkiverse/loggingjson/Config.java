@@ -171,6 +171,11 @@ public class Config {
          */
         @ConfigItem(defaultValue = "default")
         public String zoneId;
+        /**
+         * Enable or disable the field.
+         */
+        @ConfigItem
+        public Optional<Boolean> enabled;
     }
 
     @ConfigGroup

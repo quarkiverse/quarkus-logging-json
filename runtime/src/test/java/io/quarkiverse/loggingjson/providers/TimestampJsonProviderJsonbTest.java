@@ -28,6 +28,7 @@ public class TimestampJsonProviderJsonbTest extends JsonProviderBaseTest {
         final Config.TimestampField config = new Config.TimestampField();
         config.fieldName = Optional.empty();
         config.dateFormat = "default";
+        config.enabled = Optional.empty();
         final TimestampJsonProvider timestampJsonProvider = new TimestampJsonProvider(config);
 
         OffsetDateTime beforeLog = OffsetDateTime.now().minusSeconds(1);
@@ -46,6 +47,7 @@ public class TimestampJsonProviderJsonbTest extends JsonProviderBaseTest {
         final Config.TimestampField config = new Config.TimestampField();
         config.fieldName = Optional.of("@timestamp");
         config.dateFormat = "dd-MM-yyyy HH:mm:ss.SSS";
+        config.enabled = Optional.empty();
         final TimestampJsonProvider timestampJsonProvider = new TimestampJsonProvider(config);
 
         LocalDateTime beforeLog = LocalDateTime.now().minusSeconds(1);
@@ -60,10 +62,23 @@ public class TimestampJsonProviderJsonbTest extends JsonProviderBaseTest {
     }
 
     @Test
+    void testCustomConfigDisabled() {
+        final Config.TimestampField config = new Config.TimestampField();
+        config.fieldName = Optional.empty();
+        config.enabled = Optional.empty();
+        final TimestampJsonProvider timestampJsonProvider = new TimestampJsonProvider(config);
+        Assertions.assertTrue(timestampJsonProvider.isEnabled());
+
+        config.enabled = Optional.of(false);
+        Assertions.assertFalse(timestampJsonProvider.isEnabled());
+    }
+
+    @Test
     void testCustomDateFormatConfigFail() {
         final Config.TimestampField config = new Config.TimestampField();
         config.fieldName = Optional.of("@timestamp");
         config.dateFormat = "sdkfjl";
+        config.enabled = Optional.empty();
 
         try {
             new TimestampJsonProvider(config);
@@ -77,6 +92,7 @@ public class TimestampJsonProviderJsonbTest extends JsonProviderBaseTest {
         final Config.TimestampField config = new Config.TimestampField();
         config.fieldName = Optional.of("timestamp");
         config.zoneId = "Antarctica/Davis";
+        config.enabled = Optional.empty();
         final TimestampJsonProvider timestampJsonProvider = new TimestampJsonProvider(config);
 
         ZonedDateTime beforeLog = ZonedDateTime.now().minusSeconds(1).withZoneSameInstant(ZoneId.of("+7"));
@@ -96,6 +112,7 @@ public class TimestampJsonProviderJsonbTest extends JsonProviderBaseTest {
         final Config.TimestampField config = new Config.TimestampField();
         config.fieldName = Optional.of("timestamp");
         config.zoneId = "sdkfjl";
+        config.enabled = Optional.empty();
 
         try {
             new TimestampJsonProvider(config);

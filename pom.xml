@@ -23,6 +23,7 @@
         <quarkus.version>1.12.2.Final</quarkus.version>
         <!-- Sonar properties -->
         <sonar.projectKey>quarkiverse_quarkus-logging-json</sonar.projectKey>
+        <sonar.moduleKey>${artifactId}</sonar.moduleKey>
         <sonar.organization>quarkiverse</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>        
     </properties>

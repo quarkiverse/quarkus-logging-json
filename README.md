@@ -1,5 +1,5 @@
 [![Maven Central](https://img.shields.io/maven-central/v/io.quarkiverse.loggingjson/quarkus-logging-json?logo=apache-maven&style=for-the-badge)](https://search.maven.org/artifact/io.quarkiverse.loggingjson/quarkus-logging-json)
-![Sonar Coverage](https://img.shields.io/sonar/coverage/quarkiverse_quarkus-logging-json?server=https%3A%2F%2Fsonarcloud.io&style=for-the-badge)
+[![Sonar Coverage](https://img.shields.io/sonar/coverage/quarkiverse_quarkus-logging-json?logo=sonarcloud&server=https%3A%2F%2Fsonarcloud.io&style=for-the-badge)](https://sonarcloud.io/dashboard?id=quarkiverse_quarkus-logging-json)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->

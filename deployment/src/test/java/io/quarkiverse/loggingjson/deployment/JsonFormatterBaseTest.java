@@ -11,7 +11,6 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 import org.jboss.logmanager.handlers.ConsoleHandler;
-import org.jboss.logmanager.handlers.DelayedHandler;
 import org.jboss.logmanager.handlers.WriterHandler;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -25,6 +24,7 @@ import com.google.common.collect.ImmutableList;
 import io.quarkiverse.loggingjson.JsonFormatter;
 import io.quarkiverse.loggingjson.providers.KeyValueStructuredArgument;
 import io.quarkus.bootstrap.logging.InitialConfigurator;
+import io.quarkus.bootstrap.logging.QuarkusDelayedHandler;
 
 public abstract class JsonFormatterBaseTest {
     private static StringWriter writer = new StringWriter();
@@ -52,7 +52,7 @@ public abstract class JsonFormatterBaseTest {
         LogManager logManager = LogManager.getLogManager();
         Assertions.assertTrue(logManager instanceof org.jboss.logmanager.LogManager);
 
-        DelayedHandler delayedHandler = InitialConfigurator.DELAYED_HANDLER;
+        QuarkusDelayedHandler delayedHandler = InitialConfigurator.DELAYED_HANDLER;
         Assertions.assertTrue(Arrays.asList(Logger.getLogger("").getHandlers()).contains(delayedHandler));
         Assertions.assertEquals(Level.ALL, delayedHandler.getLevel());
 

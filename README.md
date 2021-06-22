@@ -45,6 +45,7 @@ import org.jboss.logmanager.ExtLogRecord;
 @Singleton
 public class MyJsonProvider implements JsonProvider {
 
+    @Override
     public void writeTo(JsonGenerator generator, ExtLogRecord event) throws IOException {
         generator.writeStringField("myCustomField", "and my custom value"); // Will be added to every log, as a field on the json.
     }

@@ -7,20 +7,7 @@ final public class StringBuilderWriter extends Writer {
     private final StringBuilder builder;
 
     public StringBuilderWriter() {
-        this(new StringBuilder());
-    }
-
-    public StringBuilderWriter(final StringBuilder builder) {
-        this.builder = builder;
-    }
-
-    /**
-     * Clears the builder used for the writer.
-     *
-     * @see StringBuilder#setLength(int)
-     */
-    void clear() {
-        builder.setLength(0);
+        builder = new StringBuilder();
     }
 
     @Override

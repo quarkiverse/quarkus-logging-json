@@ -6,10 +6,9 @@ import org.jboss.logmanager.ExtFormatter;
 import org.jboss.logmanager.ExtLogRecord;
 
 public class JsonFormatter extends ExtFormatter {
-    private final StringBuilderWriter writer = new StringBuilderWriter();
     private final List<JsonProvider> providers;
     private final JsonFactory jsonFactory;
-    private String recordDelimiter;
+    private final String recordDelimiter;
 
     public JsonFormatter(List<JsonProvider> providers, JsonFactory jsonFactory, Config config) {
         this.providers = providers;
@@ -20,6 +19,7 @@ public class JsonFormatter extends ExtFormatter {
     @Override
     public String format(ExtLogRecord record) {
         try {
+            final StringBuilderWriter writer = new StringBuilderWriter();
             try (JsonGenerator generator = this.jsonFactory.createGenerator(writer)) {
                 generator.writeStartObject();
                 for (JsonProvider provider : this.providers) {
@@ -35,9 +35,6 @@ public class JsonFormatter extends ExtFormatter {
         } catch (Exception e) {
             // Wrap and rethrow
             throw new RuntimeException(e);
-        } finally {
-            // Clear the writer for the next format
-            writer.clear();
         }
     }
 }

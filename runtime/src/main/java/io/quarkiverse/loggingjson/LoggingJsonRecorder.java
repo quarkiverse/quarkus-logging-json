@@ -9,8 +9,6 @@ import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import io.quarkiverse.loggingjson.format.DefaultLogFormatFields;
-import io.quarkiverse.loggingjson.format.LogFormatFields;
 import io.quarkiverse.loggingjson.jackson.JacksonJsonFactory;
 import io.quarkiverse.loggingjson.jsonb.JsonbJsonFactory;
 import io.quarkiverse.loggingjson.providers.*;
@@ -27,8 +25,6 @@ public class LoggingJsonRecorder {
         if (!config.enable) {
             return new RuntimeValue<>(Optional.empty());
         }
-
-        LogFormatFields logFormatFields = new DefaultLogFormatFields();
 
         List<JsonProvider> providers;
 

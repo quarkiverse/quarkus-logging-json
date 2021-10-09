@@ -20,8 +20,12 @@ public class TimestampJsonProvider implements JsonProvider, Enabled {
     private final Config.TimestampField config;
 
     public TimestampJsonProvider(Config.TimestampField config) {
+        this(config, "timestamp");
+    }
+
+    public TimestampJsonProvider(Config.TimestampField config, String defaultName) {
         this.config = config;
-        fieldName = config.fieldName.orElse("timestamp");
+        fieldName = config.fieldName.orElse(defaultName);
 
         ZoneId zoneId;
         if (config.zoneId == null || "default".equals(config.zoneId)) {

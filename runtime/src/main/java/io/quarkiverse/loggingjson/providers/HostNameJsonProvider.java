@@ -4,11 +4,7 @@ import java.io.IOException;
 
 import org.jboss.logmanager.ExtLogRecord;
 
-import io.quarkiverse.loggingjson.Config;
-import io.quarkiverse.loggingjson.Enabled;
-import io.quarkiverse.loggingjson.JsonGenerator;
-import io.quarkiverse.loggingjson.JsonProvider;
-import io.quarkiverse.loggingjson.JsonWritingUtils;
+import io.quarkiverse.loggingjson.*;
 
 public class HostNameJsonProvider implements JsonProvider, Enabled {
 
@@ -16,8 +12,12 @@ public class HostNameJsonProvider implements JsonProvider, Enabled {
     private final Config.FieldConfig config;
 
     public HostNameJsonProvider(Config.FieldConfig config) {
+        this(config, "hostName");
+    }
+
+    public HostNameJsonProvider(Config.FieldConfig config, String defaultName) {
         this.config = config;
-        this.fieldName = config.fieldName.orElse("hostName");
+        this.fieldName = config.fieldName.orElse(defaultName);
     }
 
     @Override

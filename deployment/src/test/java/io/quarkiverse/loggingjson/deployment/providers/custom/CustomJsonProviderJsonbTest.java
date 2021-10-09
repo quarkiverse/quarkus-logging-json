@@ -15,11 +15,11 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableList;
 
-import io.quarkiverse.loggingjson.deployment.JsonFormatterBaseTest;
+import io.quarkiverse.loggingjson.deployment.JsonDefaultFormatterBaseTest;
 import io.quarkus.bootstrap.model.AppArtifact;
 import io.quarkus.test.QuarkusUnitTest;
 
-class CustomJsonProviderJsonbTest extends JsonFormatterBaseTest {
+class CustomJsonProviderJsonbTest extends JsonDefaultFormatterBaseTest {
     @RegisterExtension
     static final QuarkusUnitTest config = new QuarkusUnitTest()
             .setArchiveProducer(() -> ShrinkWrap.create(JavaArchive.class)

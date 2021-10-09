@@ -5,12 +5,7 @@ import java.util.Optional;
 
 import io.quarkiverse.loggingjson.providers.ArgumentsJsonProvider;
 import io.quarkiverse.loggingjson.providers.StructuredArgument;
-import io.quarkus.runtime.annotations.ConfigDocMapKey;
-import io.quarkus.runtime.annotations.ConfigDocSection;
-import io.quarkus.runtime.annotations.ConfigGroup;
-import io.quarkus.runtime.annotations.ConfigItem;
-import io.quarkus.runtime.annotations.ConfigPhase;
-import io.quarkus.runtime.annotations.ConfigRoot;
+import io.quarkus.runtime.annotations.*;
 
 @ConfigRoot(phase = ConfigPhase.RUN_TIME, name = "log.console.json")
 public class Config {
@@ -41,6 +36,12 @@ public class Config {
     @ConfigDocMapKey("field-name")
     @ConfigDocSection
     public Map<String, AdditionalFieldConfig> additionalField;
+
+    /**
+     * Support changing logging format.
+     */
+    @ConfigItem(defaultValue = "DEFAULT")
+    LogFormat logFormat;
 
     @ConfigGroup
     public static class FieldsConfig {
@@ -119,6 +120,16 @@ public class Config {
          */
         @ConfigItem
         public FieldConfig stackTrace;
+        /**
+         * Options for errorType.
+         */
+        @ConfigItem
+        public FieldConfig errorType;
+        /**
+         * Options for errorMessage.
+         */
+        @ConfigItem
+        public FieldConfig errorMessage;
     }
 
     @ConfigGroup
@@ -227,5 +238,10 @@ public class Config {
         LONG,
         FLOAT,
         DOUBLE
+    }
+
+    public enum LogFormat {
+        DEFAULT,
+        ECS
     }
 }

@@ -16,8 +16,12 @@ public class ThreadNameJsonProvider implements JsonProvider, Enabled {
     private final Config.FieldConfig config;
 
     public ThreadNameJsonProvider(Config.FieldConfig config) {
+        this(config, "threadName");
+    }
+
+    public ThreadNameJsonProvider(Config.FieldConfig config, String defaultName) {
         this.config = config;
-        this.fieldName = config.fieldName.orElse("threadName");
+        this.fieldName = config.fieldName.orElse(defaultName);
     }
 
     @Override

@@ -26,7 +26,7 @@ import io.quarkiverse.loggingjson.providers.KeyValueStructuredArgument;
 import io.quarkus.bootstrap.logging.InitialConfigurator;
 import io.quarkus.bootstrap.logging.QuarkusDelayedHandler;
 
-public abstract class JsonFormatterBaseTest {
+public abstract class JsonDefaultFormatterBaseTest {
     private static StringWriter writer = new StringWriter();
     private static WriterHandler handler;
 
@@ -102,6 +102,8 @@ public abstract class JsonFormatterBaseTest {
                 "processName",
                 "processId",
                 "stackTrace",
+                "errorType",
+                "errorMessage",
                 "arg0",
                 "structuredKey",
                 "serviceName");
@@ -146,6 +148,12 @@ public abstract class JsonFormatterBaseTest {
 
         Assertions.assertTrue(jsonNode.findValue("stackTrace").isTextual());
         Assertions.assertTrue(jsonNode.findValue("stackTrace").asText().length() > 100);
+
+        Assertions.assertTrue(jsonNode.findValue("errorType").isTextual());
+        Assertions.assertEquals("java.lang.RuntimeException", jsonNode.findValue("errorType").asText());
+
+        Assertions.assertTrue(jsonNode.findValue("errorMessage").isTextual());
+        Assertions.assertEquals("Testing stackTrace", jsonNode.findValue("errorMessage").asText());
 
         Assertions.assertTrue(jsonNode.findValue("arg0").isTextual());
         Assertions.assertEquals("message", jsonNode.findValue("arg0").asText());

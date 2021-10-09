@@ -6,22 +6,25 @@ import org.jboss.logmanager.ExtLogRecord;
 
 import io.quarkiverse.loggingjson.*;
 
-public class LogLevelJsonProvider implements JsonProvider, Enabled {
+public class ErrorTypeJsonProvider implements JsonProvider, Enabled {
+
     private final String fieldName;
     private final Config.FieldConfig config;
 
-    public LogLevelJsonProvider(Config.FieldConfig config) {
-        this(config, "level");
+    public ErrorTypeJsonProvider(Config.FieldConfig config) {
+        this(config, "errorType");
     }
 
-    public LogLevelJsonProvider(Config.FieldConfig config, String defaultName) {
+    public ErrorTypeJsonProvider(Config.FieldConfig config, String defaultName) {
         this.config = config;
         this.fieldName = config.fieldName.orElse(defaultName);
     }
 
     @Override
     public void writeTo(JsonGenerator generator, ExtLogRecord event) throws IOException {
-        JsonWritingUtils.writeStringField(generator, fieldName, event.getLevel().toString());
+        if (event.getThrown() != null) {
+            JsonWritingUtils.writeStringField(generator, fieldName, event.getThrown().getClass().getName());
+        }
     }
 
     @Override

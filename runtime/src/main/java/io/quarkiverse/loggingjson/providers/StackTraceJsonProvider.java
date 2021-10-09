@@ -5,12 +5,7 @@ import java.io.PrintWriter;
 
 import org.jboss.logmanager.ExtLogRecord;
 
-import io.quarkiverse.loggingjson.Config;
-import io.quarkiverse.loggingjson.Enabled;
-import io.quarkiverse.loggingjson.JsonGenerator;
-import io.quarkiverse.loggingjson.JsonProvider;
-import io.quarkiverse.loggingjson.JsonWritingUtils;
-import io.quarkiverse.loggingjson.StringBuilderWriter;
+import io.quarkiverse.loggingjson.*;
 
 public class StackTraceJsonProvider implements JsonProvider, Enabled {
 
@@ -18,8 +13,12 @@ public class StackTraceJsonProvider implements JsonProvider, Enabled {
     private final Config.FieldConfig config;
 
     public StackTraceJsonProvider(Config.FieldConfig config) {
+        this(config, "stackTrace");
+    }
+
+    public StackTraceJsonProvider(Config.FieldConfig config, String defaultName) {
         this.config = config;
-        this.fieldName = config.fieldName.orElse("stackTrace");
+        this.fieldName = config.fieldName.orElse(defaultName);
     }
 
     @Override

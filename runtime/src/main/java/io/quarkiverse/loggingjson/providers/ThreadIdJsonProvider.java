@@ -16,8 +16,12 @@ public class ThreadIdJsonProvider implements JsonProvider, Enabled {
     private final Config.FieldConfig config;
 
     public ThreadIdJsonProvider(Config.FieldConfig config) {
+        this(config, "threadId");
+    }
+
+    public ThreadIdJsonProvider(Config.FieldConfig config, String defaultName) {
         this.config = config;
-        this.fieldName = config.fieldName.orElse("threadId");
+        this.fieldName = config.fieldName.orElse(defaultName);
     }
 
     @Override

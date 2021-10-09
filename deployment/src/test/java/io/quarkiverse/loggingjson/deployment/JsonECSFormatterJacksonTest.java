@@ -10,17 +10,17 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 import io.quarkus.bootstrap.model.AppArtifact;
 import io.quarkus.test.QuarkusUnitTest;
 
-class JsonFormatterJacksonTest extends JsonFormatterBaseTest {
+class JsonECSFormatterJacksonTest extends JsonECSFormatterBaseTest {
 
     @RegisterExtension
     static final QuarkusUnitTest config = new QuarkusUnitTest()
             .setArchiveProducer(() -> ShrinkWrap.create(JavaArchive.class))
             .setForcedDependencies(Collections.singletonList(
                     new AppArtifact("io.quarkus", "quarkus-jackson-deployment", System.getProperty("test.quarkus.version"))))
-            .withConfigurationResource("application-json.properties");
+            .withConfigurationResource("application-json-ecs.properties");
 
     @Test
-    void testFormaterUsingJackson() throws Exception {
+    void testFormatterUsingJackson() throws Exception {
         testLogOutput();
     }
 }

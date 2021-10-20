@@ -102,6 +102,7 @@ public class LoggingJsonRecorder {
         providers.add(new ArgumentsJsonProvider(config.fields.arguments));
         providers.add(new AdditionalFieldsJsonProvider(config.additionalField));
         providers.add(new MessageJsonProvider(config.fields.message));
+        providers.add(new StaticKeyValueProvider("ecs.version", "1.12.1"));
         return providers;
     }
 }

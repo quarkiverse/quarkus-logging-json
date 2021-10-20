@@ -98,7 +98,8 @@ public abstract class JsonECSFormatterBaseTest {
                 "arg0",
                 "structuredKey",
                 "service.name",
-                "message");
+                "message",
+                "ecs.version");
         Assertions.assertEquals(expectedFields, ImmutableList.copyOf(jsonNode.fieldNames()));
 
         String timestamp = jsonNode.findValue("@timestamp").asText();
@@ -145,5 +146,8 @@ public abstract class JsonECSFormatterBaseTest {
 
         Assertions.assertTrue(jsonNode.findValue("service.name").isTextual());
         Assertions.assertEquals("deployment-test", jsonNode.findValue("service.name").asText());
+
+        Assertions.assertTrue(jsonNode.findValue("ecs.version").isTextual());
+        Assertions.assertTrue(jsonNode.findValue("ecs.version").asText().matches("^[0-9]*\\.[0-9]*\\.[0-9]*$"));
     }
 }

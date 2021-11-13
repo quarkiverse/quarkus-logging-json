@@ -8,9 +8,20 @@ on:
       - '.gitignore'
       - 'CODEOWNERS'
       - 'LICENSE'
-      - 'README*'
+      - '*.md'
+      - '*.adoc'
+      - '*.txt'
+      - '.all-contributorsrc'
   pull_request:
     types: [opened, synchronize, reopened]
+    paths-ignore:
+      - '.gitignore'
+      - 'CODEOWNERS'
+      - 'LICENSE'
+      - '*.md'
+      - '*.adoc'
+      - '*.txt'
+      - '.all-contributorsrc'
 
 jobs:
   build:
@@ -27,24 +38,29 @@ jobs:
       with:
         java-version: 11
 
-    - name: Cache SonarCloud packages
-      uses: actions/cache@v1
-      with:
-        path: ~/.sonar/cache
-        key: ${{ runner.os }}-sonar
-        restore-keys: ${{ runner.os }}-sonar
+#    - name: Cache SonarCloud packages
+#      uses: actions/cache@v1
+#      with:
+#        path: ~/.sonar/cache
+#        key: ${{ runner.os }}-sonar
+#        restore-keys: ${{ runner.os }}-sonar
 
-    - name: Cache local Maven repository
+    - name: Get Date
+      id: get-date
+      run: |
+        echo "::set-output name=date::$(/bin/date -u "+%Y-%m")"
+      shell: bash
+    - name: Cache Maven Repository
+      id: cache-maven
       uses: actions/cache@v2
       with:
         path: ~/.m2/repository
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-        restore-keys: |
-          ${{ runner.os }}-maven-
+        # refresh cache every month to avoid unlimited growth
+        key: maven-repo-${{ runner.os }}-${{ steps.get-date.outputs.date }}
 
     - name: Build and analyze
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+#      env:
+#        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+#        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
     
-      run: mvn -B -Pnative impsort:check formatter:validate verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+      run: mvn -B -Pnative impsort:check formatter:validate verify # org.sonarsource.scanner.maven:sonar-maven-plugin:sonar

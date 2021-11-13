@@ -1,0 +1,421 @@
+[.configuration-legend]
+icon:lock[title=Fixed at build time] Configuration property fixed at build time - All other configuration properties are overridable at runtime
+[.configuration-reference.searchable, cols="80,.^10,.^10"]
+|===
+
+h|[[quarkus-log-console-json_configuration]]link:#quarkus-log-console-json_configuration[Configuration property]
+
+h|Type
+h|Default
+
+a| [[quarkus-log-console-json_quarkus.log.console.json.fields.arguments.field-name]]`link:#quarkus-log-console-json_quarkus.log.console.json.fields.arguments.field-name[quarkus.log.console.json.fields.arguments.field-name]`
+
+[.description]
+--
+Used to wrap arguments in an json object, with this fieldName on root json.
+--|string 
+|
+
+
+a| [[quarkus-log-console-json_quarkus.log.console.json.fields.arguments.include-structured-arguments]]`link:#quarkus-log-console-json_quarkus.log.console.json.fields.arguments.include-structured-arguments[quarkus.log.console.json.fields.arguments.include-structured-arguments]`
+
+[.description]
+--
+Enable output of structured logging arguments `StructuredArgument`, default is true.
+--|boolean 
+|`true`
+
+
+a| [[quarkus-log-console-json_quarkus.log.console.json.fields.arguments.include-non-structured-arguments]]`link:#quarkus-log-console-json_quarkus.log.console.json.fields.arguments.include-non-structured-arguments[quarkus.log.console.json.fields.arguments.include-non-structured-arguments]`
+
+[.description]
+--
+Enable output of non structured logging arguments, default is false.
+--|boolean 
+|`false`
+
+
+a| [[quarkus-log-console-json_quarkus.log.console.json.fields.arguments.non-structured-arguments-field-prefix]]`link:#quarkus-log-console-json_quarkus.log.console.json.fields.arguments.non-structured-arguments-field-prefix[quarkus.log.console.json.fields.arguments.non-structured-arguments-field-prefix]`
+
+[.description]
+--
+What prefix to use, when outputting non structured arguments. Default is `arg`, example key for first argument will be `arg0`.
+--|string 
+|`arg`
+
+
+a| [[quarkus-log-console-json_quarkus.log.console.json.fields.timestamp.field-name]]`link:#quarkus-log-console-json_quarkus.log.console.json.fields.timestamp.field-name[quarkus.log.console.json.fields.timestamp.field-name]`
+
+[.description]
+--
+Used to change the json key for the field.
+--|string 
+|
+
+
+a| [[quarkus-log-console-json_quarkus.log.console.json.fields.timestamp.date-format]]`link:#quarkus-log-console-json_quarkus.log.console.json.fields.timestamp.date-format[quarkus.log.console.json.fields.timestamp.date-format]`
+
+[.description]
+--
+The date format to use. The special string "default" indicates that the default format should be used.
+--|string 
+|`default`
+
+
+a| [[quarkus-log-console-json_quarkus.log.console.json.fields.timestamp.zone-id]]`link:#quarkus-log-console-json_quarkus.log.console.json.fields.timestamp.zone-id[quarkus.log.console.json.fields.timestamp.zone-id]`
+
+[.description]
+--
+The zone to use when formatting the timestamp.
+--|string 
+|`default`
+
+
+a| [[quarkus-log-console-json_quarkus.log.console.json.fields.timestamp.enabled]]`link:#quarkus-log-console-json_quarkus.log.console.json.fields.timestamp.enabled[quarkus.log.console.json.fields.timestamp.enabled]`
+
+[.description]
+--
+Enable or disable the field.
+--|boolean 
+|
+
+
+a| [[quarkus-log-console-json_quarkus.log.console.json.fields.hostname.field-name]]`link:#quarkus-log-console-json_quarkus.log.console.json.fields.hostname.field-name[quarkus.log.console.json.fields.hostname.field-name]`
+
+[.description]
+--
+Used to change the json key for the field.
+--|string 
+|
+
+
+a| [[quarkus-log-console-json_quarkus.log.console.json.fields.hostname.enabled]]`link:#quarkus-log-console-json_quarkus.log.console.json.fields.hostname.enabled[quarkus.log.console.json.fields.hostname.enabled]`
+
+[.description]
+--
+Enable or disable the field.
+--|boolean 
+|
+
+
+a| [[quarkus-log-console-json_quarkus.log.console.json.fields.sequence.field-name]]`link:#quarkus-log-console-json_quarkus.log.console.json.fields.sequence.field-name[quarkus.log.console.json.fields.sequence.field-name]`
+
+[.description]
+--
+Used to change the json key for the field.
+--|string 
+|
+
+
+a| [[quarkus-log-console-json_quarkus.log.console.json.fields.sequence.enabled]]`link:#quarkus-log-console-json_quarkus.log.console.json.fields.sequence.enabled[quarkus.log.console.json.fields.sequence.enabled]`
+
+[.description]
+--
+Enable or disable the field.
+--|boolean 
+|
+
+
+a| [[quarkus-log-console-json_quarkus.log.console.json.fields.logger-class-name.field-name]]`link:#quarkus-log-console-json_quarkus.log.console.json.fields.logger-class-name.field-name[quarkus.log.console.json.fields.logger-class-name.field-name]`
+
+[.description]
+--
+Used to change the json key for the field.
+--|string 
+|
+
+
+a| [[quarkus-log-console-json_quarkus.log.console.json.fields.logger-class-name.enabled]]`link:#quarkus-log-console-json_quarkus.log.console.json.fields.logger-class-name.enabled[quarkus.log.console.json.fields.logger-class-name.enabled]`
+
+[.description]
+--
+Enable or disable the field.
+--|boolean 
+|
+
+
+a| [[quarkus-log-console-json_quarkus.log.console.json.fields.logger-name.field-name]]`link:#quarkus-log-console-json_quarkus.log.console.json.fields.logger-name.field-name[quarkus.log.console.json.fields.logger-name.field-name]`
+
+[.description]
+--
+Used to change the json key for the field.
+--|string 
+|
+
+
+a| [[quarkus-log-console-json_quarkus.log.console.json.fields.logger-name.enabled]]`link:#quarkus-log-console-json_quarkus.log.console.json.fields.logger-name.enabled[quarkus.log.console.json.fields.logger-name.enabled]`
+
+[.description]
+--
+Enable or disable the field.
+--|boolean 
+|
+
+
+a| [[quarkus-log-console-json_quarkus.log.console.json.fields.level.field-name]]`link:#quarkus-log-console-json_quarkus.log.console.json.fields.level.field-name[quarkus.log.console.json.fields.level.field-name]`
+
+[.description]
+--
+Used to change the json key for the field.
+--|string 
+|
+
+
+a| [[quarkus-log-console-json_quarkus.log.console.json.fields.level.enabled]]`link:#quarkus-log-console-json_quarkus.log.console.json.fields.level.enabled[quarkus.log.console.json.fields.level.enabled]`
+
+[.description]
+--
+Enable or disable the field.
+--|boolean 
+|
+
+
+a| [[quarkus-log-console-json_quarkus.log.console.json.fields.message.field-name]]`link:#quarkus-log-console-json_quarkus.log.console.json.fields.message.field-name[quarkus.log.console.json.fields.message.field-name]`
+
+[.description]
+--
+Used to change the json key for the field.
+--|string 
+|
+
+
+a| [[quarkus-log-console-json_quarkus.log.console.json.fields.message.enabled]]`link:#quarkus-log-console-json_quarkus.log.console.json.fields.message.enabled[quarkus.log.console.json.fields.message.enabled]`
+
+[.description]
+--
+Enable or disable the field.
+--|boolean 
+|
+
+
+a| [[quarkus-log-console-json_quarkus.log.console.json.fields.thread-name.field-name]]`link:#quarkus-log-console-json_quarkus.log.console.json.fields.thread-name.field-name[quarkus.log.console.json.fields.thread-name.field-name]`
+
+[.description]
+--
+Used to change the json key for the field.
+--|string 
+|
+
+
+a| [[quarkus-log-console-json_quarkus.log.console.json.fields.thread-name.enabled]]`link:#quarkus-log-console-json_quarkus.log.console.json.fields.thread-name.enabled[quarkus.log.console.json.fields.thread-name.enabled]`
+
+[.description]
+--
+Enable or disable the field.
+--|boolean 
+|
+
+
+a| [[quarkus-log-console-json_quarkus.log.console.json.fields.thread-id.field-name]]`link:#quarkus-log-console-json_quarkus.log.console.json.fields.thread-id.field-name[quarkus.log.console.json.fields.thread-id.field-name]`
+
+[.description]
+--
+Used to change the json key for the field.
+--|string 
+|
+
+
+a| [[quarkus-log-console-json_quarkus.log.console.json.fields.thread-id.enabled]]`link:#quarkus-log-console-json_quarkus.log.console.json.fields.thread-id.enabled[quarkus.log.console.json.fields.thread-id.enabled]`
+
+[.description]
+--
+Enable or disable the field.
+--|boolean 
+|
+
+
+a| [[quarkus-log-console-json_quarkus.log.console.json.fields.mdc.field-name]]`link:#quarkus-log-console-json_quarkus.log.console.json.fields.mdc.field-name[quarkus.log.console.json.fields.mdc.field-name]`
+
+[.description]
+--
+Used to change the json key for the field.
+--|string 
+|
+
+
+a| [[quarkus-log-console-json_quarkus.log.console.json.fields.mdc.enabled]]`link:#quarkus-log-console-json_quarkus.log.console.json.fields.mdc.enabled[quarkus.log.console.json.fields.mdc.enabled]`
+
+[.description]
+--
+Enable or disable the field.
+--|boolean 
+|
+
+
+a| [[quarkus-log-console-json_quarkus.log.console.json.fields.mdc.flat-fields]]`link:#quarkus-log-console-json_quarkus.log.console.json.fields.mdc.flat-fields[quarkus.log.console.json.fields.mdc.flat-fields]`
+
+[.description]
+--
+Will write the values at the top level of the JSON log object.
+--|boolean 
+|`false`
+
+
+a| [[quarkus-log-console-json_quarkus.log.console.json.fields.ndc.field-name]]`link:#quarkus-log-console-json_quarkus.log.console.json.fields.ndc.field-name[quarkus.log.console.json.fields.ndc.field-name]`
+
+[.description]
+--
+Used to change the json key for the field.
+--|string 
+|
+
+
+a| [[quarkus-log-console-json_quarkus.log.console.json.fields.ndc.enabled]]`link:#quarkus-log-console-json_quarkus.log.console.json.fields.ndc.enabled[quarkus.log.console.json.fields.ndc.enabled]`
+
+[.description]
+--
+Enable or disable the field.
+--|boolean 
+|
+
+
+a| [[quarkus-log-console-json_quarkus.log.console.json.fields.process-name.field-name]]`link:#quarkus-log-console-json_quarkus.log.console.json.fields.process-name.field-name[quarkus.log.console.json.fields.process-name.field-name]`
+
+[.description]
+--
+Used to change the json key for the field.
+--|string 
+|
+
+
+a| [[quarkus-log-console-json_quarkus.log.console.json.fields.process-name.enabled]]`link:#quarkus-log-console-json_quarkus.log.console.json.fields.process-name.enabled[quarkus.log.console.json.fields.process-name.enabled]`
+
+[.description]
+--
+Enable or disable the field.
+--|boolean 
+|
+
+
+a| [[quarkus-log-console-json_quarkus.log.console.json.fields.process-id.field-name]]`link:#quarkus-log-console-json_quarkus.log.console.json.fields.process-id.field-name[quarkus.log.console.json.fields.process-id.field-name]`
+
+[.description]
+--
+Used to change the json key for the field.
+--|string 
+|
+
+
+a| [[quarkus-log-console-json_quarkus.log.console.json.fields.process-id.enabled]]`link:#quarkus-log-console-json_quarkus.log.console.json.fields.process-id.enabled[quarkus.log.console.json.fields.process-id.enabled]`
+
+[.description]
+--
+Enable or disable the field.
+--|boolean 
+|
+
+
+a| [[quarkus-log-console-json_quarkus.log.console.json.fields.stack-trace.field-name]]`link:#quarkus-log-console-json_quarkus.log.console.json.fields.stack-trace.field-name[quarkus.log.console.json.fields.stack-trace.field-name]`
+
+[.description]
+--
+Used to change the json key for the field.
+--|string 
+|
+
+
+a| [[quarkus-log-console-json_quarkus.log.console.json.fields.stack-trace.enabled]]`link:#quarkus-log-console-json_quarkus.log.console.json.fields.stack-trace.enabled[quarkus.log.console.json.fields.stack-trace.enabled]`
+
+[.description]
+--
+Enable or disable the field.
+--|boolean 
+|
+
+
+a| [[quarkus-log-console-json_quarkus.log.console.json.fields.error-type.field-name]]`link:#quarkus-log-console-json_quarkus.log.console.json.fields.error-type.field-name[quarkus.log.console.json.fields.error-type.field-name]`
+
+[.description]
+--
+Used to change the json key for the field.
+--|string 
+|
+
+
+a| [[quarkus-log-console-json_quarkus.log.console.json.fields.error-type.enabled]]`link:#quarkus-log-console-json_quarkus.log.console.json.fields.error-type.enabled[quarkus.log.console.json.fields.error-type.enabled]`
+
+[.description]
+--
+Enable or disable the field.
+--|boolean 
+|
+
+
+a| [[quarkus-log-console-json_quarkus.log.console.json.fields.error-message.field-name]]`link:#quarkus-log-console-json_quarkus.log.console.json.fields.error-message.field-name[quarkus.log.console.json.fields.error-message.field-name]`
+
+[.description]
+--
+Used to change the json key for the field.
+--|string 
+|
+
+
+a| [[quarkus-log-console-json_quarkus.log.console.json.fields.error-message.enabled]]`link:#quarkus-log-console-json_quarkus.log.console.json.fields.error-message.enabled[quarkus.log.console.json.fields.error-message.enabled]`
+
+[.description]
+--
+Enable or disable the field.
+--|boolean 
+|
+
+
+a| [[quarkus-log-console-json_quarkus.log.console.json]]`link:#quarkus-log-console-json_quarkus.log.console.json[quarkus.log.console.json]`
+
+[.description]
+--
+Determine whether to enable the JSON console formatting extension, which disables "normal" console formatting.
+--|boolean 
+|`true`
+
+
+a| [[quarkus-log-console-json_quarkus.log.console.json.pretty-print]]`link:#quarkus-log-console-json_quarkus.log.console.json.pretty-print[quarkus.log.console.json.pretty-print]`
+
+[.description]
+--
+Enable "pretty printing" of the JSON record. Note that some JSON parsers will fail to read pretty printed output.
+--|boolean 
+|`false`
+
+
+a| [[quarkus-log-console-json_quarkus.log.console.json.record-delimiter]]`link:#quarkus-log-console-json_quarkus.log.console.json.record-delimiter[quarkus.log.console.json.record-delimiter]`
+
+[.description]
+--
+The special end-of-record delimiter to be used. By default, newline delimiter is used.
+--|string 
+|`
+`
+
+
+a| [[quarkus-log-console-json_quarkus.log.console.json.log-format]]`link:#quarkus-log-console-json_quarkus.log.console.json.log-format[quarkus.log.console.json.log-format]`
+
+[.description]
+--
+Support changing logging format.
+--|`default`, `ecs` 
+|`default`
+
+
+h|[[quarkus-log-console-json_quarkus.log.console.json.additional-field-for-adding-fields-to-the-json-output-directly-from-the-config]]link:#quarkus-log-console-json_quarkus.log.console.json.additional-field-for-adding-fields-to-the-json-output-directly-from-the-config[For adding fields to the json output directly from the config]
+
+h|Type
+h|Default
+
+a| [[quarkus-log-console-json_quarkus.log.console.json.additional-field.-field-name-.value]]`link:#quarkus-log-console-json_quarkus.log.console.json.additional-field.-field-name-.value[quarkus.log.console.json.additional-field."field-name".value]`
+
+[.description]
+--
+Additional field value.
+--|string 
+|required icon:exclamation-circle[title=Configuration property is required]
+
+
+a| [[quarkus-log-console-json_quarkus.log.console.json.additional-field.-field-name-.type]]`link:#quarkus-log-console-json_quarkus.log.console.json.additional-field.-field-name-.type[quarkus.log.console.json.additional-field."field-name".type]`
+
+[.description]
+--
+Type of the field, default is STRING. Supported types: STRING, INT, LONG, FLOAT, DOUBLE.
+--|`string`, `int`, `long`, `float`, `double` 
+|`string`
+
+|===

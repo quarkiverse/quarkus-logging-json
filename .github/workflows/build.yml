@@ -58,7 +58,7 @@ jobs:
         # refresh cache every month to avoid unlimited growth
         key: maven-repo-${{ runner.os }}-${{ steps.get-date.outputs.date }}
 
-#    - name: Build and analyze
+    - name: Build and analyze
 #      env:
 #        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
 #        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

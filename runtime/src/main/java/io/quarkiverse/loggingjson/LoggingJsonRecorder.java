@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import io.quarkiverse.loggingjson.jackson.JacksonJsonFactory;
 import io.quarkiverse.loggingjson.jsonb.JsonbJsonFactory;
 import io.quarkiverse.loggingjson.providers.*;
+import io.quarkiverse.loggingjson.providers.gcp.*;
 import io.quarkus.arc.Arc;
 import io.quarkus.arc.InjectableInstance;
 import io.quarkus.runtime.RuntimeValue;
@@ -30,6 +31,8 @@ public class LoggingJsonRecorder {
 
         if (config.logFormat == Config.LogFormat.ECS) {
             providers = ecsFormat(config);
+        } else if (config.logFormat == Config.LogFormat.GCP) {
+            providers = gcpFormat(config);
         } else {
             providers = defaultFormat(config);
         }
@@ -84,6 +87,19 @@ public class LoggingJsonRecorder {
         providers.add(new ErrorMessageJsonProvider(config.fields.errorMessage));
         providers.add(new ArgumentsJsonProvider(config.fields.arguments));
         providers.add(new AdditionalFieldsJsonProvider(config.additionalField));
+        return providers;
+    }
+
+    private List<JsonProvider> gcpFormat(Config config) {
+        List<JsonProvider> providers = new ArrayList<>();
+        providers.add(new GcpEpochSecondJsonProvider(config.fields.epochSecond));
+        providers.add(new GcpNanoJsonProvider(config.fields.nanoSecond));
+        providers.add(new LoggerNameJsonProvider(config.fields.loggerName, "logger"));
+        providers.add(new GcpLogLevelJsonProvider(config.fields.level));
+        providers.add(new ThreadNameJsonProvider(config.fields.threadName, "thread"));
+        providers.add(new GcpMessageWithExceptionJsonProvider(config.fields.message));
+        providers.add(new GcpSpanIdJsonProvider(config.fields.gcpSpanId));
+        providers.add(new GcpTraceIdJsonProvider(config.fields.gcpTraceId));
         return providers;
     }
 

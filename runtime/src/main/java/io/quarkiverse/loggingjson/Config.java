@@ -130,6 +130,28 @@ public class Config {
          */
         @ConfigItem
         public FieldConfig errorMessage;
+        /**
+         * Options for gcpSpanId.
+         */
+        @ConfigItem
+        public GcpSpanIdConfig gcpSpanId;
+        /**
+         * Options for gcpTraceId.
+         */
+        @ConfigItem
+        public GcpTraceIdConfig gcpTraceId;
+
+        /**
+         * Options for epochSecond.
+         */
+        @ConfigItem
+        public FieldConfig epochSecond;
+        /**
+         * Options for nanoSecond.
+         */
+        @ConfigItem
+        public FieldConfig nanoSecond;
+
     }
 
     @ConfigGroup
@@ -144,6 +166,49 @@ public class Config {
          */
         @ConfigItem
         public Optional<Boolean> enabled;
+    }
+
+    @ConfigGroup
+    public static class GcpSpanIdConfig {
+        /**
+         * Used to change the json key for the field.
+         */
+        @ConfigItem
+        public Optional<String> fieldName;
+        /**
+         * Enable or disable the field.
+         */
+        @ConfigItem
+        public Optional<Boolean> enabled;
+        /**
+         * key to lookup from mdc.
+         */
+        @ConfigItem
+        public Optional<String> mdcKey;
+    }
+
+    @ConfigGroup
+    public static class GcpTraceIdConfig {
+        /**
+         * Used to change the json key for the field.
+         */
+        @ConfigItem
+        public Optional<String> fieldName;
+        /**
+         * Enable or disable the field.
+         */
+        @ConfigItem
+        public Optional<Boolean> enabled;
+        /**
+         * Will write the values at the top level of the JSON log object.
+         */
+        @ConfigItem
+        public Optional<String> projectId;
+        /**
+         * key to lookup from mdc.
+         */
+        @ConfigItem
+        public Optional<String> mdcKey;
     }
 
     @ConfigGroup
@@ -242,6 +307,7 @@ public class Config {
 
     public enum LogFormat {
         DEFAULT,
-        ECS
+        ECS,
+        GCP
     }
 }

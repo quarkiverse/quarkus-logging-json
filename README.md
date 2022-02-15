@@ -10,7 +10,7 @@ Quarkus logging extension outputting the logging in json.
 The extension is enabled by default, when added to the project.
 Can be disabled using configuration: `quarkus.log.console.json=false`
 
-To see additional configuration options take a look at [Config](runtime/src/main/java/io/quarkiverse/loggingjson/Config.java)
+To see additional configuration options take a look at [Config](https://quarkiverse.github.io/quarkiverse-docs/quarkus-logging-json/dev/index.html)
 
 ## Elastic Common Scheme
 ```properties

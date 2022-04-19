@@ -54,10 +54,10 @@ public class LoggingJsonRecorder {
         JsonFactory jsonFactory;
         if (useJackson) {
             log.debug("Using Jackson as the json implementation");
-            jsonFactory = new JacksonJsonFactory();
+            jsonFactory = new JacksonJsonFactory(config.prettyPrint);
         } else {
             log.debug("Using Jsonb as the json implementation");
-            jsonFactory = new JsonbJsonFactory();
+            jsonFactory = new JsonbJsonFactory(config.prettyPrint);
         }
 
         return new RuntimeValue<>(Optional.of(new JsonFormatter(providers, jsonFactory, config)));

@@ -8,6 +8,8 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Arrays;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 
 import io.quarkiverse.loggingjson.JsonGenerator;
@@ -21,20 +23,20 @@ public class KeyValueStructuredArgumentJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testKeyValues() throws IOException {
-        assertEquals("{\"key\":null}", run("key", null));
-        assertEquals("{\"anotherKey\":null}", run("anotherKey", null));
-        assertEquals("{\"key\":324}", run("key", (short) 324));
-        assertEquals("{\"key\":324}", run("key", 324));
-        assertEquals("{\"key\":324}", run("key", 324L));
-        assertEquals("{\"key\":324.348}", run("key", 324.348));
-        assertEquals("{\"key\":324.348}", run("key", 324.348d));
-        assertEquals("{\"key\":324}", run("key", BigInteger.valueOf(324)));
-        assertEquals("{\"key\":324.348}", run("key", BigDecimal.valueOf(324.348d)));
-        assertEquals("{\"key\":\"value\"}", run("key", "value"));
-        assertEquals("{\"key\":[\"value\",\"value2\"]}", run("key", new String[] { "value", "value2" }));
-        assertEquals("{\"key\":[\"value\",\"value2\"]}", run("key", Arrays.asList("value", "value2")));
-        assertEquals("{\"key\":{}}", run("key", new Object()));
-        assertEquals("{\"key\":{\"field1\":\"field1\",\"field2\":2389472389}}", run("key", new TestPojo()));
+        assertEquals(format("{\"key\":null}"), run("key", null));
+        assertEquals(format("{\"anotherKey\":null}"), run("anotherKey", null));
+        assertEquals(format("{\"key\":324}"), run("key", (short) 324));
+        assertEquals(format("{\"key\":324}"), run("key", 324));
+        assertEquals(format("{\"key\":324}"), run("key", 324L));
+        assertEquals(format("{\"key\":324.348}"), run("key", 324.348));
+        assertEquals(format("{\"key\":324.348}"), run("key", 324.348d));
+        assertEquals(format("{\"key\":324}"), run("key", BigInteger.valueOf(324)));
+        assertEquals(format("{\"key\":324.348}"), run("key", BigDecimal.valueOf(324.348d)));
+        assertEquals(format("{\"key\":\"value\"}"), run("key", "value"));
+        assertEquals(format("{\"key\":[\"value\",\"value2\"]}"), run("key", new String[] { "value", "value2" }));
+        assertEquals(format("{\"key\":[\"value\",\"value2\"]}"), run("key", Arrays.asList("value", "value2")));
+        assertEquals(format("{\"key\":{}}"), run("key", new Object()));
+        assertEquals(format("{\"key\":{\"field1\":\"field1\",\"field2\":2389472389}}"), run("key", new TestPojo()));
     }
 
     private String run(String key, Object value) throws IOException {

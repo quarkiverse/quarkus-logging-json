@@ -12,10 +12,12 @@ import io.quarkiverse.loggingjson.StringBuilderWriter;
 
 public class JacksonJsonFactory implements JsonFactory {
 
+    private final boolean prettyPrint;
     private final com.fasterxml.jackson.core.JsonFactory jsonFactory;
 
-    public JacksonJsonFactory() {
-        jsonFactory = createJsonFactory();
+    public JacksonJsonFactory(boolean prettyPrint) {
+        this.prettyPrint = prettyPrint;
+        this.jsonFactory = createJsonFactory();
     }
 
     private com.fasterxml.jackson.core.JsonFactory createJsonFactory() {
@@ -54,6 +56,10 @@ public class JacksonJsonFactory implements JsonFactory {
 
     @Override
     public JsonGenerator createGenerator(StringBuilderWriter writer) throws IOException {
-        return new JacksonJsonGenerator(jsonFactory.createGenerator(writer));
+        com.fasterxml.jackson.core.JsonGenerator generator = jsonFactory.createGenerator(writer);
+        if(prettyPrint) {
+            generator.useDefaultPrettyPrinter();
+        }
+        return new JacksonJsonGenerator(generator);
     }
 }

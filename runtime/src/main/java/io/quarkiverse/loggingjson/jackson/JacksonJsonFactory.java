@@ -57,7 +57,7 @@ public class JacksonJsonFactory implements JsonFactory {
     @Override
     public JsonGenerator createGenerator(StringBuilderWriter writer) throws IOException {
         com.fasterxml.jackson.core.JsonGenerator generator = jsonFactory.createGenerator(writer);
-        if(prettyPrint) {
+        if (prettyPrint) {
             generator.useDefaultPrettyPrinter();
         }
         return new JacksonJsonGenerator(generator);

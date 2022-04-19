@@ -13,9 +13,9 @@ import javax.json.JsonReader;
 import javax.json.JsonWriter;
 import javax.json.JsonWriterFactory;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.jboss.logmanager.ExtLogRecord;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -43,7 +43,7 @@ abstract class JsonProviderBaseTest {
         config.put(javax.json.stream.JsonGenerator.PRETTY_PRINTING, Boolean.TRUE);
         writerFactory = Json.createWriterFactory(config);
 
-        jsonbFormatter=(String raw)-> {
+        jsonbFormatter = (String raw) -> {
             StringWriter stringWriter = new StringWriter();
             StringReader stringReader = new StringReader(raw);
             JsonReader jr = Json.createReader(stringReader);
@@ -58,11 +58,11 @@ abstract class JsonProviderBaseTest {
         };
 
         //Set-up Jackson formatter for tests
-        jacksonFormatter=(String raw)-> {
+        jacksonFormatter = (String raw) -> {
             try {
                 Object o = mapper.readValue(raw, Object.class);
                 return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(o);
-            } catch(JsonProcessingException e) {
+            } catch (JsonProcessingException e) {
                 return raw;
             }
         };
@@ -90,7 +90,7 @@ abstract class JsonProviderBaseTest {
     }
 
     protected String format(String raw) {
-        if(prettyPrint()) {
+        if (prettyPrint()) {
             switch (type()) {
                 case JSONB:
                     return jsonbFormatter.apply(raw);

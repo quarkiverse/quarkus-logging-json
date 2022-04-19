@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.json.Json;
-import javax.json.bind.JsonbConfig;
 import javax.json.stream.JsonGeneratorFactory;
 
 import org.eclipse.yasson.YassonJsonb;
@@ -20,8 +19,8 @@ public class JsonbJsonFactory implements JsonFactory {
     private final YassonJsonb jsonb;
 
     public JsonbJsonFactory(boolean prettyPrint) {
-        Map<String, Object> config =  new HashMap<>();
-        if(prettyPrint) {
+        Map<String, Object> config = new HashMap<>();
+        if (prettyPrint) {
             // It doesn't matter what value this key has, as long as it's present
             config.put(javax.json.stream.JsonGenerator.PRETTY_PRINTING, Boolean.TRUE);
         }

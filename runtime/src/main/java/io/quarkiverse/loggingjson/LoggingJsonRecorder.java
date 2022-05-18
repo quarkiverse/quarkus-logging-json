@@ -30,6 +30,9 @@ public class LoggingJsonRecorder {
 
         if (config.logFormat == Config.LogFormat.ECS) {
             providers = ecsFormat(config);
+        }
+        if (config.logFormat == Config.LogFormat.GCP) {
+            providers = gcpFormat(config);
         } else {
             providers = defaultFormat(config);
         }
@@ -103,6 +106,37 @@ public class LoggingJsonRecorder {
         providers.add(new AdditionalFieldsJsonProvider(config.additionalField));
         providers.add(new MessageJsonProvider(config.fields.message));
         providers.add(new StaticKeyValueProvider("ecs.version", "1.12.1"));
+        return providers;
+    }
+
+    private List<JsonProvider> gcpFormat(Config config) {
+        List<JsonProvider> providers = new ArrayList<>();
+        providers.add(new TimestampJsonProvider(config.fields.timestamp, "timestamp"));
+        providers.add(new LogLevelJsonProvider(config.fields.level, "severity"));
+        providers.add(new MessageWithErrorJsonProvider(config.fields.message));
+
+        providers.add(new SequenceJsonProvider(config.fields.sequence, "logging.googleapis.com/insertId")); // must be unique
+
+        WrappedSourceLocation location = new WrappedSourceLocation(config.fields.wrappedError,
+                "logging.googleapis.com/sourceLocation",
+                new JsonProvider[] {
+                        new LoggerNameJsonProvider(config.fields.loggerName, "function")
+                });
+        providers.add(location);
+
+        WrappedError error = new WrappedError(config.fields.wrappedError, "_exception",
+                new JsonProvider[] {
+                        new ErrorTypeJsonProvider(config.fields.errorType, "class"),
+                        new ErrorMessageJsonProvider(config.fields.errorMessage, "message"),
+                        new StackTraceJsonProvider(config.fields.stackTrace, "stackTrace")
+                });
+        providers.add(error);
+
+        providers.add(new ThreadNameJsonProvider(config.fields.threadName, "_thread"));
+        providers.add(new LoggerNameJsonProvider(config.fields.loggerName, "_logger"));
+
+        providers.add(new MDCJsonProvider(config.fields.mdc, "logging.googleapis.com/labels"));
+
         return providers;
     }
 }

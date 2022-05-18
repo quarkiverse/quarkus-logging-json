@@ -16,11 +16,15 @@ public class MDCJsonProvider implements JsonProvider, Enabled {
     private final Config.MDCConfig config;
 
     public MDCJsonProvider(Config.MDCConfig config) {
+        this(config, "mdc");
+    }
+
+    public MDCJsonProvider(Config.MDCConfig config, String defaultName) {
         this.config = config;
         if (config.flatFields) {
             this.fieldName = null;
         } else {
-            this.fieldName = config.fieldName.orElse("mdc");
+            this.fieldName = config.fieldName.orElse(defaultName);
         }
     }
 

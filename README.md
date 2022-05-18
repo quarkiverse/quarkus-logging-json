@@ -17,6 +17,12 @@ To see additional configuration options take a look at [Config](https://quarkive
 quarkus.log.console.json.log-format=ecs
 ```
 
+## Google Cloud Platform Scheme
+this follows the example of log4j2 and will duplicate the exception into the message
+```properties
+quarkus.log.console.json.log-format=gcp
+```
+
 # Add additional fields to all log messages
 If you want to add a static field to all the log message, that is possible using the configuration.
 ```properties

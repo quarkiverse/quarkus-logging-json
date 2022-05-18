@@ -130,6 +130,18 @@ public class Config {
          */
         @ConfigItem
         public FieldConfig errorMessage;
+
+        /**
+         * Options for wrappedErrorMessage.
+         */
+        @ConfigItem
+        public FieldConfig wrappedError;
+
+        /**
+         * Options for wrappedSourceLocation.
+         */
+        @ConfigItem
+        public FieldConfig wrappedSourceLocation;
     }
 
     @ConfigGroup
@@ -242,6 +254,7 @@ public class Config {
 
     public enum LogFormat {
         DEFAULT,
-        ECS
+        ECS,
+        GCP
     }
 }

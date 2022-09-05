@@ -1,22 +1,25 @@
 = Quarkus Logging JSON
 :extension-status: preview
 
-Quarkus logging extension outputting the logging in json.
+include::./includes/attributes.adoc[]
+
+Quarkus logging extension outputting the logging in JSON.
 
 == Installation
 
 If you want to use this extension, you need to add the `quarkus-logging-json` extension first.
 In your `pom.xml` file, add:
 
-[source,xml]
+[source,xml,subs=attributes+]
 ----
 <dependency>
     <groupId>io.quarkiverse.loggingjson</groupId>
     <artifactId>quarkus-logging-json</artifactId>
+    <version>{project-version}</version>
 </dependency>
 ----
 
 [[extension-configuration-reference]]
 == Extension Configuration Reference
 
-include::config.adoc[leveloffset=+1, opts=optional]
+include::./includes/quarkus-log-console-json.adoc[leveloffset=+1, opts=optional]

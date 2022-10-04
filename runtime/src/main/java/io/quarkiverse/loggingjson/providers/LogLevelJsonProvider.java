@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.jboss.logmanager.ExtLogRecord;
 
 import io.quarkiverse.loggingjson.*;
+import io.quarkiverse.loggingjson.config.Config;
 
 public class LogLevelJsonProvider implements JsonProvider, Enabled {
     private final String fieldName;

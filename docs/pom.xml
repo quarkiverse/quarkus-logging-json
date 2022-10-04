@@ -67,7 +67,7 @@
                             <resources>
                                 <resource>
                                     <directory>${project.basedir}/../target/asciidoc/generated/config/</directory>
-                                    <include>quarkus-log-console-json.adoc</include>
+                                    <include>quarkus-log-json.adoc</include>
                                     <filtering>false</filtering>
                                 </resource>
                                 <resource>

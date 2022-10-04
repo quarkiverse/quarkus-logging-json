@@ -7,23 +7,23 @@
 Quarkus logging extension outputting the logging in json.
 
 # Configuration
-The extension is enabled by default, when added to the project.
-Can be disabled using configuration: `quarkus.log.console.json=false`
+The extension is enabled by default for console, when added to the project.
+Console logging can be disabled using configuration: `quarkus.log.json.console.enable=false`
 
 To see additional configuration options take a look at [Config](https://quarkiverse.github.io/quarkiverse-docs/quarkus-logging-json/dev/index.html)
 
 ## Elastic Common Scheme
 ```properties
-quarkus.log.console.json.log-format=ecs
+quarkus.log.json.log-format=ecs
 ```
 
 # Add additional fields to all log messages
 If you want to add a static field to all the log message, that is possible using the configuration.
 ```properties
-quarkus.log.console.json.additional-field.serviceName.value=service-a
+quarkus.log.json.additional-field.serviceName.value=service-a
 # type is by default STRING - Other is INT, LONG, FLOAT, DOUBLE 
-quarkus.log.console.json.additional-field.buildNumber.type=INT
-quarkus.log.console.json.additional-field.buildNumber.value=42
+quarkus.log.json.additional-field.buildNumber.type=INT
+quarkus.log.json.additional-field.buildNumber.value=42
 ```
 
 # Structured argument

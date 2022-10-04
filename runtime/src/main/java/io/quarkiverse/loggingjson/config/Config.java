@@ -1,4 +1,4 @@
-package io.quarkiverse.loggingjson;
+package io.quarkiverse.loggingjson.config;
 
 import java.util.Map;
 import java.util.Optional;
@@ -7,28 +7,35 @@ import io.quarkiverse.loggingjson.providers.ArgumentsJsonProvider;
 import io.quarkiverse.loggingjson.providers.StructuredArgument;
 import io.quarkus.runtime.annotations.*;
 
-@ConfigRoot(phase = ConfigPhase.RUN_TIME, name = "log.console.json")
+@ConfigRoot(phase = ConfigPhase.RUN_TIME, name = "log.json")
 public class Config {
+    /**
+     * Configuration properties for console formatter.
+     */
+    @ConfigItem(name = "console")
+    public ConfigConsole console;
+
+    /**
+     * Configuration properties for file formatter.
+     */
+    @ConfigItem(name = "file")
+    public ConfigFile file;
+
     /**
      * Configuration properties to customize fields
      */
     @ConfigItem
     public FieldsConfig fields;
     /**
-     * Determine whether to enable the JSON console formatting extension, which disables "normal" console formatting.
-     */
-    @ConfigItem(name = ConfigItem.PARENT, defaultValue = "true")
-    boolean enable;
-    /**
      * Enable "pretty printing" of the JSON record. Note that some JSON parsers will fail to read pretty printed output.
      */
     @ConfigItem
-    boolean prettyPrint;
+    public boolean prettyPrint;
     /**
      * The special end-of-record delimiter to be used. By default, newline delimiter is used.
      */
     @ConfigItem(defaultValue = "\n")
-    String recordDelimiter;
+    public String recordDelimiter;
     /**
      * For adding fields to the json output directly from the config.
      */
@@ -41,7 +48,7 @@ public class Config {
      * Support changing logging format.
      */
     @ConfigItem(defaultValue = "DEFAULT")
-    LogFormat logFormat;
+    public LogFormat logFormat;
 
     @ConfigGroup
     public static class FieldsConfig {

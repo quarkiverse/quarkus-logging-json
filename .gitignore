@@ -3,6 +3,7 @@
 
 # Log file
 *.log
+quarkus.log.*
 
 # BlueJ files
 *.ctxt

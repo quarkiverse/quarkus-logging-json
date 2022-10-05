@@ -54,11 +54,11 @@ class CustomJsonProviderJsonbTest extends JsonDefaultFormatterBaseTest {
         Assertions.assertTrue(firstCustomJsonProvider.getWriteToNumberOfCalls() > 0);
 
         Assertions.assertTrue(fields.contains("second"));
-        Assertions.assertEquals(1, secondCustomJsonProvider.getIsEnabledNumberOfCalls());
+        Assertions.assertEquals(2, secondCustomJsonProvider.getIsEnabledNumberOfCalls()); // expecting both console and file formatter to call
         Assertions.assertTrue(secondCustomJsonProvider.getWriteToNumberOfCalls() > 0);
 
         Assertions.assertFalse(fields.contains("third"));
-        Assertions.assertEquals(1, thirdCustomJsonProvider.getIsEnabledNumberOfCalls());
+        Assertions.assertEquals(2, thirdCustomJsonProvider.getIsEnabledNumberOfCalls()); // expecting both console and file formatter to call
         Assertions.assertEquals(0, thirdCustomJsonProvider.getWriteToNumberOfCalls());
     }
 }

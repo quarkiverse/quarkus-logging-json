@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
-import io.quarkiverse.loggingjson.Config;
+import io.quarkiverse.loggingjson.config.Config;
 
 public class StackTraceJsonProviderJsonbTest extends JsonProviderBaseTest {
     @Override

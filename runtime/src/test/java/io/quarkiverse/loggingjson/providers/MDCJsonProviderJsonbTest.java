@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.collect.ImmutableList;
 
-import io.quarkiverse.loggingjson.Config;
+import io.quarkiverse.loggingjson.config.Config;
 
 public class MDCJsonProviderJsonbTest extends JsonProviderBaseTest {
     @Override

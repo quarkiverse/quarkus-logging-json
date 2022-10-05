@@ -5,10 +5,10 @@ import java.util.Optional;
 
 import org.jboss.logmanager.ExtLogRecord;
 
-import io.quarkiverse.loggingjson.Config;
 import io.quarkiverse.loggingjson.Enabled;
 import io.quarkiverse.loggingjson.JsonGenerator;
 import io.quarkiverse.loggingjson.JsonProvider;
+import io.quarkiverse.loggingjson.config.Config;
 
 public class ArgumentsJsonProvider implements JsonProvider, Enabled {
     private final boolean includeStructuredArguments;

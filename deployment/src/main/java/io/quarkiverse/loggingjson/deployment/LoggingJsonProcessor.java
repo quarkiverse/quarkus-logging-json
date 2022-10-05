@@ -4,8 +4,8 @@ import java.util.Collection;
 
 import org.jboss.jandex.ClassInfo;
 
-import io.quarkiverse.loggingjson.Config;
 import io.quarkiverse.loggingjson.LoggingJsonRecorder;
+import io.quarkiverse.loggingjson.config.Config;
 import io.quarkus.arc.deployment.AdditionalBeanBuildItem;
 import io.quarkus.deployment.Capabilities;
 import io.quarkus.deployment.Capability;
@@ -16,6 +16,7 @@ import io.quarkus.deployment.annotations.Record;
 import io.quarkus.deployment.builditem.CombinedIndexBuildItem;
 import io.quarkus.deployment.builditem.FeatureBuildItem;
 import io.quarkus.deployment.builditem.LogConsoleFormatBuildItem;
+import io.quarkus.deployment.builditem.LogFileFormatBuildItem;
 
 class LoggingJsonProcessor {
 
@@ -28,17 +29,27 @@ class LoggingJsonProcessor {
 
     @BuildStep
     @Record(ExecutionTime.RUNTIME_INIT)
-    LogConsoleFormatBuildItem setUpFormatter(Capabilities capabilities, LoggingJsonRecorder recorder, Config config) {
-        boolean useJackson;
+    LogConsoleFormatBuildItem setUpConsoleFormatter(Capabilities capabilities, LoggingJsonRecorder recorder,
+            Config config) {
+        return new LogConsoleFormatBuildItem(recorder.initializeConsoleJsonLogging(config, useJackson(capabilities)));
+    }
+
+    @BuildStep
+    @Record(ExecutionTime.RUNTIME_INIT)
+    LogFileFormatBuildItem setUpFileFormatter(Capabilities capabilities, LoggingJsonRecorder recorder,
+            Config config) {
+        return new LogFileFormatBuildItem(recorder.initializeFileJsonLogging(config, useJackson(capabilities)));
+    }
+
+    private boolean useJackson(Capabilities capabilities) {
         if (capabilities.isPresent(Capability.JACKSON)) {
-            useJackson = true;
+            return true;
         } else if (capabilities.isPresent(Capability.JSONB)) {
-            useJackson = false;
+            return false;
         } else {
             throw new RuntimeException(
                     "Missing json implementation to use for logging-json. Supported: [quarkus-jackson, quarkus-jsonb]");
         }
-        return new LogConsoleFormatBuildItem(recorder.initializeJsonLogging(config, useJackson));
     }
 
     @BuildStep

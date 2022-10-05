@@ -5,6 +5,8 @@ import java.util.List;
 import org.jboss.logmanager.ExtFormatter;
 import org.jboss.logmanager.ExtLogRecord;
 
+import io.quarkiverse.loggingjson.config.Config;
+
 public class JsonFormatter extends ExtFormatter {
     private final List<JsonProvider> providers;
     private final JsonFactory jsonFactory;

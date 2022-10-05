@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import org.jboss.logmanager.ExtLogRecord;
 
 import io.quarkiverse.loggingjson.*;
+import io.quarkiverse.loggingjson.config.Config;
 
 public class StackTraceJsonProvider implements JsonProvider, Enabled {
 

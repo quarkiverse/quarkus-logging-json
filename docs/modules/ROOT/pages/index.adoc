@@ -22,4 +22,4 @@ In your `pom.xml` file, add:
 [[extension-configuration-reference]]
 == Extension Configuration Reference
 
-include::./includes/quarkus-log-console-json.adoc[leveloffset=+1, opts=optional]
+include::./includes/quarkus-log-json.adoc[leveloffset=+1, opts=optional]

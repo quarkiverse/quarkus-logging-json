@@ -9,6 +9,8 @@ import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import io.quarkiverse.loggingjson.config.Config;
+import io.quarkiverse.loggingjson.config.ConfigFormatter;
 import io.quarkiverse.loggingjson.jackson.JacksonJsonFactory;
 import io.quarkiverse.loggingjson.jsonb.JsonbJsonFactory;
 import io.quarkiverse.loggingjson.providers.*;
@@ -21,8 +23,19 @@ import io.quarkus.runtime.annotations.Recorder;
 public class LoggingJsonRecorder {
     private static final Logger log = LoggerFactory.getLogger(LoggingJsonRecorder.class);
 
-    public RuntimeValue<Optional<Formatter>> initializeJsonLogging(Config config, boolean useJackson) {
-        if (!config.enable) {
+    public RuntimeValue<Optional<Formatter>> initializeConsoleJsonLogging(Config config,
+            boolean useJackson) {
+        return initializeJsonLogging(config.console, config, useJackson);
+    }
+
+    public RuntimeValue<Optional<Formatter>> initializeFileJsonLogging(Config config,
+            boolean useJackson) {
+        return initializeJsonLogging(config.file, config, useJackson);
+    }
+
+    public RuntimeValue<Optional<Formatter>> initializeJsonLogging(ConfigFormatter formatter, Config config,
+            boolean useJackson) {
+        if (formatter == null || !formatter.isEnabled()) {
             return new RuntimeValue<>(Optional.empty());
         }
 

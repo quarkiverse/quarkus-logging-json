@@ -15,6 +15,10 @@ public class JacksonJsonFactory implements JsonFactory {
     private final boolean prettyPrint;
     private final com.fasterxml.jackson.core.JsonFactory jsonFactory;
 
+    public JacksonJsonFactory() {
+        this(false);
+    }
+
     public JacksonJsonFactory(boolean prettyPrint) {
         this.prettyPrint = prettyPrint;
         this.jsonFactory = createJsonFactory();

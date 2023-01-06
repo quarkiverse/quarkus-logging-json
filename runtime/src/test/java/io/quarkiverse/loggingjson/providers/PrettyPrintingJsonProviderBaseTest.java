@@ -4,10 +4,10 @@ import io.quarkiverse.loggingjson.JsonFactory;
 import io.quarkiverse.loggingjson.jackson.JacksonJsonFactory;
 import io.quarkiverse.loggingjson.jsonb.JsonbJsonFactory;
 
-abstract class JsonProviderBaseTest extends JsonBaseTest {
+abstract class PrettyPrintingJsonProviderBaseTest extends JsonBaseTest {
 
-    private static final JsonFactory jsonb = new JsonbJsonFactory();
-    private static final JsonFactory jackson = new JacksonJsonFactory();
+    private final JsonFactory jsonb = new JsonbJsonFactory(true);
+    private final JsonFactory jackson = new JacksonJsonFactory(true);
 
     @Override
     protected JsonFactory getJsonFactory() {

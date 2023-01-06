@@ -18,6 +18,10 @@ public class JsonbJsonFactory implements JsonFactory {
     private final JsonGeneratorFactory factory;
     private final YassonJsonb jsonb;
 
+    public JsonbJsonFactory() {
+        this(false);
+    }
+
     public JsonbJsonFactory(boolean prettyPrint) {
         Map<String, Object> config = new HashMap<>();
         if (prettyPrint) {

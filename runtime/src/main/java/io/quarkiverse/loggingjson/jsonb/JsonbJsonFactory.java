@@ -2,8 +2,8 @@ package io.quarkiverse.loggingjson.jsonb;
 
 import java.util.HashMap;
 
-import javax.json.Json;
-import javax.json.stream.JsonGeneratorFactory;
+import jakarta.json.Json;
+import jakarta.json.stream.JsonGeneratorFactory;
 
 import org.eclipse.yasson.YassonJsonb;
 import org.eclipse.yasson.internal.JsonBindingBuilder;

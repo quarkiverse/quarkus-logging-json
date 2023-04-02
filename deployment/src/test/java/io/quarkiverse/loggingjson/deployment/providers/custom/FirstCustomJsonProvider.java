@@ -2,7 +2,7 @@ package io.quarkiverse.loggingjson.deployment.providers.custom;
 
 import java.io.IOException;
 
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 
 import org.jboss.logmanager.ExtLogRecord;
 

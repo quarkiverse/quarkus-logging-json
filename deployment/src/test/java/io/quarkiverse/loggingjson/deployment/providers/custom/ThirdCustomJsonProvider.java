@@ -2,7 +2,7 @@ package io.quarkiverse.loggingjson.deployment.providers.custom;
 
 import java.io.IOException;
 
-import javax.inject.Singleton;
+import jakarta.inject.Singleton;
 
 import org.jboss.logmanager.ExtLogRecord;
 

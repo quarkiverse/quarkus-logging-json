@@ -6,6 +6,12 @@
 # Quarkus Logging Json
 Quarkus logging extension outputting the logging in json.
 
+## Version to use
+| Quarkus Version | Use version |
+|-------|-------|
+| 3.x.x | 3.x.x |
+| 2.x.x | 1.x.x, 2.x.x |
+
 # Configuration
 The extension is enabled by default for console, when added to the project.
 Console logging can be disabled using configuration: `quarkus.log.json.console.enable=false`

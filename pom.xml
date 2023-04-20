@@ -10,7 +10,7 @@
     <groupId>io.quarkiverse.loggingjson</groupId>
     <artifactId>quarkus-logging-json-parent</artifactId>
     <name>Quarkus Logging JSON - Parent</name>
-    <version>3.0.0</version>
+    <version>3.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -199,8 +199,4 @@
             </modules>
         </profile>
     </profiles>
-
-  <scm>
-    <tag>3.0.0</tag>
-  </scm>
 </project>

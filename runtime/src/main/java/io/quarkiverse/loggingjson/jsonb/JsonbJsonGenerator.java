@@ -5,18 +5,18 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
 
-import javax.json.JsonStructure;
-import javax.json.JsonValue;
+import jakarta.json.JsonStructure;
+import jakarta.json.JsonValue;
 
 import org.eclipse.yasson.YassonJsonb;
 
 import io.quarkiverse.loggingjson.JsonGenerator;
 
 public class JsonbJsonGenerator implements JsonGenerator {
-    private final javax.json.stream.JsonGenerator generator;
+    private final jakarta.json.stream.JsonGenerator generator;
     private final YassonJsonb jsonb;
 
-    public JsonbJsonGenerator(javax.json.stream.JsonGenerator generator, YassonJsonb jsonb) {
+    public JsonbJsonGenerator(jakarta.json.stream.JsonGenerator generator, YassonJsonb jsonb) {
         this.generator = generator;
         this.jsonb = jsonb;
     }

@@ -1,5 +1,5 @@
 name: quarkus-logging-json
-title: Quarkus Logging JSON
+title: Logging JSON
 version: dev
 nav:
   - modules/ROOT/nav.adoc

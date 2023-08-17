@@ -19,7 +19,7 @@
         <maven.compiler.release>11</maven.compiler.release>
         <maven.compiler.parameters>true</maven.compiler.parameters>
         <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
-        <quarkus.version>3.2.1.Final</quarkus.version>
+        <quarkus.version>3.3.0</quarkus.version>
         <jacoco.version>0.8.10</jacoco.version>
         <!-- Sonar properties -->
         <sonar.projectKey>quarkiverse_quarkus-logging-json</sonar.projectKey>

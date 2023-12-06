@@ -18,13 +18,7 @@
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-jackson-deployment</artifactId>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-jsonb-deployment</artifactId>
-            <scope>compile</scope>
+            <artifactId>quarkus-arc-deployment</artifactId>
         </dependency>
         <dependency>
             <groupId>io.quarkiverse.loggingjson</groupId>
@@ -42,6 +36,17 @@
             <artifactId>quarkus-junit5-internal</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-jackson</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-jsonb</artifactId>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>

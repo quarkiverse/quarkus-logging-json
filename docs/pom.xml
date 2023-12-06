@@ -15,8 +15,9 @@
         <!-- Make sure the doc is built after the other artifacts -->
         <dependency>
             <groupId>io.quarkiverse.loggingjson</groupId>
-            <artifactId>quarkus-logging-json-deployment</artifactId>
+            <artifactId>quarkus-logging-json-integration-tests</artifactId>
             <version>${project.version}</version>
+            <optional>true</optional>
         </dependency>
     </dependencies>
 

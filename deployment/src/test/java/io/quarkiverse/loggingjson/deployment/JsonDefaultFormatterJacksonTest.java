@@ -16,7 +16,7 @@ class JsonDefaultFormatterJacksonTest extends JsonDefaultFormatterBaseTest {
     static final QuarkusUnitTest config = new QuarkusUnitTest()
             .setArchiveProducer(() -> ShrinkWrap.create(JavaArchive.class))
             .setForcedDependencies(Collections.singletonList(
-                    new AppArtifact("io.quarkus", "quarkus-jackson-deployment", System.getProperty("test.quarkus.version"))))
+                    new AppArtifact("io.quarkus", "quarkus-jackson", System.getProperty("test.quarkus.version"))))
             .withConfigurationResource("application-json.properties");
 
     @Test

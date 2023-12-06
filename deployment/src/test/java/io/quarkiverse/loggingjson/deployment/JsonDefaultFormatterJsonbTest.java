@@ -16,7 +16,7 @@ class JsonDefaultFormatterJsonbTest extends JsonDefaultFormatterBaseTest {
     static final QuarkusUnitTest config = new QuarkusUnitTest()
             .setArchiveProducer(() -> ShrinkWrap.create(JavaArchive.class))
             .setForcedDependencies(Collections.singletonList(
-                    new AppArtifact("io.quarkus", "quarkus-jsonb-deployment", System.getProperty("test.quarkus.version"))))
+                    new AppArtifact("io.quarkus", "quarkus-jsonb", System.getProperty("test.quarkus.version"))))
             .withConfigurationResource("application-json.properties");
 
     @Test

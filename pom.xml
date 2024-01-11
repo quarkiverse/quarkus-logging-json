@@ -33,7 +33,11 @@
         <module>runtime</module>
         <module>docs</module>
     </modules>
-
+    <scm>
+        <connection>scm:git:git@github.com:quarkiverse/quarkus-logging-json.git</connection>
+        <developerConnection>scm:git:git@github.com:quarkiverse/quarkus-logging-json.git</developerConnection>
+        <url>https://github.com/quarkiverse/quarkus-logging-json</url>
+    </scm>
     <dependencyManagement>
         <dependencies>
             <dependency>

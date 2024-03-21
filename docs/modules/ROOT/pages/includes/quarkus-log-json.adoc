@@ -12,6 +12,7 @@ h|Default
 
 a| [[quarkus-log-json_quarkus.log.json.console.enable]]`link:#quarkus-log-json_quarkus.log.json.console.enable[quarkus.log.json.console.enable]`
 
+
 [.description]
 --
 Determine whether to enable the JSON console formatting extension, which disables "normal" console formatting.
@@ -27,6 +28,7 @@ endif::add-copy-button-to-env-var[]
 
 
 a| [[quarkus-log-json_quarkus.log.json.file.enable]]`link:#quarkus-log-json_quarkus.log.json.file.enable[quarkus.log.json.file.enable]`
+
 
 [.description]
 --
@@ -44,6 +46,7 @@ endif::add-copy-button-to-env-var[]
 
 a| [[quarkus-log-json_quarkus.log.json.fields.arguments.field-name]]`link:#quarkus-log-json_quarkus.log.json.fields.arguments.field-name[quarkus.log.json.fields.arguments.field-name]`
 
+
 [.description]
 --
 Used to wrap arguments in an json object, with this fieldName on root json.
@@ -59,6 +62,7 @@ endif::add-copy-button-to-env-var[]
 
 
 a| [[quarkus-log-json_quarkus.log.json.fields.arguments.include-structured-arguments]]`link:#quarkus-log-json_quarkus.log.json.fields.arguments.include-structured-arguments[quarkus.log.json.fields.arguments.include-structured-arguments]`
+
 
 [.description]
 --
@@ -76,6 +80,7 @@ endif::add-copy-button-to-env-var[]
 
 a| [[quarkus-log-json_quarkus.log.json.fields.arguments.include-non-structured-arguments]]`link:#quarkus-log-json_quarkus.log.json.fields.arguments.include-non-structured-arguments[quarkus.log.json.fields.arguments.include-non-structured-arguments]`
 
+
 [.description]
 --
 Enable output of non structured logging arguments, default is false.
@@ -91,6 +96,7 @@ endif::add-copy-button-to-env-var[]
 
 
 a| [[quarkus-log-json_quarkus.log.json.fields.arguments.non-structured-arguments-field-prefix]]`link:#quarkus-log-json_quarkus.log.json.fields.arguments.non-structured-arguments-field-prefix[quarkus.log.json.fields.arguments.non-structured-arguments-field-prefix]`
+
 
 [.description]
 --
@@ -108,6 +114,7 @@ endif::add-copy-button-to-env-var[]
 
 a| [[quarkus-log-json_quarkus.log.json.fields.timestamp.field-name]]`link:#quarkus-log-json_quarkus.log.json.fields.timestamp.field-name[quarkus.log.json.fields.timestamp.field-name]`
 
+
 [.description]
 --
 Used to change the json key for the field.
@@ -123,6 +130,7 @@ endif::add-copy-button-to-env-var[]
 
 
 a| [[quarkus-log-json_quarkus.log.json.fields.timestamp.date-format]]`link:#quarkus-log-json_quarkus.log.json.fields.timestamp.date-format[quarkus.log.json.fields.timestamp.date-format]`
+
 
 [.description]
 --
@@ -140,6 +148,7 @@ endif::add-copy-button-to-env-var[]
 
 a| [[quarkus-log-json_quarkus.log.json.fields.timestamp.zone-id]]`link:#quarkus-log-json_quarkus.log.json.fields.timestamp.zone-id[quarkus.log.json.fields.timestamp.zone-id]`
 
+
 [.description]
 --
 The zone to use when formatting the timestamp.
@@ -155,6 +164,7 @@ endif::add-copy-button-to-env-var[]
 
 
 a| [[quarkus-log-json_quarkus.log.json.fields.timestamp.enabled]]`link:#quarkus-log-json_quarkus.log.json.fields.timestamp.enabled[quarkus.log.json.fields.timestamp.enabled]`
+
 
 [.description]
 --
@@ -172,6 +182,7 @@ endif::add-copy-button-to-env-var[]
 
 a| [[quarkus-log-json_quarkus.log.json.fields.hostname.field-name]]`link:#quarkus-log-json_quarkus.log.json.fields.hostname.field-name[quarkus.log.json.fields.hostname.field-name]`
 
+
 [.description]
 --
 Used to change the json key for the field.
@@ -187,6 +198,7 @@ endif::add-copy-button-to-env-var[]
 
 
 a| [[quarkus-log-json_quarkus.log.json.fields.hostname.enabled]]`link:#quarkus-log-json_quarkus.log.json.fields.hostname.enabled[quarkus.log.json.fields.hostname.enabled]`
+
 
 [.description]
 --
@@ -204,6 +216,7 @@ endif::add-copy-button-to-env-var[]
 
 a| [[quarkus-log-json_quarkus.log.json.fields.sequence.field-name]]`link:#quarkus-log-json_quarkus.log.json.fields.sequence.field-name[quarkus.log.json.fields.sequence.field-name]`
 
+
 [.description]
 --
 Used to change the json key for the field.
@@ -219,6 +232,7 @@ endif::add-copy-button-to-env-var[]
 
 
 a| [[quarkus-log-json_quarkus.log.json.fields.sequence.enabled]]`link:#quarkus-log-json_quarkus.log.json.fields.sequence.enabled[quarkus.log.json.fields.sequence.enabled]`
+
 
 [.description]
 --
@@ -236,6 +250,7 @@ endif::add-copy-button-to-env-var[]
 
 a| [[quarkus-log-json_quarkus.log.json.fields.logger-class-name.field-name]]`link:#quarkus-log-json_quarkus.log.json.fields.logger-class-name.field-name[quarkus.log.json.fields.logger-class-name.field-name]`
 
+
 [.description]
 --
 Used to change the json key for the field.
@@ -251,6 +266,7 @@ endif::add-copy-button-to-env-var[]
 
 
 a| [[quarkus-log-json_quarkus.log.json.fields.logger-class-name.enabled]]`link:#quarkus-log-json_quarkus.log.json.fields.logger-class-name.enabled[quarkus.log.json.fields.logger-class-name.enabled]`
+
 
 [.description]
 --
@@ -268,6 +284,7 @@ endif::add-copy-button-to-env-var[]
 
 a| [[quarkus-log-json_quarkus.log.json.fields.logger-name.field-name]]`link:#quarkus-log-json_quarkus.log.json.fields.logger-name.field-name[quarkus.log.json.fields.logger-name.field-name]`
 
+
 [.description]
 --
 Used to change the json key for the field.
@@ -283,6 +300,7 @@ endif::add-copy-button-to-env-var[]
 
 
 a| [[quarkus-log-json_quarkus.log.json.fields.logger-name.enabled]]`link:#quarkus-log-json_quarkus.log.json.fields.logger-name.enabled[quarkus.log.json.fields.logger-name.enabled]`
+
 
 [.description]
 --
@@ -300,6 +318,7 @@ endif::add-copy-button-to-env-var[]
 
 a| [[quarkus-log-json_quarkus.log.json.fields.level.field-name]]`link:#quarkus-log-json_quarkus.log.json.fields.level.field-name[quarkus.log.json.fields.level.field-name]`
 
+
 [.description]
 --
 Used to change the json key for the field.
@@ -315,6 +334,7 @@ endif::add-copy-button-to-env-var[]
 
 
 a| [[quarkus-log-json_quarkus.log.json.fields.level.enabled]]`link:#quarkus-log-json_quarkus.log.json.fields.level.enabled[quarkus.log.json.fields.level.enabled]`
+
 
 [.description]
 --
@@ -332,6 +352,7 @@ endif::add-copy-button-to-env-var[]
 
 a| [[quarkus-log-json_quarkus.log.json.fields.message.field-name]]`link:#quarkus-log-json_quarkus.log.json.fields.message.field-name[quarkus.log.json.fields.message.field-name]`
 
+
 [.description]
 --
 Used to change the json key for the field.
@@ -347,6 +368,7 @@ endif::add-copy-button-to-env-var[]
 
 
 a| [[quarkus-log-json_quarkus.log.json.fields.message.enabled]]`link:#quarkus-log-json_quarkus.log.json.fields.message.enabled[quarkus.log.json.fields.message.enabled]`
+
 
 [.description]
 --
@@ -364,6 +386,7 @@ endif::add-copy-button-to-env-var[]
 
 a| [[quarkus-log-json_quarkus.log.json.fields.thread-name.field-name]]`link:#quarkus-log-json_quarkus.log.json.fields.thread-name.field-name[quarkus.log.json.fields.thread-name.field-name]`
 
+
 [.description]
 --
 Used to change the json key for the field.
@@ -379,6 +402,7 @@ endif::add-copy-button-to-env-var[]
 
 
 a| [[quarkus-log-json_quarkus.log.json.fields.thread-name.enabled]]`link:#quarkus-log-json_quarkus.log.json.fields.thread-name.enabled[quarkus.log.json.fields.thread-name.enabled]`
+
 
 [.description]
 --
@@ -396,6 +420,7 @@ endif::add-copy-button-to-env-var[]
 
 a| [[quarkus-log-json_quarkus.log.json.fields.thread-id.field-name]]`link:#quarkus-log-json_quarkus.log.json.fields.thread-id.field-name[quarkus.log.json.fields.thread-id.field-name]`
 
+
 [.description]
 --
 Used to change the json key for the field.
@@ -411,6 +436,7 @@ endif::add-copy-button-to-env-var[]
 
 
 a| [[quarkus-log-json_quarkus.log.json.fields.thread-id.enabled]]`link:#quarkus-log-json_quarkus.log.json.fields.thread-id.enabled[quarkus.log.json.fields.thread-id.enabled]`
+
 
 [.description]
 --
@@ -428,6 +454,7 @@ endif::add-copy-button-to-env-var[]
 
 a| [[quarkus-log-json_quarkus.log.json.fields.mdc.field-name]]`link:#quarkus-log-json_quarkus.log.json.fields.mdc.field-name[quarkus.log.json.fields.mdc.field-name]`
 
+
 [.description]
 --
 Used to change the json key for the field.
@@ -443,6 +470,7 @@ endif::add-copy-button-to-env-var[]
 
 
 a| [[quarkus-log-json_quarkus.log.json.fields.mdc.enabled]]`link:#quarkus-log-json_quarkus.log.json.fields.mdc.enabled[quarkus.log.json.fields.mdc.enabled]`
+
 
 [.description]
 --
@@ -460,6 +488,7 @@ endif::add-copy-button-to-env-var[]
 
 a| [[quarkus-log-json_quarkus.log.json.fields.mdc.flat-fields]]`link:#quarkus-log-json_quarkus.log.json.fields.mdc.flat-fields[quarkus.log.json.fields.mdc.flat-fields]`
 
+
 [.description]
 --
 Will write the values at the top level of the JSON log object.
@@ -475,6 +504,7 @@ endif::add-copy-button-to-env-var[]
 
 
 a| [[quarkus-log-json_quarkus.log.json.fields.ndc.field-name]]`link:#quarkus-log-json_quarkus.log.json.fields.ndc.field-name[quarkus.log.json.fields.ndc.field-name]`
+
 
 [.description]
 --
@@ -492,6 +522,7 @@ endif::add-copy-button-to-env-var[]
 
 a| [[quarkus-log-json_quarkus.log.json.fields.ndc.enabled]]`link:#quarkus-log-json_quarkus.log.json.fields.ndc.enabled[quarkus.log.json.fields.ndc.enabled]`
 
+
 [.description]
 --
 Enable or disable the field.
@@ -507,6 +538,7 @@ endif::add-copy-button-to-env-var[]
 
 
 a| [[quarkus-log-json_quarkus.log.json.fields.process-name.field-name]]`link:#quarkus-log-json_quarkus.log.json.fields.process-name.field-name[quarkus.log.json.fields.process-name.field-name]`
+
 
 [.description]
 --
@@ -524,6 +556,7 @@ endif::add-copy-button-to-env-var[]
 
 a| [[quarkus-log-json_quarkus.log.json.fields.process-name.enabled]]`link:#quarkus-log-json_quarkus.log.json.fields.process-name.enabled[quarkus.log.json.fields.process-name.enabled]`
 
+
 [.description]
 --
 Enable or disable the field.
@@ -539,6 +572,7 @@ endif::add-copy-button-to-env-var[]
 
 
 a| [[quarkus-log-json_quarkus.log.json.fields.process-id.field-name]]`link:#quarkus-log-json_quarkus.log.json.fields.process-id.field-name[quarkus.log.json.fields.process-id.field-name]`
+
 
 [.description]
 --
@@ -556,6 +590,7 @@ endif::add-copy-button-to-env-var[]
 
 a| [[quarkus-log-json_quarkus.log.json.fields.process-id.enabled]]`link:#quarkus-log-json_quarkus.log.json.fields.process-id.enabled[quarkus.log.json.fields.process-id.enabled]`
 
+
 [.description]
 --
 Enable or disable the field.
@@ -571,6 +606,7 @@ endif::add-copy-button-to-env-var[]
 
 
 a| [[quarkus-log-json_quarkus.log.json.fields.stack-trace.field-name]]`link:#quarkus-log-json_quarkus.log.json.fields.stack-trace.field-name[quarkus.log.json.fields.stack-trace.field-name]`
+
 
 [.description]
 --
@@ -588,6 +624,7 @@ endif::add-copy-button-to-env-var[]
 
 a| [[quarkus-log-json_quarkus.log.json.fields.stack-trace.enabled]]`link:#quarkus-log-json_quarkus.log.json.fields.stack-trace.enabled[quarkus.log.json.fields.stack-trace.enabled]`
 
+
 [.description]
 --
 Enable or disable the field.
@@ -603,6 +640,7 @@ endif::add-copy-button-to-env-var[]
 
 
 a| [[quarkus-log-json_quarkus.log.json.fields.error-type.field-name]]`link:#quarkus-log-json_quarkus.log.json.fields.error-type.field-name[quarkus.log.json.fields.error-type.field-name]`
+
 
 [.description]
 --
@@ -620,6 +658,7 @@ endif::add-copy-button-to-env-var[]
 
 a| [[quarkus-log-json_quarkus.log.json.fields.error-type.enabled]]`link:#quarkus-log-json_quarkus.log.json.fields.error-type.enabled[quarkus.log.json.fields.error-type.enabled]`
 
+
 [.description]
 --
 Enable or disable the field.
@@ -635,6 +674,7 @@ endif::add-copy-button-to-env-var[]
 
 
 a| [[quarkus-log-json_quarkus.log.json.fields.error-message.field-name]]`link:#quarkus-log-json_quarkus.log.json.fields.error-message.field-name[quarkus.log.json.fields.error-message.field-name]`
+
 
 [.description]
 --
@@ -652,6 +692,7 @@ endif::add-copy-button-to-env-var[]
 
 a| [[quarkus-log-json_quarkus.log.json.fields.error-message.enabled]]`link:#quarkus-log-json_quarkus.log.json.fields.error-message.enabled[quarkus.log.json.fields.error-message.enabled]`
 
+
 [.description]
 --
 Enable or disable the field.
@@ -667,6 +708,7 @@ endif::add-copy-button-to-env-var[]
 
 
 a| [[quarkus-log-json_quarkus.log.json.pretty-print]]`link:#quarkus-log-json_quarkus.log.json.pretty-print[quarkus.log.json.pretty-print]`
+
 
 [.description]
 --
@@ -684,6 +726,7 @@ endif::add-copy-button-to-env-var[]
 
 a| [[quarkus-log-json_quarkus.log.json.record-delimiter]]`link:#quarkus-log-json_quarkus.log.json.record-delimiter[quarkus.log.json.record-delimiter]`
 
+
 [.description]
 --
 The special end-of-record delimiter to be used. By default, newline delimiter is used.
@@ -700,6 +743,7 @@ endif::add-copy-button-to-env-var[]
 
 
 a| [[quarkus-log-json_quarkus.log.json.log-format]]`link:#quarkus-log-json_quarkus.log.json.log-format[quarkus.log.json.log-format]`
+
 
 [.description]
 --
@@ -723,6 +767,7 @@ h|Default
 
 a| [[quarkus-log-json_quarkus.log.json.additional-field.-field-name-.value]]`link:#quarkus-log-json_quarkus.log.json.additional-field.-field-name-.value[quarkus.log.json.additional-field."field-name".value]`
 
+
 [.description]
 --
 Additional field value.
@@ -738,6 +783,7 @@ endif::add-copy-button-to-env-var[]
 
 
 a| [[quarkus-log-json_quarkus.log.json.additional-field.-field-name-.type]]`link:#quarkus-log-json_quarkus.log.json.additional-field.-field-name-.type[quarkus.log.json.additional-field."field-name".type]`
+
 
 [.description]
 --

@@ -3,6 +3,10 @@ package io.quarkiverse.loggingjson.config;
 import java.util.Map;
 import java.util.Optional;
 
+import io.quarkiverse.loggingjson.LogFormatter;
+import io.quarkiverse.loggingjson.formatters.DefaultLogFormatter;
+import io.quarkiverse.loggingjson.formatters.ElasticCommonSchemeLogFormatter;
+import io.quarkiverse.loggingjson.formatters.OpenTelemetryStyleLogFormatter;
 import io.quarkiverse.loggingjson.providers.ArgumentsJsonProvider;
 import io.quarkiverse.loggingjson.providers.StructuredArgument;
 import io.quarkus.runtime.annotations.*;
@@ -87,6 +91,13 @@ public class Config {
          */
         @ConfigItem
         public FieldConfig level;
+
+        /**
+         * Options for level number
+         */
+        @ConfigItem
+        public FieldConfig levelNumber;
+
         /**
          * Options for message.
          */
@@ -248,7 +259,19 @@ public class Config {
     }
 
     public enum LogFormat {
-        DEFAULT,
-        ECS
+        DEFAULT(new DefaultLogFormatter()),
+        ECS(new ElasticCommonSchemeLogFormatter()),
+        OTEL(new OpenTelemetryStyleLogFormatter()),
+        ;
+
+        private LogFormatter formatter;
+
+        LogFormat(LogFormatter logFormatter) {
+            this.formatter = logFormatter;
+        }
+
+        public LogFormatter getFormatter() {
+            return formatter;
+        }
     }
 }

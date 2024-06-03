@@ -44,8 +44,8 @@ public class TimestampJsonProvider implements JsonProvider, Enabled {
 
     @Override
     public void writeTo(JsonGenerator generator, ExtLogRecord event) throws IOException {
-        long millis = event.getMillis();
-        JsonWritingUtils.writeStringField(generator, fieldName, dateTimeFormatter.format(Instant.ofEpochMilli(millis)));
+        Instant timestamp = event.getInstant();
+        JsonWritingUtils.writeStringField(generator, fieldName, dateTimeFormatter.format(timestamp));
     }
 
     @Override

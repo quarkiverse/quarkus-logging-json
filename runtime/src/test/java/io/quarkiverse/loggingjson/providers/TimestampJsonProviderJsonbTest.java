@@ -8,6 +8,8 @@ import java.time.format.DateTimeFormatter;
 import java.time.zone.ZoneRulesException;
 import java.util.Optional;
 import java.util.logging.Level;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.jboss.logmanager.ExtLogRecord;
 import org.junit.jupiter.api.Assertions;
@@ -37,6 +39,10 @@ public class TimestampJsonProviderJsonbTest extends JsonProviderBaseTest {
 
         String timestamp = result.findValue("timestamp").asText();
         Assertions.assertNotNull(timestamp);
+
+        Matcher nanosMatcher = Pattern.compile("(.*)\\.(?<nanos>[0-9]{9})(Z|\\+.*)").matcher(timestamp);
+        Assertions.assertTrue(nanosMatcher.matches());
+
         OffsetDateTime logTimestamp = OffsetDateTime.parse(timestamp);
         Assertions.assertTrue(beforeLog.isBefore(logTimestamp) || beforeLog.isEqual(logTimestamp));
         Assertions.assertTrue(afterLog.isAfter(logTimestamp) || afterLog.isEqual(logTimestamp));

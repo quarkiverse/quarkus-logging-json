@@ -34,19 +34,24 @@ class LoggingJsonProcessor {
     @Record(ExecutionTime.RUNTIME_INIT)
     LogConsoleFormatBuildItem setUpConsoleFormatter(Capabilities capabilities, LoggingJsonRecorder recorder,
             Config config) {
-        return new LogConsoleFormatBuildItem(recorder.initializeConsoleJsonLogging(config, jsonFactory(capabilities)));
+        return new LogConsoleFormatBuildItem(
+                recorder.initializeConsoleJsonLogging(config, jsonFactory(capabilities, config)));
     }
 
     @BuildStep
     @Record(ExecutionTime.RUNTIME_INIT)
     LogFileFormatBuildItem setUpFileFormatter(Capabilities capabilities, LoggingJsonRecorder recorder,
             Config config) {
-        return new LogFileFormatBuildItem(recorder.initializeFileJsonLogging(config, jsonFactory(capabilities)));
+        return new LogFileFormatBuildItem(
+                recorder.initializeFileJsonLogging(config, jsonFactory(capabilities, config)));
     }
 
-    private JsonFactory jsonFactory(Capabilities capabilities) {
+    private JsonFactory jsonFactory(Capabilities capabilities, Config config) {
+
         if (capabilities.isPresent(Capability.JACKSON)) {
-            return new JacksonJsonFactory();
+            boolean enabledJavaTimeModule = config.enabledJavaTimeModule.orElse(false);
+
+            return new JacksonJsonFactory(enabledJavaTimeModule);
         } else if (capabilities.isPresent(Capability.JSONB)) {
             return new JsonbJsonFactory();
         } else {

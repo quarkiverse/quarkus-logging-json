@@ -31,6 +31,13 @@ public class Config {
      */
     @ConfigItem
     public boolean prettyPrint;
+
+    /**
+     * Enable the JavaTimeModule for Jackson.
+     */
+    @ConfigItem
+    public Optional<Boolean> enabledJavaTimeModule;
+
     /**
      * The special end-of-record delimiter to be used. By default, newline delimiter is used.
      */

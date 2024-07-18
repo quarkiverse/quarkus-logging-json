@@ -5,6 +5,7 @@ import java.util.ServiceConfigurationError;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import io.quarkiverse.loggingjson.JsonFactory;
 import io.quarkiverse.loggingjson.JsonGenerator;
@@ -14,7 +15,11 @@ public class JacksonJsonFactory implements JsonFactory {
 
     private final com.fasterxml.jackson.core.JsonFactory jsonFactory;
 
-    public JacksonJsonFactory() {
+    public final boolean enabledJavaTimeModule;
+
+    public JacksonJsonFactory(boolean enabledJavaTimeModule) {
+        this.enabledJavaTimeModule = enabledJavaTimeModule;
+
         jsonFactory = createJsonFactory();
     }
 
@@ -24,6 +29,10 @@ public class JacksonJsonFactory implements JsonFactory {
                  * Assume empty beans are ok.
                  */
                 .disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
+
+        if (enabledJavaTimeModule) {
+            objectMapper.registerModule(new JavaTimeModule());
+        }
 
         try {
             objectMapper.findAndRegisterModules();

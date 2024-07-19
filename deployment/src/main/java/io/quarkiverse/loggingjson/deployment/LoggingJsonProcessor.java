@@ -4,11 +4,9 @@ import java.util.Collection;
 
 import org.jboss.jandex.ClassInfo;
 
-import io.quarkiverse.loggingjson.JsonFactory;
+import io.quarkiverse.loggingjson.JsonFactoryType;
 import io.quarkiverse.loggingjson.LoggingJsonRecorder;
 import io.quarkiverse.loggingjson.config.Config;
-import io.quarkiverse.loggingjson.jackson.JacksonJsonFactory;
-import io.quarkiverse.loggingjson.jsonb.JsonbJsonFactory;
 import io.quarkus.arc.deployment.AdditionalBeanBuildItem;
 import io.quarkus.deployment.Capabilities;
 import io.quarkus.deployment.Capability;
@@ -34,29 +32,30 @@ class LoggingJsonProcessor {
     @Record(ExecutionTime.RUNTIME_INIT)
     LogConsoleFormatBuildItem setUpConsoleFormatter(Capabilities capabilities, LoggingJsonRecorder recorder,
             Config config) {
+        JsonFactoryType factoryType = determineJsonFactoryType(capabilities);
+
         return new LogConsoleFormatBuildItem(
-                recorder.initializeConsoleJsonLogging(config, jsonFactory(capabilities, config)));
+                recorder.initializeConsoleJsonLogging(config, factoryType));
     }
 
     @BuildStep
     @Record(ExecutionTime.RUNTIME_INIT)
     LogFileFormatBuildItem setUpFileFormatter(Capabilities capabilities, LoggingJsonRecorder recorder,
             Config config) {
+        JsonFactoryType factoryType = determineJsonFactoryType(capabilities);
+
         return new LogFileFormatBuildItem(
-                recorder.initializeFileJsonLogging(config, jsonFactory(capabilities, config)));
+                recorder.initializeFileJsonLogging(config, factoryType));
     }
 
-    private JsonFactory jsonFactory(Capabilities capabilities, Config config) {
-
+    private JsonFactoryType determineJsonFactoryType(Capabilities capabilities) {
         if (capabilities.isPresent(Capability.JACKSON)) {
-            boolean enabledJavaTimeModule = config.enabledJavaTimeModule.orElse(false);
-
-            return new JacksonJsonFactory(enabledJavaTimeModule);
+            return JsonFactoryType.JACKSON;
         } else if (capabilities.isPresent(Capability.JSONB)) {
-            return new JsonbJsonFactory();
+            return JsonFactoryType.JSONB;
         } else {
             throw new RuntimeException(
-                    "Missing json implementation to use for logging-json. Supported: [quarkus-jackson, quarkus-jsonb]");
+                    "Missing JSON implementation to use for logging-json. Supported: [quarkus-jackson, quarkus-jsonb]");
         }
     }
 

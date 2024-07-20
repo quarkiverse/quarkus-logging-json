@@ -137,6 +137,26 @@ public class Config {
          */
         @ConfigItem
         public FieldConfig errorMessage;
+        /**
+         * Options for sourceClassName.
+         */
+        @ConfigItem
+        public FieldConfig sourceClassName;
+        /**
+         * Options for sourceMethodName.
+         */
+        @ConfigItem
+        public FieldConfig sourceMethodName;
+        /**
+         * Options for sourceFileName.
+         */
+        @ConfigItem
+        public FieldConfig sourceFileName;
+        /**
+         * Options for sourceLineNumber.
+         */
+        @ConfigItem
+        public FieldConfig sourceLineNumber;
     }
 
     @ConfigGroup

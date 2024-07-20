@@ -11,6 +11,8 @@ import org.slf4j.LoggerFactory;
 
 import io.quarkiverse.loggingjson.config.Config;
 import io.quarkiverse.loggingjson.config.ConfigFormatter;
+import io.quarkiverse.loggingjson.jackson.JacksonJsonFactory;
+import io.quarkiverse.loggingjson.jsonb.JsonbJsonFactory;
 import io.quarkiverse.loggingjson.providers.*;
 import io.quarkus.arc.Arc;
 import io.quarkus.arc.InjectableInstance;
@@ -21,19 +23,21 @@ import io.quarkus.runtime.annotations.Recorder;
 public class LoggingJsonRecorder {
     private static final Logger log = LoggerFactory.getLogger(LoggingJsonRecorder.class);
 
-    public RuntimeValue<Optional<Formatter>> initializeConsoleJsonLogging(Config config,
-            JsonFactory jsonFactory) {
+    public RuntimeValue<Optional<Formatter>> initializeConsoleJsonLogging(Config config, JsonFactoryType factoryType) {
+        JsonFactory jsonFactory = createJsonFactory(factoryType, config);
+
         return initializeJsonLogging(config.console, config, jsonFactory);
     }
 
-    public RuntimeValue<Optional<Formatter>> initializeFileJsonLogging(Config config,
-            JsonFactory jsonFactory) {
+    public RuntimeValue<Optional<Formatter>> initializeFileJsonLogging(Config config, JsonFactoryType factoryType) {
+        JsonFactory jsonFactory = createJsonFactory(factoryType, config);
+
         return initializeJsonLogging(config.file, config, jsonFactory);
     }
 
     public RuntimeValue<Optional<Formatter>> initializeJsonLogging(ConfigFormatter formatter, Config config,
             JsonFactory jsonFactory) {
-        if (formatter == null || !formatter.isEnabled()) {
+        if (formatter == null || !formatter.isEnabled() || jsonFactory == null) {
             return new RuntimeValue<>(Optional.empty());
         }
 
@@ -64,6 +68,18 @@ public class LoggingJsonRecorder {
 
         return new RuntimeValue<>(Optional.of(new JsonFormatter(providers, jsonFactory, config)));
 
+    }
+
+    private JsonFactory createJsonFactory(JsonFactoryType type, Config config) {
+        switch (type) {
+            case JACKSON:
+                return new JacksonJsonFactory(config.enabledJavaTimeModule.orElse(false));
+            case JSONB:
+                return new JsonbJsonFactory();
+            default:
+                log.error("Unsupported JsonFactory type");
+                return null;
+        }
     }
 
     private List<JsonProvider> defaultFormat(Config config) {

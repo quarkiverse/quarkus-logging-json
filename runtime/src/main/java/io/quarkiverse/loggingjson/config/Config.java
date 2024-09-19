@@ -22,6 +22,12 @@ public class Config {
     public ConfigFile file;
 
     /**
+     * Configuration properties for socket formatter.
+     */
+    @ConfigItem(name = "socket")
+    public ConfigFile socket;
+
+    /**
      * Configuration properties to customize fields
      */
     @ConfigItem

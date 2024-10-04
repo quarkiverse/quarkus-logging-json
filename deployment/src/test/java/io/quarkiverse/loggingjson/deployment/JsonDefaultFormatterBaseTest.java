@@ -2,6 +2,7 @@ package io.quarkiverse.loggingjson.deployment;
 
 import java.io.StringWriter;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Formatter;
@@ -68,6 +69,14 @@ public abstract class JsonDefaultFormatterBaseTest {
     }
 
     protected void testLogOutput() throws Exception {
+        testLogOutput(false);
+    }
+
+    protected void testLogOutputWithSourceFields() throws Exception {
+        testLogOutput(true);
+    }
+
+    private void testLogOutput(boolean includeSourceFields) throws Exception {
         JsonFormatter jsonFormatter = getJsonFormatter();
 
         org.slf4j.Logger log = LoggerFactory.getLogger("JsonStructuredTest");
@@ -88,7 +97,7 @@ public abstract class JsonDefaultFormatterBaseTest {
         JsonNode jsonNode = mapper.readValue(lines[0], JsonNode.class);
         Assertions.assertTrue(jsonNode.isObject());
 
-        List<String> expectedFields = Arrays.asList(
+        List<String> expectedFields = new ArrayList<>(Arrays.asList(
                 "timestamp",
                 "sequence",
                 "loggerClassName",
@@ -106,7 +115,15 @@ public abstract class JsonDefaultFormatterBaseTest {
                 "errorMessage",
                 "arg0",
                 "structuredKey",
-                "serviceName");
+                "serviceName"));
+        if (includeSourceFields) {
+            expectedFields.addAll(expectedFields.indexOf("errorMessage") + 1, Arrays.asList(
+                    "sourceClassName",
+                    "sourceMethodName",
+                    "sourceFileName",
+                    "sourceLineNumber"));
+        }
+
         Assertions.assertEquals(expectedFields, ImmutableList.copyOf(jsonNode.fieldNames()));
 
         String timestamp = jsonNode.findValue("timestamp").asText();
@@ -163,5 +180,20 @@ public abstract class JsonDefaultFormatterBaseTest {
 
         Assertions.assertTrue(jsonNode.findValue("serviceName").isTextual());
         Assertions.assertEquals("deployment-test", jsonNode.findValue("serviceName").asText());
+
+        if (includeSourceFields) {
+            Assertions.assertTrue(jsonNode.findValue("sourceClassName").isTextual());
+            Assertions.assertEquals(JsonDefaultFormatterBaseTest.class.getName(),
+                    jsonNode.findValue("sourceClassName").asText());
+
+            Assertions.assertTrue(jsonNode.findValue("sourceMethodName").isTextual());
+            Assertions.assertEquals("testLogOutput", jsonNode.findValue("sourceMethodName").asText());
+
+            Assertions.assertTrue(jsonNode.findValue("sourceFileName").isTextual());
+            Assertions.assertEquals("JsonDefaultFormatterBaseTest.java", jsonNode.findValue("sourceFileName").asText());
+
+            Assertions.assertTrue(jsonNode.findValue("sourceLineNumber").isInt());
+            Assertions.assertEquals(86, jsonNode.findValue("sourceLineNumber").asInt());
+        }
     }
 }

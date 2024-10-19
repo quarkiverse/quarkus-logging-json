@@ -17,7 +17,7 @@ import io.quarkiverse.loggingjson.jsonb.JsonbJsonFactory;
 abstract class JsonProviderBaseTest {
 
     private static final JsonFactory jsonb = new JsonbJsonFactory();
-    private static final JsonFactory jackson = new JacksonJsonFactory();
+    private static final JsonFactory jackson = new JacksonJsonFactory(false);
     private static final ObjectMapper mapper = new ObjectMapper();
 
     protected abstract Type type();

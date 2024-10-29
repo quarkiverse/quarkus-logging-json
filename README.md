@@ -3,14 +3,15 @@
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-# Quarkus Logging Json
-Quarkus logging extension outputting the logging in json.
+# Quarkus Logging JSON
+Quarkus logging extension outputting the log messages in JSON.
+It supports the following formats: default, [Elastic Common Schema (ECS)](https://www.elastic.co/guide/en/ecs-logging/overview/current/intro.html).
 
 ## Version to use
-| Quarkus Version | Use version |
-|-------|-------|
-| 3.x.x | 3.x.x |
-| 2.x.x | 1.x.x, 2.x.x |
+| Quarkus Version | Use version  |
+|-----------------|--------------|
+| 3.x.x           | 3.x.x        |
+| 2.x.x           | 1.x.x, 2.x.x |
 
 # Configuration
 The extension is enabled by default for console, when added to the project.

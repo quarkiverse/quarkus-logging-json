@@ -84,6 +84,10 @@ public class LoggingJsonRecorder {
         providers.add(new StackTraceJsonProvider(config.fields.stackTrace));
         providers.add(new ErrorTypeJsonProvider(config.fields.errorType));
         providers.add(new ErrorMessageJsonProvider(config.fields.errorMessage));
+        providers.add(new SourceClassNameJsonProvider(config.fields.sourceClassName));
+        providers.add(new SourceMethodNameJsonProvider(config.fields.sourceMethodName));
+        providers.add(new SourceFileNameJsonProvider(config.fields.sourceFileName));
+        providers.add(new SourceLineNumberJsonProvider(config.fields.sourceLineNumber));
         providers.add(new ArgumentsJsonProvider(config.fields.arguments));
         providers.add(new AdditionalFieldsJsonProvider(config.additionalField));
         return providers;
@@ -94,6 +98,9 @@ public class LoggingJsonRecorder {
         providers.add(new TimestampJsonProvider(config.fields.timestamp, "@timestamp"));
         providers.add(new LoggerNameJsonProvider(config.fields.loggerName, "log.logger"));
         providers.add(new LogLevelJsonProvider(config.fields.level, "log.level"));
+        providers.add(new SourceFileNameJsonProvider(config.fields.sourceFileName, "log.origin.file.name"));
+        providers.add(new SourceLineNumberJsonProvider(config.fields.sourceLineNumber, "log.origin.file.line"));
+        providers.add(new SourceMethodNameJsonProvider(config.fields.sourceMethodName, "log.origin.function"));
         providers.add(new ThreadNameJsonProvider(config.fields.threadName, "process.thread.name"));
         providers.add(new ThreadIdJsonProvider(config.fields.threadId, "process.thread.id"));
         providers.add(new MDCJsonProvider(config.fields.mdc));

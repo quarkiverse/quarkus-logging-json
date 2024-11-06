@@ -2,6 +2,7 @@ package io.quarkiverse.loggingjson.deployment;
 
 import java.io.StringWriter;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.*;
@@ -64,6 +65,14 @@ public abstract class JsonECSFormatterBaseTest {
     }
 
     protected void testLogOutput() throws Exception {
+        testLogOutput(false);
+    }
+
+    protected void testLogOutputWithSourceFields() throws Exception {
+        testLogOutput(true);
+    }
+
+    protected void testLogOutput(boolean includeSourceFields) throws Exception {
         JsonFormatter jsonFormatter = getJsonFormatter();
 
         org.slf4j.Logger log = LoggerFactory.getLogger("JsonStructuredTest");
@@ -84,7 +93,7 @@ public abstract class JsonECSFormatterBaseTest {
         JsonNode jsonNode = mapper.readValue(lines[0], JsonNode.class);
         Assertions.assertTrue(jsonNode.isObject());
 
-        List<String> expectedFields = Arrays.asList(
+        List<String> expectedFields = new ArrayList<>(Arrays.asList(
                 "@timestamp",
                 "log.logger",
                 "log.level",
@@ -99,7 +108,14 @@ public abstract class JsonECSFormatterBaseTest {
                 "structuredKey",
                 "service.name",
                 "message",
-                "ecs.version");
+                "ecs.version"));
+        if (includeSourceFields) {
+            expectedFields.addAll(expectedFields.indexOf("log.level") + 1, Arrays.asList(
+                    "log.origin.file.name",
+                    "log.origin.file.line",
+                    "log.origin.function"));
+        }
+
         Assertions.assertEquals(expectedFields, ImmutableList.copyOf(jsonNode.fieldNames()));
 
         String timestamp = jsonNode.findValue("@timestamp").asText();
@@ -149,5 +165,16 @@ public abstract class JsonECSFormatterBaseTest {
 
         Assertions.assertTrue(jsonNode.findValue("ecs.version").isTextual());
         Assertions.assertTrue(jsonNode.findValue("ecs.version").asText().matches("^[0-9]*\\.[0-9]*\\.[0-9]*$"));
+
+        if (includeSourceFields) {
+            Assertions.assertTrue(jsonNode.findValue("log.origin.function").isTextual());
+            Assertions.assertEquals("testLogOutput", jsonNode.findValue("log.origin.function").asText());
+
+            Assertions.assertTrue(jsonNode.findValue("log.origin.file.name").isTextual());
+            Assertions.assertEquals("JsonECSFormatterBaseTest.java", jsonNode.findValue("log.origin.file.name").asText());
+
+            Assertions.assertTrue(jsonNode.findValue("log.origin.file.line").isInt());
+            Assertions.assertEquals(86, jsonNode.findValue("log.origin.file.line").asInt());
+        }
     }
 }

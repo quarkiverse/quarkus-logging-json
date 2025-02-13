@@ -13,6 +13,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.collect.ImmutableList;
 
 import io.quarkiverse.loggingjson.config.Config;
+import io.quarkiverse.loggingjson.config.Config.AdditionalFieldType;
 
 public class AdditionalFieldsJsonProviderJsonbTest extends JsonProviderBaseTest {
     @Override
@@ -59,9 +60,18 @@ public class AdditionalFieldsJsonProviderJsonbTest extends JsonProviderBaseTest 
     }
 
     private Config.AdditionalFieldConfig additionalFieldConfig(String value, Config.AdditionalFieldType type) {
-        final Config.AdditionalFieldConfig config = new Config.AdditionalFieldConfig();
-        config.value = value;
-        config.type = type;
+        final Config.AdditionalFieldConfig config = new Config.AdditionalFieldConfig() {
+
+            @Override
+            public String value() {
+                return value;
+            }
+
+            @Override
+            public AdditionalFieldType type() {
+                return type;
+            }
+        };
         return config;
     }
 }

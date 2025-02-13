@@ -17,10 +17,10 @@ public class ArgumentsJsonProvider implements JsonProvider, Enabled {
     private final Optional<String> fieldName;
 
     public ArgumentsJsonProvider(Config.ArgumentsConfig config) {
-        this.fieldName = config.fieldName;
-        this.includeStructuredArguments = config.includeStructuredArguments;
-        this.includeNonStructuredArguments = config.includeNonStructuredArguments;
-        this.nonStructuredArgumentsFieldPrefix = config.nonStructuredArgumentsFieldPrefix;
+        this.fieldName = config.fieldName();
+        this.includeStructuredArguments = config.includeStructuredArguments();
+        this.includeNonStructuredArguments = config.includeNonStructuredArguments();
+        this.nonStructuredArgumentsFieldPrefix = config.nonStructuredArgumentsFieldPrefix();
     }
 
     @Override

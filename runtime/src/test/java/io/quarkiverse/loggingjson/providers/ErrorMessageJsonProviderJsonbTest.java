@@ -19,9 +19,18 @@ public class ErrorMessageJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testDefaultConfig() throws Exception {
-        final Config.FieldConfig config = new Config.FieldConfig();
-        config.fieldName = Optional.empty();
-        config.enabled = Optional.empty();
+        final Config.FieldConfig config = new Config.FieldConfig() {
+
+            @Override
+            public Optional<String> fieldName() {
+                return Optional.empty();
+            }
+
+            @Override
+            public Optional<Boolean> enabled() {
+                return Optional.empty();
+            }
+        };
         final ErrorMessageJsonProvider provider = new ErrorMessageJsonProvider(config);
 
         final RuntimeException t = new RuntimeException("Testing errorMessage");
@@ -39,9 +48,18 @@ public class ErrorMessageJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testCustomConfig() throws Exception {
-        final Config.FieldConfig config = new Config.FieldConfig();
-        config.fieldName = Optional.of("em");
-        config.enabled = Optional.of(false);
+        Config.FieldConfig config = new Config.FieldConfig() {
+
+            @Override
+            public Optional<String> fieldName() {
+                return Optional.of("em");
+            }
+
+            @Override
+            public Optional<Boolean> enabled() {
+                return Optional.of(false);
+            }
+        };
         final ErrorMessageJsonProvider provider = new ErrorMessageJsonProvider(config);
 
         final RuntimeException t = new RuntimeException("Testing errorMessage");
@@ -56,7 +74,18 @@ public class ErrorMessageJsonProviderJsonbTest extends JsonProviderBaseTest {
         Assertions.assertEquals("Testing errorMessage", em);
         Assertions.assertFalse(provider.isEnabled());
 
-        config.enabled = Optional.of(true);
+        config = new Config.FieldConfig() {
+
+            @Override
+            public Optional<String> fieldName() {
+                return Optional.of("em");
+            }
+
+            @Override
+            public Optional<Boolean> enabled() {
+                return Optional.of(true);
+            }
+        };
         Assertions.assertTrue(new ErrorMessageJsonProvider(config).isEnabled());
     }
 }

@@ -1,18 +1,13 @@
 package io.quarkiverse.loggingjson.config;
 
 import io.quarkus.runtime.annotations.ConfigGroup;
-import io.quarkus.runtime.annotations.ConfigItem;
+import io.smallrye.config.WithDefault;
 
 @ConfigGroup
-public class ConfigConsole implements ConfigFormatter {
+public interface ConfigConsole extends ConfigFormatter {
     /**
      * Determine whether to enable the JSON console formatting extension, which disables "normal" console formatting.
      */
-    @ConfigItem(defaultValue = "true")
-    boolean enable;
-
-    @Override
-    public boolean isEnabled() {
-        return enable;
-    }
+    @WithDefault("true")
+    boolean enable();
 }

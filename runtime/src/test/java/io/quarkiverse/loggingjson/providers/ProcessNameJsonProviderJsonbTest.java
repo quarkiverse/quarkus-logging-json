@@ -19,9 +19,18 @@ public class ProcessNameJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testDefaultConfig() throws Exception {
-        final Config.FieldConfig config = new Config.FieldConfig();
-        config.fieldName = Optional.empty();
-        config.enabled = Optional.empty();
+        final Config.FieldConfig config = new Config.FieldConfig() {
+
+            @Override
+            public Optional<String> fieldName() {
+                return Optional.empty();
+            }
+
+            @Override
+            public Optional<Boolean> enabled() {
+                return Optional.empty();
+            }
+        };
         final ProcessNameJsonProvider provider = new ProcessNameJsonProvider(config);
 
         final ExtLogRecord event = new ExtLogRecord(Level.ALL, "", "");
@@ -37,9 +46,18 @@ public class ProcessNameJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testCustomConfig() throws Exception {
-        final Config.FieldConfig config = new Config.FieldConfig();
-        config.fieldName = Optional.of("pn");
-        config.enabled = Optional.of(false);
+        Config.FieldConfig config = new Config.FieldConfig() {
+
+            @Override
+            public Optional<String> fieldName() {
+                return Optional.of("pn");
+            }
+
+            @Override
+            public Optional<Boolean> enabled() {
+                return Optional.of(false);
+            }
+        };
         final ProcessNameJsonProvider provider = new ProcessNameJsonProvider(config);
 
         final ExtLogRecord event = new ExtLogRecord(Level.ALL, "", "");
@@ -52,7 +70,18 @@ public class ProcessNameJsonProviderJsonbTest extends JsonProviderBaseTest {
         Assertions.assertEquals("TestProcess", pn);
         Assertions.assertFalse(provider.isEnabled());
 
-        config.enabled = Optional.of(true);
+        config = new Config.FieldConfig() {
+
+            @Override
+            public Optional<String> fieldName() {
+                return Optional.of("pn");
+            }
+
+            @Override
+            public Optional<Boolean> enabled() {
+                return Optional.of(true);
+            }
+        };
         Assertions.assertTrue(new ProcessNameJsonProvider(config).isEnabled());
     }
 }

@@ -17,7 +17,7 @@ public class LogLevelJsonProvider implements JsonProvider, Enabled {
 
     public LogLevelJsonProvider(Config.FieldConfig config, String defaultName) {
         this.config = config;
-        this.fieldName = config.fieldName.orElse(defaultName);
+        this.fieldName = config.fieldName().orElse(defaultName);
     }
 
     @Override
@@ -27,6 +27,6 @@ public class LogLevelJsonProvider implements JsonProvider, Enabled {
 
     @Override
     public boolean isEnabled() {
-        return config.enabled.orElse(true);
+        return config.enabled().orElse(true);
     }
 }

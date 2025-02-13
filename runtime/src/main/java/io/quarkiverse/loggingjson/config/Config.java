@@ -6,237 +6,240 @@ import java.util.Optional;
 import io.quarkiverse.loggingjson.providers.ArgumentsJsonProvider;
 import io.quarkiverse.loggingjson.providers.StructuredArgument;
 import io.quarkus.runtime.annotations.*;
+import io.smallrye.config.ConfigMapping;
+import io.smallrye.config.WithDefault;
 
-@ConfigRoot(phase = ConfigPhase.RUN_TIME, name = "log.json")
-public class Config {
+@ConfigRoot(phase = ConfigPhase.RUN_TIME)
+@ConfigMapping(prefix = "quarkus.log.json")
+public interface Config {
     /**
      * Configuration properties for console formatter.
      */
-    @ConfigItem(name = "console")
-    public ConfigConsole console;
+    ConfigConsole console();
 
     /**
      * Configuration properties for file formatter.
      */
-    @ConfigItem(name = "file")
-    public ConfigFile file;
+    ConfigFile file();
 
     /**
      * Configuration properties to customize fields
      */
-    @ConfigItem
-    public FieldsConfig fields;
+    FieldsConfig fields();
+
     /**
      * Enable "pretty printing" of the JSON record. Note that some JSON parsers will fail to read pretty printed output.
      */
-    @ConfigItem
-    public boolean prettyPrint;
+    @WithDefault("false")
+    boolean prettyPrint();
+
     /**
      * The special end-of-record delimiter to be used. By default, newline delimiter is used.
      */
-    @ConfigItem(defaultValue = "\n")
-    public String recordDelimiter;
+    @WithDefault("\n")
+    String recordDelimiter();
+
     /**
      * For adding fields to the json output directly from the config.
      */
-    @ConfigItem
     @ConfigDocMapKey("field-name")
     @ConfigDocSection
-    public Map<String, AdditionalFieldConfig> additionalField;
+    Map<String, AdditionalFieldConfig> additionalField();
 
     /**
      * Support changing logging format.
      */
-    @ConfigItem(defaultValue = "DEFAULT")
-    public LogFormat logFormat;
+    @WithDefault("DEFAULT")
+    LogFormat logFormat();
 
     @ConfigGroup
-    public static class FieldsConfig {
+    public interface FieldsConfig {
         /**
          * Used to customize {@link ArgumentsJsonProvider}
          */
-        @ConfigItem
-        public ArgumentsConfig arguments;
+        ArgumentsConfig arguments();
+
         /**
          * Options for timestamp.
          */
-        @ConfigItem
-        public TimestampField timestamp;
+        TimestampField timestamp();
+
         /**
          * Options for hostname.
          */
-        @ConfigItem
-        public FieldConfig hostname;
+        FieldConfig hostname();
+
         /**
          * Options for sequence.
          */
-        @ConfigItem
-        public FieldConfig sequence;
+        FieldConfig sequence();
+
         /**
          * Options for loggerClassName.
          */
-        @ConfigItem
-        public FieldConfig loggerClassName;
+        FieldConfig loggerClassName();
+
         /**
          * Options for loggerName.
          */
-        @ConfigItem
-        public FieldConfig loggerName;
+        FieldConfig loggerName();
+
         /**
          * Options for level.
          */
-        @ConfigItem
-        public FieldConfig level;
+        FieldConfig level();
+
         /**
          * Options for message.
          */
-        @ConfigItem
-        public FieldConfig message;
+        FieldConfig message();
+
         /**
          * Options for threadName.
          */
-        @ConfigItem
-        public FieldConfig threadName;
+        FieldConfig threadName();
+
         /**
          * Options for threadId.
          */
-        @ConfigItem
-        public FieldConfig threadId;
+        FieldConfig threadId();
+
         /**
          * Options for mdc.
          */
-        @ConfigItem
-        public MDCConfig mdc;
+        MDCConfig mdc();
+
         /**
          * Options for ndc.
          */
-        @ConfigItem
-        public FieldConfig ndc;
+        FieldConfig ndc();
+
         /**
          * Options for processName.
          */
-        @ConfigItem
-        public FieldConfig processName;
+        FieldConfig processName();
+
         /**
          * Options for processId.
          */
-        @ConfigItem
-        public FieldConfig processId;
+        FieldConfig processId();
+
         /**
          * Options for stackTrace.
          */
-        @ConfigItem
-        public FieldConfig stackTrace;
+        FieldConfig stackTrace();
+
         /**
          * Options for errorType.
          */
-        @ConfigItem
-        public FieldConfig errorType;
+        FieldConfig errorType();
+
         /**
          * Options for errorMessage.
          */
-        @ConfigItem
-        public FieldConfig errorMessage;
+        FieldConfig errorMessage();
     }
 
     @ConfigGroup
-    public static class FieldConfig {
+    public interface FieldConfig {
         /**
          * Used to change the json key for the field.
          */
-        @ConfigItem
-        public Optional<String> fieldName;
+        Optional<String> fieldName();
+
         /**
          * Enable or disable the field.
          */
-        @ConfigItem
-        public Optional<Boolean> enabled;
+        Optional<Boolean> enabled();
     }
 
     @ConfigGroup
-    public static class MDCConfig {
+    public interface MDCConfig {
         /**
          * Used to change the json key for the field.
          */
-        @ConfigItem
-        public Optional<String> fieldName;
+        Optional<String> fieldName();
+
         /**
          * Enable or disable the field.
          */
-        @ConfigItem
-        public Optional<Boolean> enabled;
+        Optional<Boolean> enabled();
+
         /**
          * Will write the values at the top level of the JSON log object.
          */
-        @ConfigItem(defaultValue = "false")
-        public boolean flatFields;
+        @WithDefault("false")
+        boolean flatFields();
     }
 
     @ConfigGroup
-    public static class TimestampField {
+    public interface TimestampField {
         /**
          * Used to change the json key for the field.
          */
-        @ConfigItem
-        public Optional<String> fieldName;
+        Optional<String> fieldName();
+
         /**
          * The date format to use. The special string "default" indicates that the default format should be used.
          */
-        @ConfigItem(defaultValue = "default")
-        public String dateFormat;
+        @WithDefault("default")
+        String dateFormat();
+
         /**
          * The zone to use when formatting the timestamp.
          */
-        @ConfigItem(defaultValue = "default")
-        public String zoneId;
+        @WithDefault("default")
+        String zoneId();
+
         /**
          * Enable or disable the field.
          */
-        @ConfigItem
-        public Optional<Boolean> enabled;
+        Optional<Boolean> enabled();
     }
 
     @ConfigGroup
-    public static class ArgumentsConfig {
+    public interface ArgumentsConfig {
 
         /**
          * Used to wrap arguments in an json object, with this fieldName on root json.
          */
-        @ConfigItem
-        public Optional<String> fieldName = Optional.empty();
+        Optional<String> fieldName();
+
         /**
          * Enable output of structured logging arguments
          * {@link StructuredArgument},
          * default is true.
          */
-        @ConfigItem(defaultValue = "true")
-        public boolean includeStructuredArguments;
+        @WithDefault("true")
+        boolean includeStructuredArguments();
+
         /**
          * Enable output of non structured logging arguments, default is false.
          */
-        @ConfigItem(defaultValue = "false")
-        public boolean includeNonStructuredArguments;
+        @WithDefault("false")
+        boolean includeNonStructuredArguments();
+
         /**
          * What prefix to use, when outputting non structured arguments. Default is `arg`, example key for first argument will
          * be `arg0`.
          */
-        @ConfigItem(defaultValue = "arg")
-        public String nonStructuredArgumentsFieldPrefix;
+        @WithDefault("arg")
+        String nonStructuredArgumentsFieldPrefix();
     }
 
     @ConfigGroup
-    public static class AdditionalFieldConfig {
+    public interface AdditionalFieldConfig {
         /**
          * Additional field value.
          */
-        @ConfigItem
-        public String value;
+        String value();
+
         /**
          * Type of the field, default is STRING.
          * Supported types: STRING, INT, LONG, FLOAT, DOUBLE.
          */
-        @ConfigItem(defaultValue = "STRING")
-        public AdditionalFieldType type;
+        @WithDefault("STRING")
+        AdditionalFieldType type();
     }
 
     public enum AdditionalFieldType {

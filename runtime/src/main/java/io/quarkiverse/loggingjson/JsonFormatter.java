@@ -15,7 +15,7 @@ public class JsonFormatter extends ExtFormatter {
     public JsonFormatter(List<JsonProvider> providers, JsonFactory jsonFactory, Config config) {
         this.providers = providers;
         this.jsonFactory = jsonFactory;
-        this.recordDelimiter = config.recordDelimiter;
+        this.recordDelimiter = config.recordDelimiter();
     }
 
     @Override

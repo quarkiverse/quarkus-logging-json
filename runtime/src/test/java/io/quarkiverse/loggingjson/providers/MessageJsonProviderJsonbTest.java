@@ -19,9 +19,18 @@ public class MessageJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testDefaultConfig() throws Exception {
-        final Config.FieldConfig config = new Config.FieldConfig();
-        config.fieldName = Optional.empty();
-        config.enabled = Optional.empty();
+        final Config.FieldConfig config = new Config.FieldConfig() {
+
+            @Override
+            public Optional<String> fieldName() {
+                return Optional.empty();
+            }
+
+            @Override
+            public Optional<Boolean> enabled() {
+                return Optional.empty();
+            }
+        };
         final MessageJsonProvider provider = new MessageJsonProvider(config);
 
         final ExtLogRecord event = new ExtLogRecord(Level.ALL, "TestMessage {0}", "");
@@ -38,9 +47,18 @@ public class MessageJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testCustomConfig() throws Exception {
-        final Config.FieldConfig config = new Config.FieldConfig();
-        config.fieldName = Optional.of("msg");
-        config.enabled = Optional.of(false);
+        Config.FieldConfig config = new Config.FieldConfig() {
+
+            @Override
+            public Optional<String> fieldName() {
+                return Optional.of("msg");
+            }
+
+            @Override
+            public Optional<Boolean> enabled() {
+                return Optional.of(false);
+            }
+        };
         final MessageJsonProvider provider = new MessageJsonProvider(config);
 
         final ExtLogRecord event = new ExtLogRecord(Level.ALL, "TestMessage {0}", "");
@@ -53,7 +71,18 @@ public class MessageJsonProviderJsonbTest extends JsonProviderBaseTest {
         Assertions.assertEquals("TestMessage param0", msg);
         Assertions.assertFalse(provider.isEnabled());
 
-        config.enabled = Optional.of(true);
+        config = new Config.FieldConfig() {
+
+            @Override
+            public Optional<String> fieldName() {
+                return Optional.of("msg");
+            }
+
+            @Override
+            public Optional<Boolean> enabled() {
+                return Optional.of(true);
+            }
+        };
         Assertions.assertTrue(new MessageJsonProvider(config).isEnabled());
     }
 }

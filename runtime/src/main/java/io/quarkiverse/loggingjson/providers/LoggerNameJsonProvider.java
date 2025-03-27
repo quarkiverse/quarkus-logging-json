@@ -17,7 +17,7 @@ public class LoggerNameJsonProvider implements JsonProvider, Enabled {
     }
 
     public LoggerNameJsonProvider(Config.FieldConfig config, String defaultName) {
-        this.fieldName = config.fieldName.orElse(defaultName);
+        this.fieldName = config.fieldName().orElse(defaultName);
         this.config = config;
     }
 
@@ -28,6 +28,6 @@ public class LoggerNameJsonProvider implements JsonProvider, Enabled {
 
     @Override
     public boolean isEnabled() {
-        return config.enabled.orElse(true);
+        return config.enabled().orElse(true);
     }
 }

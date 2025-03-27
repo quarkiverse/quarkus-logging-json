@@ -23,8 +23,8 @@ public class AdditionalFieldsJsonProvider implements JsonProvider, Enabled {
     public void writeTo(JsonGenerator generator, ExtLogRecord event) throws IOException {
         for (Map.Entry<String, Config.AdditionalFieldConfig> entry : fields.entrySet()) {
             final String fieldName = entry.getKey();
-            final String fieldValue = entry.getValue().value;
-            switch (entry.getValue().type) {
+            final String fieldValue = entry.getValue().value();
+            switch (entry.getValue().type()) {
                 case STRING:
                     generator.writeStringField(fieldName, fieldValue);
                     break;

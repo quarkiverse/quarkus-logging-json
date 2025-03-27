@@ -17,10 +17,10 @@ public class MDCJsonProvider implements JsonProvider, Enabled {
 
     public MDCJsonProvider(Config.MDCConfig config) {
         this.config = config;
-        if (config.flatFields) {
+        if (config.flatFields()) {
             this.fieldName = null;
         } else {
-            this.fieldName = config.fieldName.orElse("mdc");
+            this.fieldName = config.fieldName().orElse("mdc");
         }
     }
 
@@ -31,6 +31,6 @@ public class MDCJsonProvider implements JsonProvider, Enabled {
 
     @Override
     public boolean isEnabled() {
-        return config.enabled.orElse(true);
+        return config.enabled().orElse(true);
     }
 }

@@ -17,7 +17,7 @@ public class ProcessIdJsonProvider implements JsonProvider, Enabled {
 
     public ProcessIdJsonProvider(Config.FieldConfig config) {
         this.config = config;
-        this.fieldName = config.fieldName.orElse("processId");
+        this.fieldName = config.fieldName().orElse("processId");
     }
 
     @Override
@@ -29,6 +29,6 @@ public class ProcessIdJsonProvider implements JsonProvider, Enabled {
 
     @Override
     public boolean isEnabled() {
-        return config.enabled.orElse(true);
+        return config.enabled().orElse(true);
     }
 }

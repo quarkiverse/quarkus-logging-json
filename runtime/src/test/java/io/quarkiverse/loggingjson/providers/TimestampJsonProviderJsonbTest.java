@@ -25,10 +25,28 @@ public class TimestampJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testDefaultConfig() throws Exception {
-        final Config.TimestampField config = new Config.TimestampField();
-        config.fieldName = Optional.empty();
-        config.dateFormat = "default";
-        config.enabled = Optional.empty();
+        final Config.TimestampField config = new Config.TimestampField() {
+
+            @Override
+            public Optional<String> fieldName() {
+                return Optional.empty();
+            }
+
+            @Override
+            public String dateFormat() {
+                return "default";
+            }
+
+            @Override
+            public String zoneId() {
+                return "default";
+            }
+
+            @Override
+            public Optional<Boolean> enabled() {
+                return Optional.empty();
+            }
+        };
         final TimestampJsonProvider timestampJsonProvider = new TimestampJsonProvider(config);
 
         OffsetDateTime beforeLog = OffsetDateTime.now().minusSeconds(1);
@@ -44,10 +62,27 @@ public class TimestampJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testCustomConfig() throws Exception {
-        final Config.TimestampField config = new Config.TimestampField();
-        config.fieldName = Optional.of("@timestamp");
-        config.dateFormat = "dd-MM-yyyy HH:mm:ss.SSS";
-        config.enabled = Optional.empty();
+        final Config.TimestampField config = new Config.TimestampField() {
+            @Override
+            public Optional<String> fieldName() {
+                return Optional.of("@timestamp");
+            }
+
+            @Override
+            public String dateFormat() {
+                return "dd-MM-yyyy HH:mm:ss.SSS";
+            }
+
+            @Override
+            public String zoneId() {
+                return "default";
+            }
+
+            @Override
+            public Optional<Boolean> enabled() {
+                return Optional.empty();
+            }
+        };
         final TimestampJsonProvider timestampJsonProvider = new TimestampJsonProvider(config);
 
         LocalDateTime beforeLog = LocalDateTime.now().minusSeconds(1);
@@ -63,9 +98,29 @@ public class TimestampJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testCustomConfigDisabled() {
-        final Config.TimestampField config = new Config.TimestampField();
-        config.fieldName = Optional.empty();
-        config.enabled = Optional.empty();
+        final var config = new Config.TimestampField() {
+            private Optional<Boolean> enabled = Optional.empty();
+
+            @Override
+            public Optional<String> fieldName() {
+                return Optional.empty();
+            }
+
+            @Override
+            public String dateFormat() {
+                return "default";
+            }
+
+            @Override
+            public String zoneId() {
+                return "default";
+            }
+
+            @Override
+            public Optional<Boolean> enabled() {
+                return enabled;
+            }
+        };
         final TimestampJsonProvider timestampJsonProvider = new TimestampJsonProvider(config);
         Assertions.assertTrue(timestampJsonProvider.isEnabled());
 
@@ -75,10 +130,27 @@ public class TimestampJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testCustomDateFormatConfigFail() {
-        final Config.TimestampField config = new Config.TimestampField();
-        config.fieldName = Optional.of("@timestamp");
-        config.dateFormat = "sdkfjl";
-        config.enabled = Optional.empty();
+        final Config.TimestampField config = new Config.TimestampField() {
+            @Override
+            public Optional<String> fieldName() {
+                return Optional.of("@timestamp");
+            }
+
+            @Override
+            public String dateFormat() {
+                return "sdkfjl";
+            }
+
+            @Override
+            public String zoneId() {
+                return "default";
+            }
+
+            @Override
+            public Optional<Boolean> enabled() {
+                return Optional.empty();
+            }
+        };
 
         try {
             new TimestampJsonProvider(config);
@@ -89,10 +161,27 @@ public class TimestampJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testCustomZoneIdConfig() throws Exception {
-        final Config.TimestampField config = new Config.TimestampField();
-        config.fieldName = Optional.of("timestamp");
-        config.zoneId = "Antarctica/Davis";
-        config.enabled = Optional.empty();
+        final Config.TimestampField config = new Config.TimestampField() {
+            @Override
+            public Optional<String> fieldName() {
+                return Optional.of("timestamp");
+            }
+
+            @Override
+            public String dateFormat() {
+                return "default";
+            }
+
+            @Override
+            public String zoneId() {
+                return "Antarctica/Davis";
+            }
+
+            @Override
+            public Optional<Boolean> enabled() {
+                return Optional.empty();
+            }
+        };
         final TimestampJsonProvider timestampJsonProvider = new TimestampJsonProvider(config);
 
         ZonedDateTime beforeLog = ZonedDateTime.now().minusSeconds(1).withZoneSameInstant(ZoneId.of("+7"));
@@ -109,10 +198,27 @@ public class TimestampJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testCustomZoneIdConfigFail() {
-        final Config.TimestampField config = new Config.TimestampField();
-        config.fieldName = Optional.of("timestamp");
-        config.zoneId = "sdkfjl";
-        config.enabled = Optional.empty();
+        final Config.TimestampField config = new Config.TimestampField() {
+            @Override
+            public Optional<String> fieldName() {
+                return Optional.of("timestamp");
+            }
+
+            @Override
+            public String dateFormat() {
+                return "default";
+            }
+
+            @Override
+            public String zoneId() {
+                return "sdkfjl";
+            }
+
+            @Override
+            public Optional<Boolean> enabled() {
+                return Optional.empty();
+            }
+        };
 
         try {
             new TimestampJsonProvider(config);

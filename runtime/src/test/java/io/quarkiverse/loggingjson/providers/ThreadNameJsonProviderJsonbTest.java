@@ -19,9 +19,17 @@ public class ThreadNameJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testDefaultConfig() throws Exception {
-        final Config.FieldConfig config = new Config.FieldConfig();
-        config.fieldName = Optional.empty();
-        config.enabled = Optional.empty();
+        final Config.FieldConfig config = new Config.FieldConfig() {
+            @Override
+            public Optional<String> fieldName() {
+                return Optional.empty();
+            }
+
+            @Override
+            public Optional<Boolean> enabled() {
+                return Optional.empty();
+            }
+        };
         final ThreadNameJsonProvider provider = new ThreadNameJsonProvider(config);
 
         final ExtLogRecord event = new ExtLogRecord(Level.ALL, "", "");
@@ -37,9 +45,20 @@ public class ThreadNameJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testCustomConfig() throws Exception {
-        final Config.FieldConfig config = new Config.FieldConfig();
-        config.fieldName = Optional.of("tn");
-        config.enabled = Optional.of(false);
+        final var config = new Config.FieldConfig() {
+
+            private Optional<Boolean> enabled = Optional.of(false);
+
+            @Override
+            public Optional<String> fieldName() {
+                return Optional.of("tn");
+            }
+
+            @Override
+            public Optional<Boolean> enabled() {
+                return enabled;
+            }
+        };
         final ThreadNameJsonProvider provider = new ThreadNameJsonProvider(config);
 
         final ExtLogRecord event = new ExtLogRecord(Level.ALL, "", "");

@@ -18,7 +18,7 @@ public class MessageJsonProvider extends ExtFormatter implements JsonProvider, E
 
     public MessageJsonProvider(Config.FieldConfig config) {
         this.config = config;
-        this.fieldName = config.fieldName.orElse("message");
+        this.fieldName = config.fieldName().orElse("message");
     }
 
     @Override
@@ -33,6 +33,6 @@ public class MessageJsonProvider extends ExtFormatter implements JsonProvider, E
 
     @Override
     public boolean isEnabled() {
-        return config.enabled.orElse(true);
+        return config.enabled().orElse(true);
     }
 }

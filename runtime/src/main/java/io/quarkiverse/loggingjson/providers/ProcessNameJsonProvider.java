@@ -17,7 +17,7 @@ public class ProcessNameJsonProvider implements JsonProvider, Enabled {
 
     public ProcessNameJsonProvider(Config.FieldConfig config) {
         this.config = config;
-        this.fieldName = config.fieldName.orElse("processName");
+        this.fieldName = config.fieldName().orElse("processName");
     }
 
     @Override
@@ -29,6 +29,6 @@ public class ProcessNameJsonProvider implements JsonProvider, Enabled {
 
     @Override
     public boolean isEnabled() {
-        return config.enabled.orElse(true);
+        return config.enabled().orElse(true);
     }
 }

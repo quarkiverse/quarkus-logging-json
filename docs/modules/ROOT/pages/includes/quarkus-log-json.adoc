@@ -10,30 +10,30 @@ h|[[quarkus-log-json_configuration]]link:#quarkus-log-json_configuration[Configu
 h|Type
 h|Default
 
-a| [[quarkus-log-json_quarkus.log.json.console.enable]]`link:#quarkus-log-json_quarkus.log.json.console.enable[quarkus.log.json.console.enable]`
+a| [[quarkus-log-json_quarkus.log.json.console.enabled]]`link:#quarkus-log-json_quarkus.log.json.console.enabled[quarkus.log.json.console.enabled]`
 
 [.description]
 --
 Determine whether to enable the JSON console formatting extension, which disables "normal" console formatting.
 
 ifdef::add-copy-button-to-env-var[]
-Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_CONSOLE_ENABLE+++[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_CONSOLE_ENABLED+++[]
 endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
-Environment variable: `+++QUARKUS_LOG_JSON_CONSOLE_ENABLE+++`
+Environment variable: `+++QUARKUS_LOG_JSON_CONSOLE_ENABLED+++`
 endif::add-copy-button-to-env-var[]
 --|boolean 
 |`true`
 
 
-a| [[quarkus-log-json_quarkus.log.json.file.enable]]`link:#quarkus-log-json_quarkus.log.json.file.enable[quarkus.log.json.file.enable]`
+a| [[quarkus-log-json_quarkus.log.json.file.enabled]]`link:#quarkus-log-json_quarkus.log.json.file.enabled[quarkus.log.json.file.enabled]`
 
 [.description]
 --
 Determine whether to enable the JSON file formatting extension, which disables "normal" file formatting.
 
 ifdef::add-copy-button-to-env-var[]
-Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FILE_ENABLE+++[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FILE_ENABLED+++[]
 endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_FILE_ENABLE+++`

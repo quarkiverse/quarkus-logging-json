@@ -62,6 +62,13 @@ public class Config {
          */
         @ConfigItem
         public TimestampField timestamp;
+
+        /**
+         * Options for eventId.
+         */
+        @ConfigItem
+        public EventIdField eventId;
+
         /**
          * Options for hostname.
          */
@@ -194,6 +201,22 @@ public class Config {
          */
         @ConfigItem
         public Optional<Boolean> enabled;
+    }
+
+    @ConfigGroup
+    public static class EventIdField {
+        /**
+         * Used to change the json key for the field.
+         */
+        @ConfigItem
+        public Optional<String> fieldName;
+        /**
+         * Enable or disable the field.
+         * <p>
+         * This field is disabled by default for performance consideration.
+         */
+        @ConfigItem(defaultValue = "false")
+        public boolean enabled;
     }
 
     @ConfigGroup

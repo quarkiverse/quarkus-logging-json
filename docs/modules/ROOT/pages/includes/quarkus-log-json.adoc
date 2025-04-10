@@ -106,6 +106,38 @@ endif::add-copy-button-to-env-var[]
 |`arg`
 
 
+a| [[quarkus-log-json_quarkus.log.json.fields.event-id.field-name]]`link:#quarkus-log-json_quarkus.log.json.fields.event-id.field-name[quarkus.log.json.fields.event-id.field-name]`
+
+[.description]
+--
+Used to change the json key for the field.
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FIELDS_EVENT_ID_FIELD_NAME+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_EVENT_ID_FIELD_NAME+++`
+endif::add-copy-button-to-env-var[]
+--|string
+|`eventId` or `event.id` if `quarkus.log.json.log-format` is `ecs`
+
+
+a| [[quarkus-log-json_quarkus.log.json.fields.event-id.enabled]]`link:#quarkus-log-json_quarkus.log.json.fields.event-id.enabled[quarkus.log.json.fields.event-id.enabled]`
+
+[.description]
+--
+Enable or disable the field.
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FIELDS_EVENT_ID_ENABLED+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_EVENT_ID_ENABLED+++`
+endif::add-copy-button-to-env-var[]
+--|boolean
+|false
+
+
 a| [[quarkus-log-json_quarkus.log.json.fields.timestamp.field-name]]`link:#quarkus-log-json_quarkus.log.json.fields.timestamp.field-name[quarkus.log.json.fields.timestamp.field-name]`
 
 [.description]
@@ -374,7 +406,7 @@ endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_THREAD_NAME_FIELD_NAME+++`
 endif::add-copy-button-to-env-var[]
---|string 
+--|string
 |
 
 
@@ -390,7 +422,7 @@ endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_THREAD_NAME_ENABLED+++`
 endif::add-copy-button-to-env-var[]
---|boolean 
+--|boolean
 |
 
 

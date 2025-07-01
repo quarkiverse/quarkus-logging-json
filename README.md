@@ -63,15 +63,16 @@ public class MyJsonProvider implements JsonProvider {
 }
 ```
 
-## Property Relocation
+## Configuration Properties Relocation
 
-This project includes a configuration property relocation mechanism using SmallRye Config's `RelocateConfigSourceInterceptor`. 
-It supports backward compatibility by allowing both old and new property names:
+In 3.2.0, two configuration properties were renamed to be more consistent with Quarkus configuration.
 
-- Old: `quarkus.log.console.json.enable` → New: `quarkus.log.console.json.enabled`
-- Old: `quarkus.log.file.json.enable` → New: `quarkus.log.file.json.enabled`
+- Old: `quarkus.log.json.console.enable` → New: `quarkus.log.json.console.enabled`
+- Old: `quarkus.log.json.file.enable` → New: `quarkus.log.json.file.enabled`
 
-When using the old property names, a log message will be generated advising to update to the new property names.
+A relocation/fallback mechanism has been added so the old properties are still supported
+but we recomment that you switch to the new ones
+(`quarkus update` will do it for you).
 
 ## Contributors ✨
 

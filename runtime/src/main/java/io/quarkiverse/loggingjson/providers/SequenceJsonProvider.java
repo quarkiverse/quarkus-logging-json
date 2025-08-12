@@ -17,7 +17,7 @@ public class SequenceJsonProvider implements JsonProvider, Enabled {
 
     public SequenceJsonProvider(Config.FieldConfig config) {
         this.config = config;
-        this.fieldName = config.fieldName.orElse("sequence");
+        this.fieldName = config.fieldName().orElse("sequence");
     }
 
     @Override
@@ -27,6 +27,6 @@ public class SequenceJsonProvider implements JsonProvider, Enabled {
 
     @Override
     public boolean isEnabled() {
-        return config.enabled.orElse(true);
+        return config.enabled().orElse(true);
     }
 }

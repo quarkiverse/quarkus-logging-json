@@ -25,17 +25,17 @@ public class TimestampJsonProvider implements JsonProvider, Enabled {
 
     public TimestampJsonProvider(Config.TimestampField config, String defaultName) {
         this.config = config;
-        fieldName = config.fieldName.orElse(defaultName);
+        fieldName = config.fieldName().orElse(defaultName);
 
         ZoneId zoneId;
-        if (config.zoneId == null || "default".equals(config.zoneId)) {
+        if (config.zoneId() == null || "default".equals(config.zoneId())) {
             zoneId = ZoneId.systemDefault();
         } else {
-            zoneId = ZoneId.of(config.zoneId);
+            zoneId = ZoneId.of(config.zoneId());
         }
 
-        if (config.dateFormat != null && !config.dateFormat.equals("default")) {
-            dateTimeFormatter = DateTimeFormatter.ofPattern(config.dateFormat).withZone(zoneId);
+        if (config.dateFormat() != null && !config.dateFormat().equals("default")) {
+            dateTimeFormatter = DateTimeFormatter.ofPattern(config.dateFormat()).withZone(zoneId);
         } else {
             dateTimeFormatter = DateTimeFormatter.ISO_OFFSET_DATE_TIME.withZone(zoneId);
         }
@@ -50,6 +50,6 @@ public class TimestampJsonProvider implements JsonProvider, Enabled {
 
     @Override
     public boolean isEnabled() {
-        return config.enabled.orElse(true);
+        return config.enabled().orElse(true);
     }
 }

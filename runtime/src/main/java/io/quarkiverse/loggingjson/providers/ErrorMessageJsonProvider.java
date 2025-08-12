@@ -18,7 +18,7 @@ public class ErrorMessageJsonProvider implements JsonProvider, Enabled {
 
     public ErrorMessageJsonProvider(Config.FieldConfig config, String defaultName) {
         this.config = config;
-        this.fieldName = config.fieldName.orElse(defaultName);
+        this.fieldName = config.fieldName().orElse(defaultName);
     }
 
     @Override
@@ -30,6 +30,6 @@ public class ErrorMessageJsonProvider implements JsonProvider, Enabled {
 
     @Override
     public boolean isEnabled() {
-        return config.enabled.orElse(true);
+        return config.enabled().orElse(true);
     }
 }

@@ -14,7 +14,7 @@ Quarkus logging extension outputting the logging in json.
 
 # Configuration
 The extension is enabled by default for console, when added to the project.
-Console logging can be disabled using configuration: `quarkus.log.json.console.enable=false`
+Console logging can be disabled using configuration: `quarkus.log.json.console.enabled=false`
 
 To see additional configuration options take a look at [Config](https://quarkiverse.github.io/quarkiverse-docs/quarkus-logging-json/dev/index.html)
 
@@ -63,6 +63,17 @@ public class MyJsonProvider implements JsonProvider {
 }
 ```
 
+## Configuration Properties Relocation
+
+In 3.2.0, two configuration properties were renamed to be more consistent with Quarkus configuration.
+
+- Old: `quarkus.log.json.console.enable` → New: `quarkus.log.json.console.enabled`
+- Old: `quarkus.log.json.file.enable` → New: `quarkus.log.json.file.enabled`
+
+A relocation/fallback mechanism has been added so the old properties are still supported
+but we recomment that you switch to the new ones
+(`quarkus update` will do it for you).
+
 ## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
@@ -81,3 +92,5 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+
+`

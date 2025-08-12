@@ -1,0 +1,2 @@
+io.quarkiverse.loggingjson.config.LoggingConfigRelocateConfigSourceInterceptor
+io.quarkiverse.loggingjson.config.LoggingConfigFallbackConfigSourceInterceptor

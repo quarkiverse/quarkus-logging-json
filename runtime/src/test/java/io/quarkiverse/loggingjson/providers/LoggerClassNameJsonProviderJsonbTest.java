@@ -19,9 +19,17 @@ public class LoggerClassNameJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testDefaultConfig() throws Exception {
-        final Config.FieldConfig config = new Config.FieldConfig();
-        config.fieldName = Optional.empty();
-        config.enabled = Optional.empty();
+        final Config.FieldConfig config = new Config.FieldConfig() {
+            @Override
+            public Optional<String> fieldName() {
+                return Optional.empty();
+            }
+
+            @Override
+            public Optional<Boolean> enabled() {
+                return Optional.empty();
+            }
+        };
         final LoggerClassNameJsonProvider provider = new LoggerClassNameJsonProvider(config);
 
         final JsonNode result = getResultAsJsonNode(provider,
@@ -36,9 +44,19 @@ public class LoggerClassNameJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testCustomConfig() throws Exception {
-        final Config.FieldConfig config = new Config.FieldConfig();
-        config.fieldName = Optional.of("loggerClass");
-        config.enabled = Optional.of(false);
+        final var config = new Config.FieldConfig() {
+            private Optional<Boolean> enabled = Optional.of(false);
+
+            @Override
+            public Optional<String> fieldName() {
+                return Optional.of("loggerClass");
+            }
+
+            @Override
+            public Optional<Boolean> enabled() {
+                return enabled;
+            }
+        };
         final LoggerClassNameJsonProvider provider = new LoggerClassNameJsonProvider(config);
 
         final JsonNode result = getResultAsJsonNode(provider,

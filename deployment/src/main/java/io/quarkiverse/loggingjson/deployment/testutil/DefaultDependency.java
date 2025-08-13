@@ -1,14 +1,23 @@
 package io.quarkiverse.loggingjson.deployment.testutil;
 
+import io.quarkus.bootstrap.model.PathsCollection;
+import io.quarkus.maven.dependency.ArtifactCoords;
 import io.quarkus.maven.dependency.ArtifactKey;
 import io.quarkus.maven.dependency.Dependency;
+import io.quarkus.maven.dependency.ResolvedDependency;
+import io.quarkus.paths.PathCollection;
+import io.quarkus.paths.PathList;
 
-public class DefaultDependency implements Dependency {
+import java.nio.file.Path;
+import java.util.Collection;
+import java.util.List;
 
+public class DefaultDependency implements ResolvedDependency {
+
+    protected PathsCollection paths;
     private String scope = "compile";
     private int flags = 0;
     private String classifier = DEFAULT_CLASSIFIER;
-
     private String groupId = "io.quarkus";
     private String artifactId = "quarkus-logging-json";
     private String version = System.getProperty("test.quarkus.version");
@@ -79,6 +88,20 @@ public class DefaultDependency implements Dependency {
         return ArtifactKey.of(groupId, artifactId, classifier, type);
     }
 
+    @Override
+    public PathCollection getResolvedPaths() {
+        return paths == null ? null : PathList.from(paths);
+    }
+
+    @Override
+    public Collection<ArtifactCoords> getDependencies() {
+        return List.of();
+    }
+
+    public PathsCollection getPaths() {
+        return paths;
+    }
+
     public void setScope(String scope) {
         this.scope = scope;
     }
@@ -107,4 +130,11 @@ public class DefaultDependency implements Dependency {
         this.type = type;
     }
 
+    public void setPaths(PathsCollection paths) {
+        this.paths = paths;
+    }
+
+    public void setPath(Path path) {
+        setPaths(PathsCollection.of(path));
+    }
 }

@@ -16,7 +16,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableList;
 
 import io.quarkiverse.loggingjson.deployment.JsonDefaultFormatterBaseTest;
-import io.quarkus.bootstrap.model.AppArtifact;
+import io.quarkus.maven.dependency.Dependency;
 import io.quarkus.test.QuarkusUnitTest;
 
 class CustomJsonProviderJsonbTest extends JsonDefaultFormatterBaseTest {
@@ -25,7 +25,7 @@ class CustomJsonProviderJsonbTest extends JsonDefaultFormatterBaseTest {
             .setArchiveProducer(() -> ShrinkWrap.create(JavaArchive.class)
                     .addClasses(FirstCustomJsonProvider.class, SecondCustomJsonProvider.class, ThirdCustomJsonProvider.class))
             .setForcedDependencies(Collections.singletonList(
-                    new AppArtifact("io.quarkus", "quarkus-jsonb-deployment", System.getProperty("test.quarkus.version"))))
+                    Dependency.of("io.quarkus", "quarkus-jsonb-deployment", System.getProperty("test.quarkus.version"))))
             .withConfigurationResource("application-json.properties");
 
     @Inject
@@ -54,11 +54,11 @@ class CustomJsonProviderJsonbTest extends JsonDefaultFormatterBaseTest {
         Assertions.assertTrue(firstCustomJsonProvider.getWriteToNumberOfCalls() > 0);
 
         Assertions.assertTrue(fields.contains("second"));
-        Assertions.assertEquals(2, secondCustomJsonProvider.getIsEnabledNumberOfCalls()); // expecting both console and file formatter to call
+        Assertions.assertEquals(3, secondCustomJsonProvider.getIsEnabledNumberOfCalls()); // expecting console, file and socket formatters to call
         Assertions.assertTrue(secondCustomJsonProvider.getWriteToNumberOfCalls() > 0);
 
         Assertions.assertFalse(fields.contains("third"));
-        Assertions.assertEquals(2, thirdCustomJsonProvider.getIsEnabledNumberOfCalls()); // expecting both console and file formatter to call
+        Assertions.assertEquals(3, thirdCustomJsonProvider.getIsEnabledNumberOfCalls()); // expecting console, file and socket formatters to call
         Assertions.assertEquals(0, thirdCustomJsonProvider.getWriteToNumberOfCalls());
     }
 }

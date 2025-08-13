@@ -31,6 +31,11 @@ public class LoggingJsonRecorder {
         return initializeJsonLogging(config.file(), config, jsonFactory);
     }
 
+    public RuntimeValue<Optional<Formatter>> initializeSocketJsonLogging(Config config,
+            JsonFactory jsonFactory) {
+        return initializeJsonLogging(config.socket(), config, jsonFactory);
+    }
+
     public RuntimeValue<Optional<Formatter>> initializeJsonLogging(ConfigFormatter formatter, Config config,
             JsonFactory jsonFactory) {
         if (formatter == null || !formatter.isEnabled()) {
@@ -76,6 +81,8 @@ public class LoggingJsonRecorder {
         providers.add(new MessageJsonProvider(config.fields().message()));
         providers.add(new ThreadNameJsonProvider(config.fields().threadName()));
         providers.add(new ThreadIdJsonProvider(config.fields().threadId()));
+        providers.add(new TraceIdJsonProvider(config.fields().traceId()));
+        providers.add(new SpanIdJsonProvider(config.fields().spanId()));
         providers.add(new MDCJsonProvider(config.fields().mdc()));
         providers.add(new NDCJsonProvider(config.fields().ndc()));
         providers.add(new HostNameJsonProvider(config.fields().hostname()));
@@ -96,6 +103,8 @@ public class LoggingJsonRecorder {
         providers.add(new LogLevelJsonProvider(config.fields().level(), "log.level"));
         providers.add(new ThreadNameJsonProvider(config.fields().threadName(), "process.thread.name"));
         providers.add(new ThreadIdJsonProvider(config.fields().threadId(), "process.thread.id"));
+        providers.add(new TraceIdJsonProvider(config.fields().traceId(), "trace.id"));
+        providers.add(new SpanIdJsonProvider(config.fields().spanId(), "span.id"));
         providers.add(new MDCJsonProvider(config.fields().mdc()));
         providers.add(new HostNameJsonProvider(config.fields().hostname(), "host.name"));
         providers.add(new StackTraceJsonProvider(config.fields().stackTrace(), "error.stack_trace"));

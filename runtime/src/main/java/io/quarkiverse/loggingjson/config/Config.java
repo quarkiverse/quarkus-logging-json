@@ -30,6 +30,12 @@ public interface Config {
     ConfigFile file();
 
     /**
+     * Configuration properties for socket formatter.
+     */
+    @WithName("socket")
+    ConfigSocket socket();
+
+    /**
      * Configuration properties to customize fields
      */
     FieldsConfig fields();
@@ -116,6 +122,16 @@ public interface Config {
          * Options for mdc.
          */
         MDCConfig mdc();
+
+        /**
+         * Options for mdc.traceId
+         */
+        public FieldConfig traceId();
+
+        /**
+         * Options for mdc.spanId
+         */
+        public FieldConfig spanId();
 
         /**
          * Options for ndc.

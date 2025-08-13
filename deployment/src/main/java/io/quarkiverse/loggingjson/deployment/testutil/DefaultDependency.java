@@ -12,7 +12,7 @@ public class DefaultDependency implements Dependency {
     private String groupId = "io.quarkus";
     private String artifactId = "quarkus-logging-json";
     private String version = System.getProperty("test.quarkus.version");
-    private String type = "jar";
+    private String type = TYPE_JAR;
 
     public DefaultDependency() {
     }
@@ -76,27 +76,7 @@ public class DefaultDependency implements Dependency {
 
     @Override
     public ArtifactKey getKey() {
-        return new ArtifactKey() {
-            @Override
-            public String getGroupId() {
-                return groupId;
-            }
-
-            @Override
-            public String getArtifactId() {
-                return artifactId;
-            }
-
-            @Override
-            public String getClassifier() {
-                return classifier;
-            }
-
-            @Override
-            public String getType() {
-                return type;
-            }
-        };
+        return ArtifactKey.of(groupId, artifactId, classifier, type);
     }
 
     public void setScope(String scope) {

@@ -1,16 +1,15 @@
 package io.quarkiverse.loggingjson.deployment.testutil;
 
-import io.quarkus.bootstrap.model.PathsCollection;
-import io.quarkus.maven.dependency.ArtifactCoords;
-import io.quarkus.maven.dependency.ArtifactKey;
-import io.quarkus.maven.dependency.Dependency;
-import io.quarkus.maven.dependency.ResolvedDependency;
-import io.quarkus.paths.PathCollection;
-import io.quarkus.paths.PathList;
-
 import java.nio.file.Path;
 import java.util.Collection;
 import java.util.List;
+
+import io.quarkus.bootstrap.model.PathsCollection;
+import io.quarkus.maven.dependency.ArtifactCoords;
+import io.quarkus.maven.dependency.ArtifactKey;
+import io.quarkus.maven.dependency.ResolvedDependency;
+import io.quarkus.paths.PathCollection;
+import io.quarkus.paths.PathList;
 
 public class DefaultDependency implements ResolvedDependency {
 

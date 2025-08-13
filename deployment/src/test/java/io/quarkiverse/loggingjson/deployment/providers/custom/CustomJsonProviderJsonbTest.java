@@ -16,16 +16,16 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableList;
 
 import io.quarkiverse.loggingjson.deployment.JsonDefaultFormatterBaseTest;
-import io.quarkus.bootstrap.model.AppArtifact;
+import io.quarkiverse.loggingjson.deployment.testutil.DefaultDependency;
 import io.quarkus.test.QuarkusUnitTest;
 
 class CustomJsonProviderJsonbTest extends JsonDefaultFormatterBaseTest {
+
     @RegisterExtension
     static final QuarkusUnitTest config = new QuarkusUnitTest()
             .setArchiveProducer(() -> ShrinkWrap.create(JavaArchive.class)
                     .addClasses(FirstCustomJsonProvider.class, SecondCustomJsonProvider.class, ThirdCustomJsonProvider.class))
-            .setForcedDependencies(Collections.singletonList(
-                    new AppArtifact("io.quarkus", "quarkus-jsonb-deployment", System.getProperty("test.quarkus.version"))))
+            .setForcedDependencies(Collections.singletonList(new DefaultDependency("quarkus-jsonb-deployment")))
             .withConfigurationResource("application-json.properties");
 
     @Inject

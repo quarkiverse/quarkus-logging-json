@@ -23,7 +23,8 @@ import io.quarkus.bootstrap.logging.InitialConfigurator;
 import io.quarkus.bootstrap.logging.QuarkusDelayedHandler;
 
 public abstract class JsonECSFormatterBaseTest {
-    private static StringWriter writer = new StringWriter();
+
+    private static final StringWriter writer = new StringWriter();
     private static WriterHandler handler;
 
     static {
@@ -41,7 +42,7 @@ public abstract class JsonECSFormatterBaseTest {
 
     public static JsonFormatter getJsonFormatter() {
         LogManager logManager = LogManager.getLogManager();
-        Assertions.assertTrue(logManager instanceof org.jboss.logmanager.LogManager);
+        Assertions.assertInstanceOf(org.jboss.logmanager.LogManager.class, logManager);
 
         QuarkusDelayedHandler delayedHandler = InitialConfigurator.DELAYED_HANDLER;
         Assertions.assertTrue(Arrays.asList(Logger.getLogger("").getHandlers()).contains(delayedHandler));
@@ -54,7 +55,7 @@ public abstract class JsonECSFormatterBaseTest {
         Assertions.assertEquals(Level.WARNING, handler.getLevel());
 
         Formatter formatter = handler.getFormatter();
-        Assertions.assertTrue(formatter instanceof JsonFormatter);
+        Assertions.assertInstanceOf(JsonFormatter.class, formatter);
         return (JsonFormatter) formatter;
     }
 
@@ -76,12 +77,10 @@ public abstract class JsonECSFormatterBaseTest {
         }
 
         OffsetDateTime afterLastLog = OffsetDateTime.now();
-
-        ObjectMapper mapper = new ObjectMapper();
         String[] lines = logLines();
 
         Assertions.assertEquals(1, lines.length);
-        JsonNode jsonNode = mapper.readValue(lines[0], JsonNode.class);
+        JsonNode jsonNode = new ObjectMapper().readValue(lines[0], JsonNode.class);
         Assertions.assertTrue(jsonNode.isObject());
 
         List<String> expectedFields = Arrays.asList(

@@ -12,6 +12,7 @@ import io.quarkiverse.loggingjson.JsonProvider;
 
 @Singleton
 public class SecondCustomJsonProvider implements JsonProvider, Enabled {
+
     private long isEnabledNumberOfCalls = 0;
     private long writeToNumberOfCalls = 0;
 

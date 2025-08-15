@@ -7,7 +7,7 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 
-import io.quarkus.bootstrap.model.AppArtifact;
+import io.quarkiverse.loggingjson.deployment.testutil.DefaultDependency;
 import io.quarkus.test.QuarkusUnitTest;
 
 class JsonDefaultFormatterJsonbTest extends JsonDefaultFormatterBaseTest {
@@ -15,8 +15,7 @@ class JsonDefaultFormatterJsonbTest extends JsonDefaultFormatterBaseTest {
     @RegisterExtension
     static final QuarkusUnitTest config = new QuarkusUnitTest()
             .setArchiveProducer(() -> ShrinkWrap.create(JavaArchive.class))
-            .setForcedDependencies(Collections.singletonList(
-                    new AppArtifact("io.quarkus", "quarkus-jsonb", System.getProperty("test.quarkus.version"))))
+            .setForcedDependencies(Collections.singletonList(new DefaultDependency("quarkus-jsonb")))
             .withConfigurationResource("application-json.properties");
 
     @Test

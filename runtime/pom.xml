@@ -10,7 +10,7 @@
 
     <artifactId>quarkus-logging-json</artifactId>
     <name>Quarkus Logging JSON - Runtime</name>
-    <description>Logging in JSON with support for custom fields</description>
+    <description>Logging in JSON with support for custom fields and Elastic Common Schema (ECS)</description>
     <dependencies>
         <dependency>
             <groupId>io.quarkus</groupId>

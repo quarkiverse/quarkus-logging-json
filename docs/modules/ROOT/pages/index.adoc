@@ -3,7 +3,8 @@
 
 include::./includes/attributes.adoc[]
 
-Quarkus logging extension outputting the logging in JSON.
+Quarkus logging extension outputting the log messages in JSON.
+It supports the following formats: default, https://www.elastic.co/guide/en/ecs-logging/overview/current/intro.html[Elastic Common Schema (ECS)].
 
 == Installation
 

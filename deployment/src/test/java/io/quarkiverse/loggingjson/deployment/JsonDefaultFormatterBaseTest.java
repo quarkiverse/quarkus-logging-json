@@ -27,7 +27,6 @@ import io.quarkus.bootstrap.logging.InitialConfigurator;
 import io.quarkus.bootstrap.logging.QuarkusDelayedHandler;
 
 public abstract class JsonDefaultFormatterBaseTest {
-
     private static final StringWriter writer = new StringWriter();
     private static WriterHandler handler;
 

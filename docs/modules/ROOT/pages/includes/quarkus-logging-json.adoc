@@ -1,20 +1,19 @@
-
-:summaryTableId: quarkus-log-json
+:summaryTableId: quarkus-logging-json_quarkus-log
 [.configuration-legend]
 icon:lock[title=Fixed at build time] Configuration property fixed at build time - All other configuration properties are overridable at runtime
 [.configuration-reference.searchable, cols="80,.^10,.^10"]
 |===
 
-h|[[quarkus-log-json_configuration]]link:#quarkus-log-json_configuration[Configuration property]
-
+h|[.header-title]##Configuration property##
 h|Type
 h|Default
 
-a| [[quarkus-log-json_quarkus.log.json.console.enabled]]`link:#quarkus-log-json_quarkus.log.json.console.enabled[quarkus.log.json.console.enabled]`
+a| [[quarkus-logging-json_quarkus-log-json-console-enabled]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-console-enabled[`quarkus.log.json.console.enabled`]##
 
 [.description]
 --
 Determine whether to enable the JSON console formatting extension, which disables "normal" console formatting.
+
 
 ifdef::add-copy-button-to-env-var[]
 Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_CONSOLE_ENABLED+++[]
@@ -22,31 +21,33 @@ endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_CONSOLE_ENABLED+++`
 endif::add-copy-button-to-env-var[]
---|boolean 
+--
+|boolean
 |`true`
 
-
-a| [[quarkus-log-json_quarkus.log.json.file.enabled]]`link:#quarkus-log-json_quarkus.log.json.file.enabled[quarkus.log.json.file.enabled]`
+a| [[quarkus-logging-json_quarkus-log-json-file-enabled]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-file-enabled[`quarkus.log.json.file.enabled`]##
 
 [.description]
 --
 Determine whether to enable the JSON file formatting extension, which disables "normal" file formatting.
 
+
 ifdef::add-copy-button-to-env-var[]
 Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FILE_ENABLED+++[]
 endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
-Environment variable: `+++QUARKUS_LOG_JSON_FILE_ENABLE+++`
+Environment variable: `+++QUARKUS_LOG_JSON_FILE_ENABLED+++`
 endif::add-copy-button-to-env-var[]
---|boolean 
+--
+|boolean
 |`false`
 
-
-a| [[quarkus-log-json_quarkus.log.json.fields.arguments.field-name]]`link:#quarkus-log-json_quarkus.log.json.fields.arguments.field-name[quarkus.log.json.fields.arguments.field-name]`
+a| [[quarkus-logging-json_quarkus-log-json-fields-arguments-field-name]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-fields-arguments-field-name[`quarkus.log.json.fields.arguments.field-name`]##
 
 [.description]
 --
-Used to wrap arguments in an json object, with this fieldName on root json.
+Used to wrap arguments in a json object, with this fieldName on root json.
+
 
 ifdef::add-copy-button-to-env-var[]
 Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FIELDS_ARGUMENTS_FIELD_NAME+++[]
@@ -54,15 +55,16 @@ endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_ARGUMENTS_FIELD_NAME+++`
 endif::add-copy-button-to-env-var[]
---|string 
+--
+|string
 |
 
-
-a| [[quarkus-log-json_quarkus.log.json.fields.arguments.include-structured-arguments]]`link:#quarkus-log-json_quarkus.log.json.fields.arguments.include-structured-arguments[quarkus.log.json.fields.arguments.include-structured-arguments]`
+a| [[quarkus-logging-json_quarkus-log-json-fields-arguments-include-structured-arguments]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-fields-arguments-include-structured-arguments[`quarkus.log.json.fields.arguments.include-structured-arguments`]##
 
 [.description]
 --
 Enable output of structured logging arguments `StructuredArgument`, default is true.
+
 
 ifdef::add-copy-button-to-env-var[]
 Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FIELDS_ARGUMENTS_INCLUDE_STRUCTURED_ARGUMENTS+++[]
@@ -70,15 +72,16 @@ endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_ARGUMENTS_INCLUDE_STRUCTURED_ARGUMENTS+++`
 endif::add-copy-button-to-env-var[]
---|boolean 
+--
+|boolean
 |`true`
 
-
-a| [[quarkus-log-json_quarkus.log.json.fields.arguments.include-non-structured-arguments]]`link:#quarkus-log-json_quarkus.log.json.fields.arguments.include-non-structured-arguments[quarkus.log.json.fields.arguments.include-non-structured-arguments]`
+a| [[quarkus-logging-json_quarkus-log-json-fields-arguments-include-non-structured-arguments]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-fields-arguments-include-non-structured-arguments[`quarkus.log.json.fields.arguments.include-non-structured-arguments`]##
 
 [.description]
 --
-Enable output of non structured logging arguments, default is false.
+Enable output of non-structured logging arguments, default is false.
+
 
 ifdef::add-copy-button-to-env-var[]
 Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FIELDS_ARGUMENTS_INCLUDE_NON_STRUCTURED_ARGUMENTS+++[]
@@ -86,15 +89,16 @@ endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_ARGUMENTS_INCLUDE_NON_STRUCTURED_ARGUMENTS+++`
 endif::add-copy-button-to-env-var[]
---|boolean 
+--
+|boolean
 |`false`
 
-
-a| [[quarkus-log-json_quarkus.log.json.fields.arguments.non-structured-arguments-field-prefix]]`link:#quarkus-log-json_quarkus.log.json.fields.arguments.non-structured-arguments-field-prefix[quarkus.log.json.fields.arguments.non-structured-arguments-field-prefix]`
+a| [[quarkus-logging-json_quarkus-log-json-fields-arguments-non-structured-arguments-field-prefix]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-fields-arguments-non-structured-arguments-field-prefix[`quarkus.log.json.fields.arguments.non-structured-arguments-field-prefix`]##
 
 [.description]
 --
-What prefix to use, when outputting non structured arguments. Default is `arg`, example key for first argument will be `arg0`.
+What prefixes to use, when outputting non-structured arguments. Default is `arg`, example key for the first argument will be `arg0`.
+
 
 ifdef::add-copy-button-to-env-var[]
 Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FIELDS_ARGUMENTS_NON_STRUCTURED_ARGUMENTS_FIELD_PREFIX+++[]
@@ -102,15 +106,16 @@ endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_ARGUMENTS_NON_STRUCTURED_ARGUMENTS_FIELD_PREFIX+++`
 endif::add-copy-button-to-env-var[]
---|string 
+--
+|string
 |`arg`
 
-
-a| [[quarkus-log-json_quarkus.log.json.fields.timestamp.field-name]]`link:#quarkus-log-json_quarkus.log.json.fields.timestamp.field-name[quarkus.log.json.fields.timestamp.field-name]`
+a| [[quarkus-logging-json_quarkus-log-json-fields-timestamp-field-name]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-fields-timestamp-field-name[`quarkus.log.json.fields.timestamp.field-name`]##
 
 [.description]
 --
 Used to change the json key for the field.
+
 
 ifdef::add-copy-button-to-env-var[]
 Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FIELDS_TIMESTAMP_FIELD_NAME+++[]
@@ -118,15 +123,16 @@ endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_TIMESTAMP_FIELD_NAME+++`
 endif::add-copy-button-to-env-var[]
---|string 
+--
+|string
 |
 
-
-a| [[quarkus-log-json_quarkus.log.json.fields.timestamp.date-format]]`link:#quarkus-log-json_quarkus.log.json.fields.timestamp.date-format[quarkus.log.json.fields.timestamp.date-format]`
+a| [[quarkus-logging-json_quarkus-log-json-fields-timestamp-date-format]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-fields-timestamp-date-format[`quarkus.log.json.fields.timestamp.date-format`]##
 
 [.description]
 --
 The date format to use. The special string "default" indicates that the default format should be used.
+
 
 ifdef::add-copy-button-to-env-var[]
 Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FIELDS_TIMESTAMP_DATE_FORMAT+++[]
@@ -134,15 +140,16 @@ endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_TIMESTAMP_DATE_FORMAT+++`
 endif::add-copy-button-to-env-var[]
---|string 
+--
+|string
 |`default`
 
-
-a| [[quarkus-log-json_quarkus.log.json.fields.timestamp.zone-id]]`link:#quarkus-log-json_quarkus.log.json.fields.timestamp.zone-id[quarkus.log.json.fields.timestamp.zone-id]`
+a| [[quarkus-logging-json_quarkus-log-json-fields-timestamp-zone-id]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-fields-timestamp-zone-id[`quarkus.log.json.fields.timestamp.zone-id`]##
 
 [.description]
 --
 The zone to use when formatting the timestamp.
+
 
 ifdef::add-copy-button-to-env-var[]
 Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FIELDS_TIMESTAMP_ZONE_ID+++[]
@@ -150,15 +157,16 @@ endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_TIMESTAMP_ZONE_ID+++`
 endif::add-copy-button-to-env-var[]
---|string 
+--
+|string
 |`default`
 
-
-a| [[quarkus-log-json_quarkus.log.json.fields.timestamp.enabled]]`link:#quarkus-log-json_quarkus.log.json.fields.timestamp.enabled[quarkus.log.json.fields.timestamp.enabled]`
+a| [[quarkus-logging-json_quarkus-log-json-fields-timestamp-enabled]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-fields-timestamp-enabled[`quarkus.log.json.fields.timestamp.enabled`]##
 
 [.description]
 --
 Enable or disable the field.
+
 
 ifdef::add-copy-button-to-env-var[]
 Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FIELDS_TIMESTAMP_ENABLED+++[]
@@ -166,15 +174,16 @@ endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_TIMESTAMP_ENABLED+++`
 endif::add-copy-button-to-env-var[]
---|boolean 
+--
+|boolean
 |
 
-
-a| [[quarkus-log-json_quarkus.log.json.fields.hostname.field-name]]`link:#quarkus-log-json_quarkus.log.json.fields.hostname.field-name[quarkus.log.json.fields.hostname.field-name]`
+a| [[quarkus-logging-json_quarkus-log-json-fields-hostname-field-name]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-fields-hostname-field-name[`quarkus.log.json.fields.hostname.field-name`]##
 
 [.description]
 --
 Used to change the json key for the field.
+
 
 ifdef::add-copy-button-to-env-var[]
 Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FIELDS_HOSTNAME_FIELD_NAME+++[]
@@ -182,15 +191,16 @@ endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_HOSTNAME_FIELD_NAME+++`
 endif::add-copy-button-to-env-var[]
---|string 
+--
+|string
 |
 
-
-a| [[quarkus-log-json_quarkus.log.json.fields.hostname.enabled]]`link:#quarkus-log-json_quarkus.log.json.fields.hostname.enabled[quarkus.log.json.fields.hostname.enabled]`
+a| [[quarkus-logging-json_quarkus-log-json-fields-hostname-enabled]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-fields-hostname-enabled[`quarkus.log.json.fields.hostname.enabled`]##
 
 [.description]
 --
 Enable or disable the field.
+
 
 ifdef::add-copy-button-to-env-var[]
 Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FIELDS_HOSTNAME_ENABLED+++[]
@@ -198,15 +208,16 @@ endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_HOSTNAME_ENABLED+++`
 endif::add-copy-button-to-env-var[]
---|boolean 
+--
+|boolean
 |
 
-
-a| [[quarkus-log-json_quarkus.log.json.fields.sequence.field-name]]`link:#quarkus-log-json_quarkus.log.json.fields.sequence.field-name[quarkus.log.json.fields.sequence.field-name]`
+a| [[quarkus-logging-json_quarkus-log-json-fields-sequence-field-name]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-fields-sequence-field-name[`quarkus.log.json.fields.sequence.field-name`]##
 
 [.description]
 --
 Used to change the json key for the field.
+
 
 ifdef::add-copy-button-to-env-var[]
 Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FIELDS_SEQUENCE_FIELD_NAME+++[]
@@ -214,15 +225,16 @@ endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_SEQUENCE_FIELD_NAME+++`
 endif::add-copy-button-to-env-var[]
---|string 
+--
+|string
 |
 
-
-a| [[quarkus-log-json_quarkus.log.json.fields.sequence.enabled]]`link:#quarkus-log-json_quarkus.log.json.fields.sequence.enabled[quarkus.log.json.fields.sequence.enabled]`
+a| [[quarkus-logging-json_quarkus-log-json-fields-sequence-enabled]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-fields-sequence-enabled[`quarkus.log.json.fields.sequence.enabled`]##
 
 [.description]
 --
 Enable or disable the field.
+
 
 ifdef::add-copy-button-to-env-var[]
 Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FIELDS_SEQUENCE_ENABLED+++[]
@@ -230,15 +242,16 @@ endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_SEQUENCE_ENABLED+++`
 endif::add-copy-button-to-env-var[]
---|boolean 
+--
+|boolean
 |
 
-
-a| [[quarkus-log-json_quarkus.log.json.fields.logger-class-name.field-name]]`link:#quarkus-log-json_quarkus.log.json.fields.logger-class-name.field-name[quarkus.log.json.fields.logger-class-name.field-name]`
+a| [[quarkus-logging-json_quarkus-log-json-fields-logger-class-name-field-name]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-fields-logger-class-name-field-name[`quarkus.log.json.fields.logger-class-name.field-name`]##
 
 [.description]
 --
 Used to change the json key for the field.
+
 
 ifdef::add-copy-button-to-env-var[]
 Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FIELDS_LOGGER_CLASS_NAME_FIELD_NAME+++[]
@@ -246,15 +259,16 @@ endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_LOGGER_CLASS_NAME_FIELD_NAME+++`
 endif::add-copy-button-to-env-var[]
---|string 
+--
+|string
 |
 
-
-a| [[quarkus-log-json_quarkus.log.json.fields.logger-class-name.enabled]]`link:#quarkus-log-json_quarkus.log.json.fields.logger-class-name.enabled[quarkus.log.json.fields.logger-class-name.enabled]`
+a| [[quarkus-logging-json_quarkus-log-json-fields-logger-class-name-enabled]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-fields-logger-class-name-enabled[`quarkus.log.json.fields.logger-class-name.enabled`]##
 
 [.description]
 --
 Enable or disable the field.
+
 
 ifdef::add-copy-button-to-env-var[]
 Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FIELDS_LOGGER_CLASS_NAME_ENABLED+++[]
@@ -262,15 +276,16 @@ endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_LOGGER_CLASS_NAME_ENABLED+++`
 endif::add-copy-button-to-env-var[]
---|boolean 
+--
+|boolean
 |
 
-
-a| [[quarkus-log-json_quarkus.log.json.fields.logger-name.field-name]]`link:#quarkus-log-json_quarkus.log.json.fields.logger-name.field-name[quarkus.log.json.fields.logger-name.field-name]`
+a| [[quarkus-logging-json_quarkus-log-json-fields-logger-name-field-name]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-fields-logger-name-field-name[`quarkus.log.json.fields.logger-name.field-name`]##
 
 [.description]
 --
 Used to change the json key for the field.
+
 
 ifdef::add-copy-button-to-env-var[]
 Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FIELDS_LOGGER_NAME_FIELD_NAME+++[]
@@ -278,15 +293,16 @@ endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_LOGGER_NAME_FIELD_NAME+++`
 endif::add-copy-button-to-env-var[]
---|string 
+--
+|string
 |
 
-
-a| [[quarkus-log-json_quarkus.log.json.fields.logger-name.enabled]]`link:#quarkus-log-json_quarkus.log.json.fields.logger-name.enabled[quarkus.log.json.fields.logger-name.enabled]`
+a| [[quarkus-logging-json_quarkus-log-json-fields-logger-name-enabled]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-fields-logger-name-enabled[`quarkus.log.json.fields.logger-name.enabled`]##
 
 [.description]
 --
 Enable or disable the field.
+
 
 ifdef::add-copy-button-to-env-var[]
 Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FIELDS_LOGGER_NAME_ENABLED+++[]
@@ -294,15 +310,16 @@ endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_LOGGER_NAME_ENABLED+++`
 endif::add-copy-button-to-env-var[]
---|boolean 
+--
+|boolean
 |
 
-
-a| [[quarkus-log-json_quarkus.log.json.fields.level.field-name]]`link:#quarkus-log-json_quarkus.log.json.fields.level.field-name[quarkus.log.json.fields.level.field-name]`
+a| [[quarkus-logging-json_quarkus-log-json-fields-level-field-name]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-fields-level-field-name[`quarkus.log.json.fields.level.field-name`]##
 
 [.description]
 --
 Used to change the json key for the field.
+
 
 ifdef::add-copy-button-to-env-var[]
 Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FIELDS_LEVEL_FIELD_NAME+++[]
@@ -310,15 +327,16 @@ endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_LEVEL_FIELD_NAME+++`
 endif::add-copy-button-to-env-var[]
---|string 
+--
+|string
 |
 
-
-a| [[quarkus-log-json_quarkus.log.json.fields.level.enabled]]`link:#quarkus-log-json_quarkus.log.json.fields.level.enabled[quarkus.log.json.fields.level.enabled]`
+a| [[quarkus-logging-json_quarkus-log-json-fields-level-enabled]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-fields-level-enabled[`quarkus.log.json.fields.level.enabled`]##
 
 [.description]
 --
 Enable or disable the field.
+
 
 ifdef::add-copy-button-to-env-var[]
 Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FIELDS_LEVEL_ENABLED+++[]
@@ -326,15 +344,16 @@ endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_LEVEL_ENABLED+++`
 endif::add-copy-button-to-env-var[]
---|boolean 
+--
+|boolean
 |
 
-
-a| [[quarkus-log-json_quarkus.log.json.fields.message.field-name]]`link:#quarkus-log-json_quarkus.log.json.fields.message.field-name[quarkus.log.json.fields.message.field-name]`
+a| [[quarkus-logging-json_quarkus-log-json-fields-message-field-name]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-fields-message-field-name[`quarkus.log.json.fields.message.field-name`]##
 
 [.description]
 --
 Used to change the json key for the field.
+
 
 ifdef::add-copy-button-to-env-var[]
 Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FIELDS_MESSAGE_FIELD_NAME+++[]
@@ -342,15 +361,16 @@ endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_MESSAGE_FIELD_NAME+++`
 endif::add-copy-button-to-env-var[]
---|string 
+--
+|string
 |
 
-
-a| [[quarkus-log-json_quarkus.log.json.fields.message.enabled]]`link:#quarkus-log-json_quarkus.log.json.fields.message.enabled[quarkus.log.json.fields.message.enabled]`
+a| [[quarkus-logging-json_quarkus-log-json-fields-message-enabled]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-fields-message-enabled[`quarkus.log.json.fields.message.enabled`]##
 
 [.description]
 --
 Enable or disable the field.
+
 
 ifdef::add-copy-button-to-env-var[]
 Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FIELDS_MESSAGE_ENABLED+++[]
@@ -358,15 +378,16 @@ endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_MESSAGE_ENABLED+++`
 endif::add-copy-button-to-env-var[]
---|boolean 
+--
+|boolean
 |
 
-
-a| [[quarkus-log-json_quarkus.log.json.fields.thread-name.field-name]]`link:#quarkus-log-json_quarkus.log.json.fields.thread-name.field-name[quarkus.log.json.fields.thread-name.field-name]`
+a| [[quarkus-logging-json_quarkus-log-json-fields-thread-name-field-name]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-fields-thread-name-field-name[`quarkus.log.json.fields.thread-name.field-name`]##
 
 [.description]
 --
 Used to change the json key for the field.
+
 
 ifdef::add-copy-button-to-env-var[]
 Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FIELDS_THREAD_NAME_FIELD_NAME+++[]
@@ -374,15 +395,16 @@ endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_THREAD_NAME_FIELD_NAME+++`
 endif::add-copy-button-to-env-var[]
---|string 
+--
+|string
 |
 
-
-a| [[quarkus-log-json_quarkus.log.json.fields.thread-name.enabled]]`link:#quarkus-log-json_quarkus.log.json.fields.thread-name.enabled[quarkus.log.json.fields.thread-name.enabled]`
+a| [[quarkus-logging-json_quarkus-log-json-fields-thread-name-enabled]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-fields-thread-name-enabled[`quarkus.log.json.fields.thread-name.enabled`]##
 
 [.description]
 --
 Enable or disable the field.
+
 
 ifdef::add-copy-button-to-env-var[]
 Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FIELDS_THREAD_NAME_ENABLED+++[]
@@ -390,15 +412,16 @@ endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_THREAD_NAME_ENABLED+++`
 endif::add-copy-button-to-env-var[]
---|boolean 
+--
+|boolean
 |
 
-
-a| [[quarkus-log-json_quarkus.log.json.fields.thread-id.field-name]]`link:#quarkus-log-json_quarkus.log.json.fields.thread-id.field-name[quarkus.log.json.fields.thread-id.field-name]`
+a| [[quarkus-logging-json_quarkus-log-json-fields-thread-id-field-name]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-fields-thread-id-field-name[`quarkus.log.json.fields.thread-id.field-name`]##
 
 [.description]
 --
 Used to change the json key for the field.
+
 
 ifdef::add-copy-button-to-env-var[]
 Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FIELDS_THREAD_ID_FIELD_NAME+++[]
@@ -406,15 +429,16 @@ endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_THREAD_ID_FIELD_NAME+++`
 endif::add-copy-button-to-env-var[]
---|string 
+--
+|string
 |
 
-
-a| [[quarkus-log-json_quarkus.log.json.fields.thread-id.enabled]]`link:#quarkus-log-json_quarkus.log.json.fields.thread-id.enabled[quarkus.log.json.fields.thread-id.enabled]`
+a| [[quarkus-logging-json_quarkus-log-json-fields-thread-id-enabled]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-fields-thread-id-enabled[`quarkus.log.json.fields.thread-id.enabled`]##
 
 [.description]
 --
 Enable or disable the field.
+
 
 ifdef::add-copy-button-to-env-var[]
 Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FIELDS_THREAD_ID_ENABLED+++[]
@@ -422,15 +446,16 @@ endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_THREAD_ID_ENABLED+++`
 endif::add-copy-button-to-env-var[]
---|boolean 
+--
+|boolean
 |
 
-
-a| [[quarkus-log-json_quarkus.log.json.fields.mdc.field-name]]`link:#quarkus-log-json_quarkus.log.json.fields.mdc.field-name[quarkus.log.json.fields.mdc.field-name]`
+a| [[quarkus-logging-json_quarkus-log-json-fields-mdc-field-name]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-fields-mdc-field-name[`quarkus.log.json.fields.mdc.field-name`]##
 
 [.description]
 --
 Used to change the json key for the field.
+
 
 ifdef::add-copy-button-to-env-var[]
 Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FIELDS_MDC_FIELD_NAME+++[]
@@ -438,15 +463,16 @@ endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_MDC_FIELD_NAME+++`
 endif::add-copy-button-to-env-var[]
---|string 
+--
+|string
 |
 
-
-a| [[quarkus-log-json_quarkus.log.json.fields.mdc.enabled]]`link:#quarkus-log-json_quarkus.log.json.fields.mdc.enabled[quarkus.log.json.fields.mdc.enabled]`
+a| [[quarkus-logging-json_quarkus-log-json-fields-mdc-enabled]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-fields-mdc-enabled[`quarkus.log.json.fields.mdc.enabled`]##
 
 [.description]
 --
 Enable or disable the field.
+
 
 ifdef::add-copy-button-to-env-var[]
 Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FIELDS_MDC_ENABLED+++[]
@@ -454,15 +480,16 @@ endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_MDC_ENABLED+++`
 endif::add-copy-button-to-env-var[]
---|boolean 
+--
+|boolean
 |
 
-
-a| [[quarkus-log-json_quarkus.log.json.fields.mdc.flat-fields]]`link:#quarkus-log-json_quarkus.log.json.fields.mdc.flat-fields[quarkus.log.json.fields.mdc.flat-fields]`
+a| [[quarkus-logging-json_quarkus-log-json-fields-mdc-flat-fields]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-fields-mdc-flat-fields[`quarkus.log.json.fields.mdc.flat-fields`]##
 
 [.description]
 --
 Will write the values at the top level of the JSON log object.
+
 
 ifdef::add-copy-button-to-env-var[]
 Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FIELDS_MDC_FLAT_FIELDS+++[]
@@ -470,15 +497,16 @@ endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_MDC_FLAT_FIELDS+++`
 endif::add-copy-button-to-env-var[]
---|boolean 
+--
+|boolean
 |`false`
 
-
-a| [[quarkus-log-json_quarkus.log.json.fields.ndc.field-name]]`link:#quarkus-log-json_quarkus.log.json.fields.ndc.field-name[quarkus.log.json.fields.ndc.field-name]`
+a| [[quarkus-logging-json_quarkus-log-json-fields-ndc-field-name]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-fields-ndc-field-name[`quarkus.log.json.fields.ndc.field-name`]##
 
 [.description]
 --
 Used to change the json key for the field.
+
 
 ifdef::add-copy-button-to-env-var[]
 Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FIELDS_NDC_FIELD_NAME+++[]
@@ -486,15 +514,16 @@ endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_NDC_FIELD_NAME+++`
 endif::add-copy-button-to-env-var[]
---|string 
+--
+|string
 |
 
-
-a| [[quarkus-log-json_quarkus.log.json.fields.ndc.enabled]]`link:#quarkus-log-json_quarkus.log.json.fields.ndc.enabled[quarkus.log.json.fields.ndc.enabled]`
+a| [[quarkus-logging-json_quarkus-log-json-fields-ndc-enabled]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-fields-ndc-enabled[`quarkus.log.json.fields.ndc.enabled`]##
 
 [.description]
 --
 Enable or disable the field.
+
 
 ifdef::add-copy-button-to-env-var[]
 Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FIELDS_NDC_ENABLED+++[]
@@ -502,15 +531,16 @@ endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_NDC_ENABLED+++`
 endif::add-copy-button-to-env-var[]
---|boolean 
+--
+|boolean
 |
 
-
-a| [[quarkus-log-json_quarkus.log.json.fields.process-name.field-name]]`link:#quarkus-log-json_quarkus.log.json.fields.process-name.field-name[quarkus.log.json.fields.process-name.field-name]`
+a| [[quarkus-logging-json_quarkus-log-json-fields-process-name-field-name]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-fields-process-name-field-name[`quarkus.log.json.fields.process-name.field-name`]##
 
 [.description]
 --
 Used to change the json key for the field.
+
 
 ifdef::add-copy-button-to-env-var[]
 Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FIELDS_PROCESS_NAME_FIELD_NAME+++[]
@@ -518,15 +548,16 @@ endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_PROCESS_NAME_FIELD_NAME+++`
 endif::add-copy-button-to-env-var[]
---|string 
+--
+|string
 |
 
-
-a| [[quarkus-log-json_quarkus.log.json.fields.process-name.enabled]]`link:#quarkus-log-json_quarkus.log.json.fields.process-name.enabled[quarkus.log.json.fields.process-name.enabled]`
+a| [[quarkus-logging-json_quarkus-log-json-fields-process-name-enabled]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-fields-process-name-enabled[`quarkus.log.json.fields.process-name.enabled`]##
 
 [.description]
 --
 Enable or disable the field.
+
 
 ifdef::add-copy-button-to-env-var[]
 Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FIELDS_PROCESS_NAME_ENABLED+++[]
@@ -534,15 +565,16 @@ endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_PROCESS_NAME_ENABLED+++`
 endif::add-copy-button-to-env-var[]
---|boolean 
+--
+|boolean
 |
 
-
-a| [[quarkus-log-json_quarkus.log.json.fields.process-id.field-name]]`link:#quarkus-log-json_quarkus.log.json.fields.process-id.field-name[quarkus.log.json.fields.process-id.field-name]`
+a| [[quarkus-logging-json_quarkus-log-json-fields-process-id-field-name]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-fields-process-id-field-name[`quarkus.log.json.fields.process-id.field-name`]##
 
 [.description]
 --
 Used to change the json key for the field.
+
 
 ifdef::add-copy-button-to-env-var[]
 Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FIELDS_PROCESS_ID_FIELD_NAME+++[]
@@ -550,15 +582,16 @@ endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_PROCESS_ID_FIELD_NAME+++`
 endif::add-copy-button-to-env-var[]
---|string 
+--
+|string
 |
 
-
-a| [[quarkus-log-json_quarkus.log.json.fields.process-id.enabled]]`link:#quarkus-log-json_quarkus.log.json.fields.process-id.enabled[quarkus.log.json.fields.process-id.enabled]`
+a| [[quarkus-logging-json_quarkus-log-json-fields-process-id-enabled]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-fields-process-id-enabled[`quarkus.log.json.fields.process-id.enabled`]##
 
 [.description]
 --
 Enable or disable the field.
+
 
 ifdef::add-copy-button-to-env-var[]
 Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FIELDS_PROCESS_ID_ENABLED+++[]
@@ -566,15 +599,16 @@ endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_PROCESS_ID_ENABLED+++`
 endif::add-copy-button-to-env-var[]
---|boolean 
+--
+|boolean
 |
 
-
-a| [[quarkus-log-json_quarkus.log.json.fields.stack-trace.field-name]]`link:#quarkus-log-json_quarkus.log.json.fields.stack-trace.field-name[quarkus.log.json.fields.stack-trace.field-name]`
+a| [[quarkus-logging-json_quarkus-log-json-fields-stack-trace-field-name]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-fields-stack-trace-field-name[`quarkus.log.json.fields.stack-trace.field-name`]##
 
 [.description]
 --
 Used to change the json key for the field.
+
 
 ifdef::add-copy-button-to-env-var[]
 Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FIELDS_STACK_TRACE_FIELD_NAME+++[]
@@ -582,15 +616,16 @@ endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_STACK_TRACE_FIELD_NAME+++`
 endif::add-copy-button-to-env-var[]
---|string 
+--
+|string
 |
 
-
-a| [[quarkus-log-json_quarkus.log.json.fields.stack-trace.enabled]]`link:#quarkus-log-json_quarkus.log.json.fields.stack-trace.enabled[quarkus.log.json.fields.stack-trace.enabled]`
+a| [[quarkus-logging-json_quarkus-log-json-fields-stack-trace-enabled]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-fields-stack-trace-enabled[`quarkus.log.json.fields.stack-trace.enabled`]##
 
 [.description]
 --
 Enable or disable the field.
+
 
 ifdef::add-copy-button-to-env-var[]
 Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FIELDS_STACK_TRACE_ENABLED+++[]
@@ -598,15 +633,16 @@ endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_STACK_TRACE_ENABLED+++`
 endif::add-copy-button-to-env-var[]
---|boolean 
+--
+|boolean
 |
 
-
-a| [[quarkus-log-json_quarkus.log.json.fields.error-type.field-name]]`link:#quarkus-log-json_quarkus.log.json.fields.error-type.field-name[quarkus.log.json.fields.error-type.field-name]`
+a| [[quarkus-logging-json_quarkus-log-json-fields-error-type-field-name]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-fields-error-type-field-name[`quarkus.log.json.fields.error-type.field-name`]##
 
 [.description]
 --
 Used to change the json key for the field.
+
 
 ifdef::add-copy-button-to-env-var[]
 Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FIELDS_ERROR_TYPE_FIELD_NAME+++[]
@@ -614,15 +650,16 @@ endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_ERROR_TYPE_FIELD_NAME+++`
 endif::add-copy-button-to-env-var[]
---|string 
+--
+|string
 |
 
-
-a| [[quarkus-log-json_quarkus.log.json.fields.error-type.enabled]]`link:#quarkus-log-json_quarkus.log.json.fields.error-type.enabled[quarkus.log.json.fields.error-type.enabled]`
+a| [[quarkus-logging-json_quarkus-log-json-fields-error-type-enabled]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-fields-error-type-enabled[`quarkus.log.json.fields.error-type.enabled`]##
 
 [.description]
 --
 Enable or disable the field.
+
 
 ifdef::add-copy-button-to-env-var[]
 Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FIELDS_ERROR_TYPE_ENABLED+++[]
@@ -630,15 +667,16 @@ endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_ERROR_TYPE_ENABLED+++`
 endif::add-copy-button-to-env-var[]
---|boolean 
+--
+|boolean
 |
 
-
-a| [[quarkus-log-json_quarkus.log.json.fields.error-message.field-name]]`link:#quarkus-log-json_quarkus.log.json.fields.error-message.field-name[quarkus.log.json.fields.error-message.field-name]`
+a| [[quarkus-logging-json_quarkus-log-json-fields-error-message-field-name]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-fields-error-message-field-name[`quarkus.log.json.fields.error-message.field-name`]##
 
 [.description]
 --
 Used to change the json key for the field.
+
 
 ifdef::add-copy-button-to-env-var[]
 Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FIELDS_ERROR_MESSAGE_FIELD_NAME+++[]
@@ -646,15 +684,16 @@ endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_ERROR_MESSAGE_FIELD_NAME+++`
 endif::add-copy-button-to-env-var[]
---|string 
+--
+|string
 |
 
-
-a| [[quarkus-log-json_quarkus.log.json.fields.error-message.enabled]]`link:#quarkus-log-json_quarkus.log.json.fields.error-message.enabled[quarkus.log.json.fields.error-message.enabled]`
+a| [[quarkus-logging-json_quarkus-log-json-fields-error-message-enabled]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-fields-error-message-enabled[`quarkus.log.json.fields.error-message.enabled`]##
 
 [.description]
 --
 Enable or disable the field.
+
 
 ifdef::add-copy-button-to-env-var[]
 Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FIELDS_ERROR_MESSAGE_ENABLED+++[]
@@ -662,15 +701,16 @@ endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_ERROR_MESSAGE_ENABLED+++`
 endif::add-copy-button-to-env-var[]
---|boolean 
+--
+|boolean
 |
 
-
-a| [[quarkus-log-json_quarkus.log.json.pretty-print]]`link:#quarkus-log-json_quarkus.log.json.pretty-print[quarkus.log.json.pretty-print]`
+a| [[quarkus-logging-json_quarkus-log-json-pretty-print]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-pretty-print[`quarkus.log.json.pretty-print`]##
 
 [.description]
 --
 Enable "pretty printing" of the JSON record. Note that some JSON parsers will fail to read pretty printed output.
+
 
 ifdef::add-copy-button-to-env-var[]
 Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_PRETTY_PRINT+++[]
@@ -678,15 +718,16 @@ endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_PRETTY_PRINT+++`
 endif::add-copy-button-to-env-var[]
---|boolean 
+--
+|boolean
 |`false`
 
-
-a| [[quarkus-log-json_quarkus.log.json.record-delimiter]]`link:#quarkus-log-json_quarkus.log.json.record-delimiter[quarkus.log.json.record-delimiter]`
+a| [[quarkus-logging-json_quarkus-log-json-record-delimiter]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-record-delimiter[`quarkus.log.json.record-delimiter`]##
 
 [.description]
 --
 The special end-of-record delimiter to be used. By default, newline delimiter is used.
+
 
 ifdef::add-copy-button-to-env-var[]
 Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_RECORD_DELIMITER+++[]
@@ -694,38 +735,21 @@ endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_RECORD_DELIMITER+++`
 endif::add-copy-button-to-env-var[]
---|string 
+--
+|string
 |`
 `
 
-
-a| [[quarkus-log-json_quarkus.log.json.log-format]]`link:#quarkus-log-json_quarkus.log.json.log-format[quarkus.log.json.log-format]`
-
-[.description]
---
-Support changing logging format.
-
-ifdef::add-copy-button-to-env-var[]
-Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_LOG_FORMAT+++[]
-endif::add-copy-button-to-env-var[]
-ifndef::add-copy-button-to-env-var[]
-Environment variable: `+++QUARKUS_LOG_JSON_LOG_FORMAT+++`
-endif::add-copy-button-to-env-var[]
--- a|
-`default`, `ecs` 
-|`default`
-
-
-h|[[quarkus-log-json_quarkus.log.json.additional-field-for-adding-fields-to-the-json-output-directly-from-the-config]]link:#quarkus-log-json_quarkus.log.json.additional-field-for-adding-fields-to-the-json-output-directly-from-the-config[For adding fields to the json output directly from the config]
-
+h|[[quarkus-logging-json_section_quarkus-log-json-additional-field]] [.section-name.section-level0]##link:#quarkus-logging-json_section_quarkus-log-json-additional-field[For adding fields to the json output directly from the config]##
 h|Type
 h|Default
 
-a| [[quarkus-log-json_quarkus.log.json.additional-field.-field-name-.value]]`link:#quarkus-log-json_quarkus.log.json.additional-field.-field-name-.value[quarkus.log.json.additional-field."field-name".value]`
+a| [[quarkus-logging-json_quarkus-log-json-additional-field-field-name-value]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-additional-field-field-name-value[`quarkus.log.json.additional-field."field-name".value`]##
 
 [.description]
 --
 Additional field value.
+
 
 ifdef::add-copy-button-to-env-var[]
 Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_ADDITIONAL_FIELD__FIELD_NAME__VALUE+++[]
@@ -733,15 +757,16 @@ endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_ADDITIONAL_FIELD__FIELD_NAME__VALUE+++`
 endif::add-copy-button-to-env-var[]
---|string 
+--
+|string
 |required icon:exclamation-circle[title=Configuration property is required]
 
-
-a| [[quarkus-log-json_quarkus.log.json.additional-field.-field-name-.type]]`link:#quarkus-log-json_quarkus.log.json.additional-field.-field-name-.type[quarkus.log.json.additional-field."field-name".type]`
+a| [[quarkus-logging-json_quarkus-log-json-additional-field-field-name-type]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-additional-field-field-name-type[`quarkus.log.json.additional-field."field-name".type`]##
 
 [.description]
 --
 Type of the field, default is STRING. Supported types: STRING, INT, LONG, FLOAT, DOUBLE.
+
 
 ifdef::add-copy-button-to-env-var[]
 Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_ADDITIONAL_FIELD__FIELD_NAME__TYPE+++[]
@@ -749,8 +774,29 @@ endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_ADDITIONAL_FIELD__FIELD_NAME__TYPE+++`
 endif::add-copy-button-to-env-var[]
--- a|
-`string`, `int`, `long`, `float`, `double` 
+--
+a|AdditionalFieldType
 |`string`
 
+
+a| [[quarkus-logging-json_quarkus-log-json-log-format]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-log-format[`quarkus.log.json.log-format`]##
+
+[.description]
+--
+Support changing logging format.
+
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_LOG_FORMAT+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_LOG_JSON_LOG_FORMAT+++`
+endif::add-copy-button-to-env-var[]
+--
+a|LogFormat
+|`default`
+
 |===
+
+
+:!summaryTableId:

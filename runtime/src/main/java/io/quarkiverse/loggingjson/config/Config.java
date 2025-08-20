@@ -30,6 +30,12 @@ public interface Config {
     ConfigFile file();
 
     /**
+     * Configuration properties for socket formatter.
+     */
+    @WithName("socket")
+    ConfigSocket socket();
+
+    /**
      * Configuration properties to customize fields
      */
     FieldsConfig fields();

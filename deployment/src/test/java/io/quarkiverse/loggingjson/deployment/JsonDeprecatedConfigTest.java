@@ -18,7 +18,7 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 import io.quarkiverse.loggingjson.JsonFormatter;
 import io.quarkus.bootstrap.logging.InitialConfigurator;
 import io.quarkus.bootstrap.logging.QuarkusDelayedHandler;
-import io.quarkus.bootstrap.model.AppArtifact;
+import io.quarkus.maven.dependency.Dependency;
 import io.quarkus.test.QuarkusUnitTest;
 
 /**
@@ -29,8 +29,8 @@ class JsonDeprecatedConfigTest {
     @RegisterExtension
     static final QuarkusUnitTest config = new QuarkusUnitTest()
             .setArchiveProducer(() -> ShrinkWrap.create(JavaArchive.class))
-            .setForcedDependencies(Collections.singletonList(
-                    new AppArtifact("io.quarkus", "quarkus-jackson", System.getProperty("test.quarkus.version"))))
+            .setForcedDependencies(Collections
+                    .singletonList(Dependency.of("io.quarkus", "quarkus-jackson", System.getProperty("test.quarkus.version"))))
             .withConfigurationResource("application-json-deprecated-config.properties");
 
     static {
@@ -38,9 +38,9 @@ class JsonDeprecatedConfigTest {
     }
 
     @Test
-    void testJsonLoggingDisabled() throws Exception {
+    void testJsonLoggingDisabled() {
         LogManager logManager = LogManager.getLogManager();
-        Assertions.assertTrue(logManager instanceof org.jboss.logmanager.LogManager);
+        Assertions.assertInstanceOf(org.jboss.logmanager.LogManager.class, logManager);
 
         QuarkusDelayedHandler delayedHandler = InitialConfigurator.DELAYED_HANDLER;
         Assertions.assertTrue(Arrays.asList(Logger.getLogger("").getHandlers()).contains(delayedHandler));

@@ -16,9 +16,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 
 import io.quarkiverse.loggingjson.JsonFormatter;
-import io.quarkiverse.loggingjson.deployment.testutil.DefaultDependency;
 import io.quarkus.bootstrap.logging.InitialConfigurator;
 import io.quarkus.bootstrap.logging.QuarkusDelayedHandler;
+import io.quarkus.maven.dependency.Dependency;
 import io.quarkus.test.QuarkusUnitTest;
 
 /**
@@ -29,7 +29,8 @@ class JsonDeprecatedConfigTest {
     @RegisterExtension
     static final QuarkusUnitTest config = new QuarkusUnitTest()
             .setArchiveProducer(() -> ShrinkWrap.create(JavaArchive.class))
-            .setForcedDependencies(Collections.singletonList(new DefaultDependency("quarkus-jackson")))
+            .setForcedDependencies(Collections
+                    .singletonList(Dependency.of("io.quarkus", "quarkus-jackson", System.getProperty("test.quarkus.version"))))
             .withConfigurationResource("application-json-deprecated-config.properties");
 
     static {

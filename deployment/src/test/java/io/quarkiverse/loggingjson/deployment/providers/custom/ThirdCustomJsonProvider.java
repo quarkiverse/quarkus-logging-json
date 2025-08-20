@@ -12,7 +12,6 @@ import io.quarkiverse.loggingjson.JsonProvider;
 
 @Singleton
 public class ThirdCustomJsonProvider implements JsonProvider, Enabled {
-
     private long isEnabledNumberOfCalls = 0;
     private long writeToNumberOfCalls = 0;
 

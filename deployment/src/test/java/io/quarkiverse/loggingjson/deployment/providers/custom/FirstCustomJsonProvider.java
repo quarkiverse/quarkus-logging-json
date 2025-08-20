@@ -11,7 +11,6 @@ import io.quarkiverse.loggingjson.JsonProvider;
 
 @ApplicationScoped
 public class FirstCustomJsonProvider implements JsonProvider {
-
     private long writeToNumberOfCalls = 0;
 
     @Override

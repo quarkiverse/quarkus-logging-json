@@ -5,6 +5,7 @@ import java.util.ServiceConfigurationError;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import io.quarkiverse.loggingjson.JsonFactory;
 import io.quarkiverse.loggingjson.JsonGenerator;
@@ -19,7 +20,8 @@ public class JacksonJsonFactory implements JsonFactory {
     }
 
     private com.fasterxml.jackson.core.JsonFactory createJsonFactory() {
-        ObjectMapper objectMapper = new ObjectMapper()
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModules(new JavaTimeModule())
                 /*
                  * Assume empty beans are ok.
                  */

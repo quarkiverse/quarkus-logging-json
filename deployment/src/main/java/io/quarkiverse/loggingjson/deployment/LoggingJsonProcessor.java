@@ -55,8 +55,7 @@ class LoggingJsonProcessor {
     @BuildStep
     void discoverJsonProviders(BuildProducer<AdditionalBeanBuildItem> beans,
             CombinedIndexBuildItem combinedIndexBuildItem) {
-        Collection<ClassInfo> jsonProviders = combinedIndexBuildItem.getIndex()
-                .getAllKnownImplementors(LoggingJsonDotNames.JSON_PROVIDER);
+        Collection<ClassInfo> jsonProviders = combinedIndexBuildItem.getIndex().getAllKnownImplementations(LoggingJsonDotNames.JSON_PROVIDER);
         for (ClassInfo provider : jsonProviders) {
             beans.produce(AdditionalBeanBuildItem.unremovableOf(provider.name().toString()));
         }

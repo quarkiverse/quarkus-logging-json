@@ -46,6 +46,23 @@ a| [[quarkus-logging-json_quarkus-log-json-fields-arguments-field-name]] [.prope
 
 [.description]
 --
+Determine whether to enable the JSON socket formatting extension, which disables "normal" file formatting.
+
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_SOCKET_ENABLED+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_LOG_JSON_SOCKET_ENABLED+++`
+endif::add-copy-button-to-env-var[]
+--
+|boolean
+|`true`
+
+a| [[quarkus-logging-json_quarkus-log-json-fields-arguments-field-name]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-fields-arguments-field-name[`quarkus.log.json.fields.arguments.field-name`]##
+
+[.description]
+--
 Used to wrap arguments in a json object, with this fieldName on root json.
 
 

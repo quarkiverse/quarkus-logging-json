@@ -14,8 +14,9 @@ It supports the following formats: default, [Elastic Common Schema (ECS)](https:
 | 2.x.x           | 1.x.x, 2.x.x |
 
 # Configuration
-The extension is enabled by default for console, when added to the project.
-Console logging can be disabled using configuration: `quarkus.log.json.console.enabled=false`
+The extension is enabled by default for console and socket, when added to the project.
+Console json logging can be disabled using configuration: `quarkus.log.json.console.enabled=false`
+Socket json logging can be disabled using configuration: `quarkus.log.json.socket.enabled=false`
 
 To see additional configuration options take a look at [Config](https://quarkiverse.github.io/quarkiverse-docs/quarkus-logging-json/dev/index.html)
 

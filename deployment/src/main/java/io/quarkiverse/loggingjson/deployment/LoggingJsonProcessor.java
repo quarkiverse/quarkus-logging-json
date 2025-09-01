@@ -6,7 +6,6 @@ import org.jboss.jandex.ClassInfo;
 
 import io.quarkiverse.loggingjson.JsonFactory;
 import io.quarkiverse.loggingjson.LoggingJsonRecorder;
-import io.quarkiverse.loggingjson.config.Config;
 import io.quarkiverse.loggingjson.jackson.JacksonJsonFactory;
 import io.quarkiverse.loggingjson.jsonb.JsonbJsonFactory;
 import io.quarkus.arc.deployment.AdditionalBeanBuildItem;
@@ -33,23 +32,20 @@ class LoggingJsonProcessor {
 
     @BuildStep
     @Record(ExecutionTime.RUNTIME_INIT)
-    LogConsoleFormatBuildItem setUpConsoleFormatter(Capabilities capabilities, LoggingJsonRecorder recorder,
-            Config config) {
-        return new LogConsoleFormatBuildItem(recorder.initializeConsoleJsonLogging(config, jsonFactory(capabilities)));
+    LogConsoleFormatBuildItem setUpConsoleFormatter(Capabilities capabilities, LoggingJsonRecorder recorder) {
+        return new LogConsoleFormatBuildItem(recorder.initializeConsoleJsonLogging(jsonFactory(capabilities)));
     }
 
     @BuildStep
     @Record(ExecutionTime.RUNTIME_INIT)
-    LogFileFormatBuildItem setUpFileFormatter(Capabilities capabilities, LoggingJsonRecorder recorder,
-            Config config) {
-        return new LogFileFormatBuildItem(recorder.initializeFileJsonLogging(config, jsonFactory(capabilities)));
+    LogFileFormatBuildItem setUpFileFormatter(Capabilities capabilities, LoggingJsonRecorder recorder) {
+        return new LogFileFormatBuildItem(recorder.initializeFileJsonLogging(jsonFactory(capabilities)));
     }
 
     @BuildStep
     @Record(ExecutionTime.RUNTIME_INIT)
-    LogSocketFormatBuildItem setUpSocketFormatter(Capabilities capabilities, LoggingJsonRecorder recorder,
-            Config config) {
-        return new LogSocketFormatBuildItem(recorder.initializeSocketJsonLogging(config, jsonFactory(capabilities)));
+    LogSocketFormatBuildItem setUpSocketFormatter(Capabilities capabilities, LoggingJsonRecorder recorder) {
+        return new LogSocketFormatBuildItem(recorder.initializeSocketJsonLogging(jsonFactory(capabilities)));
     }
 
     private JsonFactory jsonFactory(Capabilities capabilities) {
@@ -67,7 +63,7 @@ class LoggingJsonProcessor {
     void discoverJsonProviders(BuildProducer<AdditionalBeanBuildItem> beans,
             CombinedIndexBuildItem combinedIndexBuildItem) {
         Collection<ClassInfo> jsonProviders = combinedIndexBuildItem.getIndex()
-                .getAllKnownImplementors(LoggingJsonDotNames.JSON_PROVIDER);
+                .getAllKnownImplementations(LoggingJsonDotNames.JSON_PROVIDER);
         for (ClassInfo provider : jsonProviders) {
             beans.produce(AdditionalBeanBuildItem.unremovableOf(provider.name().toString()));
         }

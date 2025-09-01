@@ -21,19 +21,22 @@ import io.quarkus.runtime.annotations.Recorder;
 public class LoggingJsonRecorder {
     private static final Logger log = LoggerFactory.getLogger(LoggingJsonRecorder.class);
 
-    public RuntimeValue<Optional<Formatter>> initializeConsoleJsonLogging(Config config,
-            JsonFactory jsonFactory) {
-        return initializeJsonLogging(config.console(), config, jsonFactory);
+    private final RuntimeValue<Config> config;
+
+    public LoggingJsonRecorder(RuntimeValue<Config> config) {
+        this.config = config;
     }
 
-    public RuntimeValue<Optional<Formatter>> initializeFileJsonLogging(Config config,
-            JsonFactory jsonFactory) {
-        return initializeJsonLogging(config.file(), config, jsonFactory);
+    public RuntimeValue<Optional<Formatter>> initializeConsoleJsonLogging(JsonFactory jsonFactory) {
+        return initializeJsonLogging(config.getValue().console(), config.getValue(), jsonFactory);
     }
 
-    public RuntimeValue<Optional<Formatter>> initializeSocketJsonLogging(Config config,
-            JsonFactory jsonFactory) {
-        return initializeJsonLogging(config.socket(), config, jsonFactory);
+    public RuntimeValue<Optional<Formatter>> initializeFileJsonLogging(JsonFactory jsonFactory) {
+        return initializeJsonLogging(config.getValue().file(), config.getValue(), jsonFactory);
+    }
+
+    public RuntimeValue<Optional<Formatter>> initializeSocketJsonLogging(JsonFactory jsonFactory) {
+        return initializeJsonLogging(config.getValue().socket(), config.getValue(), jsonFactory);
     }
 
     public RuntimeValue<Optional<Formatter>> initializeJsonLogging(ConfigFormatter formatter, Config config,

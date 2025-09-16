@@ -22,28 +22,7 @@ public class ArgumentsJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testDefaultConfig() throws Exception {
-        final Config.ArgumentsConfig config = new Config.ArgumentsConfig() {
-
-            @Override
-            public Optional<String> fieldName() {
-                return Optional.empty();
-            }
-
-            @Override
-            public boolean includeStructuredArguments() {
-                return true;
-            }
-
-            @Override
-            public String nonStructuredArgumentsFieldPrefix() {
-                return "arg";
-            }
-
-            @Override
-            public boolean includeNonStructuredArguments() {
-                return false;
-            }
-        };
+        final Config.ArgumentsConfig config = argumentsConfig(Optional.empty(), true, false, "arg");
         final ArgumentsJsonProvider provider = new ArgumentsJsonProvider(config);
 
         final ExtLogRecord event = new ExtLogRecord(Level.ALL, "", "");
@@ -67,28 +46,7 @@ public class ArgumentsJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testCustomConfigShortCircuit() throws Exception {
-        final Config.ArgumentsConfig config = new Config.ArgumentsConfig() {
-
-            @Override
-            public Optional<String> fieldName() {
-                return Optional.empty();
-            }
-
-            @Override
-            public boolean includeStructuredArguments() {
-                return false;
-            }
-
-            @Override
-            public String nonStructuredArgumentsFieldPrefix() {
-                return "arg";
-            }
-
-            @Override
-            public boolean includeNonStructuredArguments() {
-                return false;
-            }
-        };
+        final Config.ArgumentsConfig config = argumentsConfig(Optional.empty(), false, false, "arg");
         final ArgumentsJsonProvider provider = new ArgumentsJsonProvider(config);
 
         final ExtLogRecord event = new ExtLogRecord(Level.ALL, "", "");
@@ -104,27 +62,7 @@ public class ArgumentsJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testCustomConfigWrapInObject() throws Exception {
-        final Config.ArgumentsConfig config = new Config.ArgumentsConfig() {
-            @Override
-            public Optional<String> fieldName() {
-                return Optional.of("arguments");
-            }
-
-            @Override
-            public boolean includeStructuredArguments() {
-                return true;
-            }
-
-            @Override
-            public String nonStructuredArgumentsFieldPrefix() {
-                return "arg";
-            }
-
-            @Override
-            public boolean includeNonStructuredArguments() {
-                return true;
-            }
-        };
+        final Config.ArgumentsConfig config = argumentsConfig(Optional.of("arguments"), true, true, "arg");
         final ArgumentsJsonProvider provider = new ArgumentsJsonProvider(config);
 
         final ExtLogRecord event = new ExtLogRecord(Level.ALL, "", "");
@@ -151,5 +89,31 @@ public class ArgumentsJsonProviderJsonbTest extends JsonProviderBaseTest {
         Assertions.assertEquals("value", result2.get("arguments").get("key").asText());
 
         Assertions.assertTrue(provider.isEnabled());
+    }
+
+    private Config.ArgumentsConfig argumentsConfig(Optional<String> fieldName, boolean includeStructuredArguments,
+            boolean includeNonStructuredArguments, String nonStructuredArgumentsFieldPrefix) {
+        return new Config.ArgumentsConfig() {
+
+            @Override
+            public Optional<String> fieldName() {
+                return fieldName;
+            }
+
+            @Override
+            public boolean includeStructuredArguments() {
+                return includeStructuredArguments;
+            }
+
+            @Override
+            public boolean includeNonStructuredArguments() {
+                return includeNonStructuredArguments;
+            }
+
+            @Override
+            public String nonStructuredArgumentsFieldPrefix() {
+                return nonStructuredArgumentsFieldPrefix;
+            }
+        };
     }
 }

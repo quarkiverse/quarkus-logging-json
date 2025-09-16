@@ -19,17 +19,7 @@ public class ErrorMessageJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testDefaultConfig() throws Exception {
-        final Config.FieldConfig config = new Config.FieldConfig() {
-            @Override
-            public Optional<String> fieldName() {
-                return Optional.empty();
-            }
-
-            @Override
-            public Optional<Boolean> enabled() {
-                return Optional.empty();
-            }
-        };
+        final Config.FieldConfig config = fieldConfig(Optional.empty(), Optional.empty());
         final ErrorMessageJsonProvider provider = new ErrorMessageJsonProvider(config);
 
         final RuntimeException t = new RuntimeException("Testing errorMessage");
@@ -47,19 +37,7 @@ public class ErrorMessageJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testCustomConfig() throws Exception {
-        final var config = new Config.FieldConfig() {
-            private Optional<Boolean> enabled = Optional.of(false);
-
-            @Override
-            public Optional<String> fieldName() {
-                return Optional.of("em");
-            }
-
-            @Override
-            public Optional<Boolean> enabled() {
-                return enabled;
-            }
-        };
+        Config.FieldConfig config = fieldConfig(Optional.of("em"), Optional.of(false));
         final ErrorMessageJsonProvider provider = new ErrorMessageJsonProvider(config);
 
         final RuntimeException t = new RuntimeException("Testing errorMessage");
@@ -74,7 +52,7 @@ public class ErrorMessageJsonProviderJsonbTest extends JsonProviderBaseTest {
         Assertions.assertEquals("Testing errorMessage", em);
         Assertions.assertFalse(provider.isEnabled());
 
-        config.enabled = Optional.of(true);
+        config = fieldConfig(Optional.of("em"), Optional.of(true));
         Assertions.assertTrue(new ErrorMessageJsonProvider(config).isEnabled());
     }
 }

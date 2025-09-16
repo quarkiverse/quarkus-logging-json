@@ -21,22 +21,7 @@ public class MDCJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testDefaultConfig() throws Exception {
-        final Config.MDCConfig config = new Config.MDCConfig() {
-            @Override
-            public Optional<String> fieldName() {
-                return Optional.empty();
-            }
-
-            @Override
-            public Optional<Boolean> enabled() {
-                return Optional.empty();
-            }
-
-            @Override
-            public boolean flatFields() {
-                return false;
-            }
-        };
+        final Config.MDCConfig config = additionalFieldConfig(Optional.empty(), Optional.empty(), false);
         final MDCJsonProvider provider = new MDCJsonProvider(config);
 
         final ExtLogRecord event = new ExtLogRecord(Level.ALL, "", "");
@@ -55,25 +40,7 @@ public class MDCJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testCustomConfig() throws Exception {
-        final var config = new Config.MDCConfig() {
-            private Optional<Boolean> enabled = Optional.of(false);
-
-            @Override
-            public Optional<String> fieldName() {
-                return Optional.of("m");
-            }
-
-            @Override
-            public Optional<Boolean> enabled() {
-                return enabled;
-            }
-
-            @Override
-            public boolean flatFields() {
-                return false;
-            }
-        };
-
+        Config.MDCConfig config = additionalFieldConfig(Optional.of("m"), Optional.of(false), false);
         final MDCJsonProvider provider = new MDCJsonProvider(config);
 
         final ExtLogRecord event = new ExtLogRecord(Level.ALL, "", "");
@@ -90,29 +57,13 @@ public class MDCJsonProviderJsonbTest extends JsonProviderBaseTest {
 
         Assertions.assertFalse(provider.isEnabled());
 
-        config.enabled = Optional.of(true);
+        config = additionalFieldConfig(Optional.of("m"), Optional.of(true), false);
         Assertions.assertTrue(new MDCJsonProvider(config).isEnabled());
     }
 
     @Test
     void testFlatCustomConfig() throws Exception {
-        final Config.MDCConfig config = new Config.MDCConfig() {
-
-            @Override
-            public Optional<String> fieldName() {
-                return Optional.of("m");
-            }
-
-            @Override
-            public Optional<Boolean> enabled() {
-                return Optional.empty();
-            }
-
-            @Override
-            public boolean flatFields() {
-                return true;
-            }
-        };
+        final Config.MDCConfig config = additionalFieldConfig(Optional.of("m"), Optional.empty(), true);
         final MDCJsonProvider provider = new MDCJsonProvider(config);
 
         final ExtLogRecord event = new ExtLogRecord(Level.ALL, "", "");
@@ -126,4 +77,23 @@ public class MDCJsonProviderJsonbTest extends JsonProviderBaseTest {
         Assertions.assertEquals("mdcValue2", result.get("mdcKey2").asText());
     }
 
+    private Config.MDCConfig additionalFieldConfig(Optional<String> fieldName, Optional<Boolean> enabled, boolean flatFields) {
+        return new Config.MDCConfig() {
+
+            @Override
+            public Optional<String> fieldName() {
+                return fieldName;
+            }
+
+            @Override
+            public Optional<Boolean> enabled() {
+                return enabled;
+            }
+
+            @Override
+            public boolean flatFields() {
+                return flatFields;
+            }
+        };
+    }
 }

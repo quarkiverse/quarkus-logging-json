@@ -1,6 +1,5 @@
 package io.quarkiverse.loggingjson.providers;
 
-import java.util.Optional;
 import java.util.logging.Level;
 
 import org.jboss.logmanager.ExtLogRecord;
@@ -19,17 +18,7 @@ public class LoggerClassNameJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testDefaultConfig() throws Exception {
-        final Config.FieldConfig config = new Config.FieldConfig() {
-            @Override
-            public Optional<String> fieldName() {
-                return Optional.empty();
-            }
-
-            @Override
-            public Optional<Boolean> enabled() {
-                return Optional.empty();
-            }
-        };
+        final Config.FieldConfig config = fieldConfig(null, null);
         final LoggerClassNameJsonProvider provider = new LoggerClassNameJsonProvider(config);
 
         final JsonNode result = getResultAsJsonNode(provider,
@@ -44,19 +33,7 @@ public class LoggerClassNameJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testCustomConfig() throws Exception {
-        final var config = new Config.FieldConfig() {
-            private Optional<Boolean> enabled = Optional.of(false);
-
-            @Override
-            public Optional<String> fieldName() {
-                return Optional.of("loggerClass");
-            }
-
-            @Override
-            public Optional<Boolean> enabled() {
-                return enabled;
-            }
-        };
+        Config.FieldConfig config = fieldConfig("loggerClass", false);
         final LoggerClassNameJsonProvider provider = new LoggerClassNameJsonProvider(config);
 
         final JsonNode result = getResultAsJsonNode(provider,
@@ -68,7 +45,7 @@ public class LoggerClassNameJsonProviderJsonbTest extends JsonProviderBaseTest {
         Assertions.assertEquals("LoggerClassNameJsonProviderTest", loggerClass);
         Assertions.assertFalse(provider.isEnabled());
 
-        config.enabled = Optional.of(true);
+        config = fieldConfig("loggerClass", true);
         Assertions.assertTrue(new LoggerClassNameJsonProvider(config).isEnabled());
     }
 }

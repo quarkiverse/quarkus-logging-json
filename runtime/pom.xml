@@ -4,7 +4,7 @@
     <parent>
         <groupId>io.quarkiverse.loggingjson</groupId>
         <artifactId>quarkus-logging-json-parent</artifactId>
-        <version>3.3.2-SNAPSHOT</version>
+        <version>3.4.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -29,6 +29,10 @@
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-jsonb</artifactId>
             <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse</groupId>
+            <artifactId>yasson</artifactId>
         </dependency>
 
         <dependency>

@@ -7,6 +7,27 @@ h|[.header-title]##Configuration property##
 h|Type
 h|Default
 
+a|icon:lock[title=Fixed at build time] [[quarkus-logging-json_quarkus-log-json-jackson-object-mapper-modules]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-jackson-object-mapper-modules[`quarkus.log.json.jackson.object.mapper.modules`]##
+ifdef::add-copy-button-to-config-props[]
+config_property_copy_button:+++quarkus.log.json.jackson.object.mapper.modules+++[]
+endif::add-copy-button-to-config-props[]
+
+
+[.description]
+--
+List of jackson modules to register.
+
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_JACKSON_OBJECT_MAPPER_MODULES+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_LOG_JSON_JACKSON_OBJECT_MAPPER_MODULES+++`
+endif::add-copy-button-to-env-var[]
+--
+|list of string
+|`+++com.fasterxml.jackson.datatype.jsr310.JavaTimeModule+++`, `+++com.fasterxml.jackson.datatype.jdk8.Jdk8Module+++`, `+++com.fasterxml.jackson.module.paramnames.ParameterNamesModule+++`
+
 a| [[quarkus-logging-json_quarkus-log-json-console-enabled]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-console-enabled[`quarkus.log.json.console.enabled`]##
 ifdef::add-copy-button-to-config-props[]
 config_property_copy_button:+++quarkus.log.json.console.enabled+++[]
@@ -932,6 +953,27 @@ endif::add-copy-button-to-env-var[]
 |`+++
 +++`
 
+a| [[quarkus-logging-json_quarkus-log-json-log-format]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-log-format[`quarkus.log.json.log-format`]##
+ifdef::add-copy-button-to-config-props[]
+config_property_copy_button:+++quarkus.log.json.log-format+++[]
+endif::add-copy-button-to-config-props[]
+
+
+[.description]
+--
+Support changing logging format.
+
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_LOG_FORMAT+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_LOG_JSON_LOG_FORMAT+++`
+endif::add-copy-button-to-env-var[]
+--
+a|`default`, `ecs`
+|`+++default+++`
+
 h|[[quarkus-logging-json_section_quarkus-log-json-additional-field]] [.section-name.section-level0]##link:#quarkus-logging-json_section_quarkus-log-json-additional-field[For adding fields to the json output directly from the config]##
 h|Type
 h|Default
@@ -978,27 +1020,6 @@ endif::add-copy-button-to-env-var[]
 a|`string`, `int`, `long`, `float`, `double`
 |`+++string+++`
 
-
-a| [[quarkus-logging-json_quarkus-log-json-log-format]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-log-format[`quarkus.log.json.log-format`]##
-ifdef::add-copy-button-to-config-props[]
-config_property_copy_button:+++quarkus.log.json.log-format+++[]
-endif::add-copy-button-to-config-props[]
-
-
-[.description]
---
-Support changing logging format.
-
-
-ifdef::add-copy-button-to-env-var[]
-Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_LOG_FORMAT+++[]
-endif::add-copy-button-to-env-var[]
-ifndef::add-copy-button-to-env-var[]
-Environment variable: `+++QUARKUS_LOG_JSON_LOG_FORMAT+++`
-endif::add-copy-button-to-env-var[]
---
-a|`default`, `ecs`
-|`+++default+++`
 
 |===
 

@@ -25,6 +25,11 @@
             <artifactId>quarkus-logging-json</artifactId>
             <version>3.3.2-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-jackson-spi</artifactId>
+            <optional>true</optional>
+        </dependency>
         <!-- test dependencies -->
         <dependency>
             <groupId>io.quarkus</groupId>

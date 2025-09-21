@@ -19,17 +19,7 @@ public class ThreadIdJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testDefaultConfig() throws Exception {
-        final Config.FieldConfig config = new Config.FieldConfig() {
-            @Override
-            public Optional<String> fieldName() {
-                return Optional.empty();
-            }
-
-            @Override
-            public Optional<Boolean> enabled() {
-                return Optional.empty();
-            }
-        };
+        final Config.FieldConfig config = fieldConfig(Optional.empty(), Optional.empty());
         final ThreadIdJsonProvider provider = new ThreadIdJsonProvider(config);
 
         final ExtLogRecord event = new ExtLogRecord(Level.ALL, "", "");
@@ -43,23 +33,7 @@ public class ThreadIdJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testCustomConfig() throws Exception {
-        final var config = new Config.FieldConfig() {
-            private Optional<Boolean> enabled = Optional.of(false);
-
-            @Override
-            public Optional<String> fieldName() {
-                return Optional.of("tid");
-            }
-
-            @Override
-            public Optional<Boolean> enabled() {
-                return enabled;
-            }
-
-            public void setEnabled(Optional<Boolean> enabled) {
-                this.enabled = enabled;
-            }
-        };
+        Config.FieldConfig config = fieldConfig(Optional.of("tid"), Optional.of(false));
         final ThreadIdJsonProvider provider = new ThreadIdJsonProvider(config);
 
         final ExtLogRecord event = new ExtLogRecord(Level.ALL, "", "");
@@ -70,7 +44,7 @@ public class ThreadIdJsonProviderJsonbTest extends JsonProviderBaseTest {
         Assertions.assertEquals(3249, tid);
         Assertions.assertFalse(provider.isEnabled());
 
-        config.setEnabled(Optional.of(true));
+        config = fieldConfig(Optional.of("tid"), Optional.of(true));
         Assertions.assertTrue(new ThreadIdJsonProvider(config).isEnabled());
     }
 }

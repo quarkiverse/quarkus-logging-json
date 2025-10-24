@@ -1,6 +1,8 @@
 package io.quarkiverse.loggingjson.deployment;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import jakarta.inject.Inject;
 
@@ -58,7 +60,9 @@ class LoggingJsonProcessor {
 
     @BuildStep
     void autoRegisterModules(BuildProducer<ClassPathJacksonModuleBuildItem> classPathJacksonModules) {
-        for (String moduleClassName : configJackson.modules()) {
+        List<String> moduleNames = new ArrayList<>(configJackson.baseModules());
+        configJackson.additionalModules().ifPresent(moduleNames::addAll);
+        for (String moduleClassName : moduleNames) {
             if (QuarkusClassLoader.isClassPresentAtRuntime(moduleClassName)) {
                 classPathJacksonModules.produce(new ClassPathJacksonModuleBuildItem(moduleClassName));
             }

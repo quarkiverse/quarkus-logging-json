@@ -7,26 +7,47 @@ h|[.header-title]##Configuration property##
 h|Type
 h|Default
 
-a|icon:lock[title=Fixed at build time] [[quarkus-logging-json_quarkus-log-json-jackson-object-mapper-modules]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-jackson-object-mapper-modules[`quarkus.log.json.jackson.object.mapper.modules`]##
+a|icon:lock[title=Fixed at build time] [[quarkus-logging-json_quarkus-log-json-jackson-object-mapper-base-modules]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-jackson-object-mapper-base-modules[`quarkus.log.json.jackson.object.mapper.base-modules`]##
 ifdef::add-copy-button-to-config-props[]
-config_property_copy_button:+++quarkus.log.json.jackson.object.mapper.modules+++[]
+config_property_copy_button:+++quarkus.log.json.jackson.object.mapper.base-modules+++[]
 endif::add-copy-button-to-config-props[]
 
 
 [.description]
 --
-List of jackson modules to register.
+List of default jackson modules to register always.
 
 
 ifdef::add-copy-button-to-env-var[]
-Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_JACKSON_OBJECT_MAPPER_MODULES+++[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_JACKSON_OBJECT_MAPPER_BASE_MODULES+++[]
 endif::add-copy-button-to-env-var[]
 ifndef::add-copy-button-to-env-var[]
-Environment variable: `+++QUARKUS_LOG_JSON_JACKSON_OBJECT_MAPPER_MODULES+++`
+Environment variable: `+++QUARKUS_LOG_JSON_JACKSON_OBJECT_MAPPER_BASE_MODULES+++`
 endif::add-copy-button-to-env-var[]
 --
 |list of string
 |`+++com.fasterxml.jackson.datatype.jsr310.JavaTimeModule+++`, `+++com.fasterxml.jackson.datatype.jdk8.Jdk8Module+++`, `+++com.fasterxml.jackson.module.paramnames.ParameterNamesModule+++`
+
+a|icon:lock[title=Fixed at build time] [[quarkus-logging-json_quarkus-log-json-jackson-object-mapper-additional-modules]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-jackson-object-mapper-additional-modules[`quarkus.log.json.jackson.object.mapper.additional-modules`]##
+ifdef::add-copy-button-to-config-props[]
+config_property_copy_button:+++quarkus.log.json.jackson.object.mapper.additional-modules+++[]
+endif::add-copy-button-to-config-props[]
+
+
+[.description]
+--
+List of additional jackson modules to register.
+
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_JACKSON_OBJECT_MAPPER_ADDITIONAL_MODULES+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_LOG_JSON_JACKSON_OBJECT_MAPPER_ADDITIONAL_MODULES+++`
+endif::add-copy-button-to-env-var[]
+--
+|list of string
+|
 
 a| [[quarkus-logging-json_quarkus-log-json-console-enabled]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-console-enabled[`quarkus.log.json.console.enabled`]##
 ifdef::add-copy-button-to-config-props[]

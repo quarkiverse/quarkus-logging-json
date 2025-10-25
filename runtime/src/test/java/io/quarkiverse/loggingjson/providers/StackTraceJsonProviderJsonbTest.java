@@ -21,17 +21,7 @@ public class StackTraceJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testDefaultConfig() throws Exception {
-        final Config.FieldConfig config = new Config.FieldConfig() {
-            @Override
-            public Optional<String> fieldName() {
-                return Optional.empty();
-            }
-
-            @Override
-            public Optional<Boolean> enabled() {
-                return Optional.empty();
-            }
-        };
+        final Config.FieldConfig config = fieldConfig(Optional.empty(), Optional.empty());
         final StackTraceJsonProvider provider = new StackTraceJsonProvider(config);
 
         final RuntimeException t = new RuntimeException("Testing stackTrace");
@@ -52,19 +42,7 @@ public class StackTraceJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testCustomConfig() throws Exception {
-        final var config = new Config.FieldConfig() {
-            private Optional<Boolean> enabled = Optional.of(false);
-
-            @Override
-            public Optional<String> fieldName() {
-                return Optional.of("st");
-            }
-
-            @Override
-            public Optional<Boolean> enabled() {
-                return enabled;
-            }
-        };
+        Config.FieldConfig config = fieldConfig(Optional.of("st"), Optional.of(false));
         final StackTraceJsonProvider provider = new StackTraceJsonProvider(config);
 
         final RuntimeException t = new RuntimeException("Testing stackTrace");
@@ -82,7 +60,7 @@ public class StackTraceJsonProviderJsonbTest extends JsonProviderBaseTest {
         Assertions.assertEquals(out.toString(), st);
         Assertions.assertFalse(provider.isEnabled());
 
-        config.enabled = Optional.of(true);
+        config = fieldConfig(Optional.of("st"), Optional.of(true));
         Assertions.assertTrue(new StackTraceJsonProvider(config).isEnabled());
     }
 }

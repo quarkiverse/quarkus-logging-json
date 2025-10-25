@@ -57,3 +57,8 @@ jobs:
 
       - name: Build with Maven (Native)
         run: mvn -B install -Dnative -Dquarkus.native.container-build -Dnative.surefire.skip
+
+      - name: Check for uncommitted changes
+        run: |
+          err_msg="Changes found!!! Run 'mvn -B clean package' and commit changes"
+          git -c color.ui=always diff --exit-code || (>&2 echo "${err_msg}" && exit 1)

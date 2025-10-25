@@ -3,15 +3,6 @@ icon:lock[title=Fixed at build time] Configuration property fixed at build time 
 [.configuration-reference.searchable, cols="80,.^10,.^10"]
 |===
 
-h|[.header-title]##Configuration property##
-h|Type
-h|Default
-
-a| [[quarkus-logging-json_quarkus-log-json-console-enabled]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-console-enabled[`quarkus.log.json.console.enabled`]##
-ifdef::add-copy-button-to-config-props[]
-config_property_copy_button:+++quarkus.log.json.console.enabled+++[]
-endif::add-copy-button-to-config-props[]
-
 
 [.description]
 --

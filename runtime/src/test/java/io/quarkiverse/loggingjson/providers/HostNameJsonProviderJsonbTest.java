@@ -19,17 +19,7 @@ public class HostNameJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testDefaultConfig() throws Exception {
-        final Config.FieldConfig config = new Config.FieldConfig() {
-            @Override
-            public Optional<String> fieldName() {
-                return Optional.empty();
-            }
-
-            @Override
-            public Optional<Boolean> enabled() {
-                return Optional.empty();
-            }
-        };
+        final Config.FieldConfig config = fieldConfig(Optional.empty(), Optional.empty());
         final HostNameJsonProvider provider = new HostNameJsonProvider(config);
 
         final JsonNode result = getResultAsJsonNode(provider, new ExtLogRecord(Level.ALL, "", ""));
@@ -42,19 +32,7 @@ public class HostNameJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testCustomConfig() throws Exception {
-        final var config = new Config.FieldConfig() {
-            private Optional<Boolean> enabled = Optional.of(false);
-
-            @Override
-            public Optional<String> fieldName() {
-                return Optional.of("host");
-            }
-
-            @Override
-            public Optional<Boolean> enabled() {
-                return enabled;
-            }
-        };
+        Config.FieldConfig config = fieldConfig(Optional.of("host"), Optional.of(false));
         final HostNameJsonProvider provider = new HostNameJsonProvider(config);
 
         final JsonNode result = getResultAsJsonNode(provider, new ExtLogRecord(Level.ALL, "", ""));
@@ -64,7 +42,7 @@ public class HostNameJsonProviderJsonbTest extends JsonProviderBaseTest {
         Assertions.assertFalse(hostName.isEmpty());
         Assertions.assertFalse(provider.isEnabled());
 
-        config.enabled = Optional.of(true);
+        config = fieldConfig(Optional.of("host"), Optional.of(true));
         Assertions.assertTrue(new HostNameJsonProvider(config).isEnabled());
     }
 }

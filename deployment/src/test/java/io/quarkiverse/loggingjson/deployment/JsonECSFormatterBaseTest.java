@@ -64,14 +64,16 @@ public abstract class JsonECSFormatterBaseTest {
     }
 
     protected void testLogOutput() throws Exception {
-        JsonFormatter jsonFormatter = getJsonFormatter();
+        getJsonFormatter();
 
         org.slf4j.Logger log = LoggerFactory.getLogger("JsonStructuredTest");
         OffsetDateTime beforeFirstLog = OffsetDateTime.now().minusSeconds(1);
 
-        try (MDC.MDCCloseable closeable = MDC.putCloseable("mdcKey", "mdcVal")) {
-            log.error("Test {}", "message",
-                    KeyValueStructuredArgument.kv("structuredKey", "structuredValue"),
+        try (
+                MDC.MDCCloseable closeable = MDC.putCloseable("mdcKey", "mdcVal");
+                MDC.MDCCloseable traceId = MDC.putCloseable("traceId", "123-456-789");
+                MDC.MDCCloseable spanId = MDC.putCloseable("spanId", "987-654-321");) {
+            log.error("Test {}", "message", KeyValueStructuredArgument.kv("structuredKey", "structuredValue"),
                     new RuntimeException("Testing stackTrace"));
         }
 
@@ -88,6 +90,8 @@ public abstract class JsonECSFormatterBaseTest {
                 "log.level",
                 "process.thread.name",
                 "process.thread.id",
+                "trace.id",
+                "span.id",
                 "mdc",
                 "host.name",
                 "error.stack_trace",
@@ -123,6 +127,12 @@ public abstract class JsonECSFormatterBaseTest {
         Assertions.assertTrue(jsonNode.findValue("mdc").isObject());
         Assertions.assertNotNull(jsonNode.findValue("mdc").findValue("mdcKey"));
         Assertions.assertEquals("mdcVal", jsonNode.findValue("mdc").findValue("mdcKey").asText());
+
+        Assertions.assertTrue(jsonNode.findValue("trace.id").isTextual());
+        Assertions.assertEquals("123-456-789", jsonNode.findValue("trace.id").asText());
+
+        Assertions.assertTrue(jsonNode.findValue("span.id").isTextual());
+        Assertions.assertEquals("987-654-321", jsonNode.findValue("span.id").asText());
 
         Assertions.assertTrue(jsonNode.findValue("host.name").isTextual());
         Assertions.assertNotEquals("", jsonNode.findValue("host.name").asText());

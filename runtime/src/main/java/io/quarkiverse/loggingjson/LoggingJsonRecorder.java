@@ -44,6 +44,7 @@ public class LoggingJsonRecorder {
         if (formatter == null || !formatter.isEnabled()) {
             return new RuntimeValue<>(Optional.empty());
         }
+        jsonFactory.setConfig(config);
 
         List<JsonProvider> providers;
 
@@ -71,7 +72,6 @@ public class LoggingJsonRecorder {
         }
 
         return new RuntimeValue<>(Optional.of(new JsonFormatter(providers, jsonFactory, config)));
-
     }
 
     private List<JsonProvider> defaultFormat(Config config) {

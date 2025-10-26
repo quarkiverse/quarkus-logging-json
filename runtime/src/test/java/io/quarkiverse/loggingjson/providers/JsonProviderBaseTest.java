@@ -1,13 +1,7 @@
 package io.quarkiverse.loggingjson.providers;
 
-import java.io.IOException;
-import java.util.Optional;
-
-import org.jboss.logmanager.ExtLogRecord;
-
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import io.quarkiverse.loggingjson.JsonFactory;
 import io.quarkiverse.loggingjson.JsonGenerator;
 import io.quarkiverse.loggingjson.JsonProvider;
@@ -15,33 +9,52 @@ import io.quarkiverse.loggingjson.StringBuilderWriter;
 import io.quarkiverse.loggingjson.config.Config;
 import io.quarkiverse.loggingjson.jackson.JacksonJsonFactory;
 import io.quarkiverse.loggingjson.jsonb.JsonbJsonFactory;
+import io.smallrye.config.SmallRyeConfigBuilder;
+import io.smallrye.config.common.MapBackedConfigSource;
+import org.jboss.logmanager.ExtLogRecord;
 
-abstract class JsonProviderBaseTest {
+import java.io.IOException;
+import java.util.Map;
+import java.util.Optional;
 
-    private static final JsonFactory jsonb = new JsonbJsonFactory();
-    private static final JsonFactory jackson = new JacksonJsonFactory();
+public abstract class JsonProviderBaseTest {
+
     private static final ObjectMapper mapper = new ObjectMapper();
 
     protected abstract Type type();
 
-    private JsonFactory getJsonFactory() {
+    protected static Config GetConfig(Map<String, String> values) {
+        return new SmallRyeConfigBuilder()
+                .withMapping(Config.class)
+                .withSources(new MapBackedConfigSource("test", values) {
+                })
+                .build()
+                .getConfigMapping(Config.class);
+    }
+
+    protected JsonFactory getJsonFactory(Config config) {
+        JsonFactory jsonFactory;
         switch (type()) {
             case JSONB:
-                return jsonb;
+                jsonFactory = new JsonbJsonFactory();
+                break;
             case JACKSON:
-                return jackson;
+                jsonFactory = new JacksonJsonFactory();
+                break;
             default:
                 throw new RuntimeException("Unsupported type");
         }
+        jsonFactory.setConfig(config);
+        return jsonFactory;
     }
 
     protected JsonGenerator getGenerator(StringBuilderWriter writer) throws IOException {
-        return getJsonFactory().createGenerator(writer);
+        return getJsonFactory(GetConfig(Map.of())).createGenerator(writer);
     }
 
     protected String getResult(JsonProvider jsonProvider, ExtLogRecord event) throws IOException {
         try (StringBuilderWriter writer = new StringBuilderWriter();
-                JsonGenerator generator = getGenerator(writer)) {
+             JsonGenerator generator = getGenerator(writer)) {
             generator.writeStartObject();
             jsonProvider.writeTo(generator, event);
             generator.writeEndObject();

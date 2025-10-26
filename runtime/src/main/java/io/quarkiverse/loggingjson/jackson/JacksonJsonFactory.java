@@ -3,22 +3,24 @@ package io.quarkiverse.loggingjson.jackson;
 import java.io.IOException;
 import java.util.ServiceConfigurationError;
 
+import com.fasterxml.jackson.core.JsonFactoryBuilder;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 import io.quarkiverse.loggingjson.JsonFactory;
 import io.quarkiverse.loggingjson.JsonGenerator;
 import io.quarkiverse.loggingjson.StringBuilderWriter;
+import io.quarkiverse.loggingjson.config.Config;
 
 public class JacksonJsonFactory implements JsonFactory {
 
-    private final com.fasterxml.jackson.core.JsonFactory jsonFactory;
+    private com.fasterxml.jackson.core.JsonFactory jsonFactory;
 
     public JacksonJsonFactory() {
-        jsonFactory = createJsonFactory();
+        jsonFactory = createJsonFactory(false);
     }
 
-    private com.fasterxml.jackson.core.JsonFactory createJsonFactory() {
+    private com.fasterxml.jackson.core.JsonFactory createJsonFactory(boolean prettyPrint) {
         ObjectMapper objectMapper = new ObjectMapper()
                 /*
                  * Assume empty beans are ok.
@@ -30,26 +32,23 @@ public class JacksonJsonFactory implements JsonFactory {
         } catch (ServiceConfigurationError serviceConfigurationError) {
             // TODO Fix output of error message
 
-            //                addError("Error occurred while dynamically loading jackson modules", serviceConfigurationError);
             System.err.println("Error occurred while dynamically loading jackson modules");
             serviceConfigurationError.printStackTrace();
         }
 
-        return objectMapper
-                .getFactory()
-                /*
-                 * When generators are flushed, don't flush the underlying outputStream.
-                 *
-                 * This allows some streaming optimizations when using an encoder.
-                 *
-                 * The encoder generally determines when the stream should be flushed
-                 * by an 'immediateFlush' property.
-                 *
-                 * The 'immediateFlush' property of the encoder can be set to false
-                 * when the appender performs the flushes at appropriate times
-                 * (such as the end of a batch in the AbstractLogstashTcpSocketAppender).
-                 */
+        final JsonFactoryBuilder builder = new JsonFactoryBuilder(objectMapper.getFactory());
+        if (prettyPrint) {
+            builder.addDecorator((factory, generator) -> generator.useDefaultPrettyPrinter());
+        }
+        return builder
+                .build()
+                .setCodec(objectMapper)
                 .disable(com.fasterxml.jackson.core.JsonGenerator.Feature.FLUSH_PASSED_TO_STREAM);
+    }
+
+    @Override
+    public void setConfig(Config config) {
+        jsonFactory = createJsonFactory(config.prettyPrint());
     }
 
     @Override

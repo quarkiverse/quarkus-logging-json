@@ -1,7 +1,14 @@
 package io.quarkiverse.loggingjson.providers;
 
+import java.io.IOException;
+import java.util.Map;
+import java.util.Optional;
+
+import org.jboss.logmanager.ExtLogRecord;
+
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import io.quarkiverse.loggingjson.JsonFactory;
 import io.quarkiverse.loggingjson.JsonGenerator;
 import io.quarkiverse.loggingjson.JsonProvider;
@@ -11,11 +18,6 @@ import io.quarkiverse.loggingjson.jackson.JacksonJsonFactory;
 import io.quarkiverse.loggingjson.jsonb.JsonbJsonFactory;
 import io.smallrye.config.SmallRyeConfigBuilder;
 import io.smallrye.config.common.MapBackedConfigSource;
-import org.jboss.logmanager.ExtLogRecord;
-
-import java.io.IOException;
-import java.util.Map;
-import java.util.Optional;
 
 public abstract class JsonProviderBaseTest {
 

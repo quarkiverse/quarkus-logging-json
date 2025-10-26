@@ -54,7 +54,7 @@ public abstract class JsonProviderBaseTest {
 
     protected String getResult(JsonProvider jsonProvider, ExtLogRecord event) throws IOException {
         try (StringBuilderWriter writer = new StringBuilderWriter();
-             JsonGenerator generator = getGenerator(writer)) {
+                JsonGenerator generator = getGenerator(writer)) {
             generator.writeStartObject();
             jsonProvider.writeTo(generator, event);
             generator.writeEndObject();

@@ -78,6 +78,11 @@ public interface Config {
         TimestampField timestamp();
 
         /**
+         * Options for eventId.
+         */
+        EventIdField eventId();
+
+        /**
          * Options for hostname.
          */
         FieldConfig hostname();
@@ -209,6 +214,22 @@ public interface Config {
          * Enable or disable the field.
          */
         Optional<Boolean> enabled();
+    }
+
+    @ConfigGroup
+	interface EventIdField {
+        /**
+         * Used to change the json key for the field.
+         */
+		Optional<String> fieldName();
+
+        /**
+         * Enable or disable the field.
+         * <p>
+         * This field is disabled by default for performance consideration.
+         */
+		@WithDefault("false")
+        boolean enabled();
     }
 
     @ConfigGroup

@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import jakarta.inject.Inject;
-
 import org.jboss.jandex.ClassInfo;
 
 import io.quarkiverse.loggingjson.JsonFactory;
@@ -32,9 +30,6 @@ class LoggingJsonProcessor {
 
     private static final String FEATURE = "logging-json";
 
-    @Inject
-    ConfigJackson configJackson;
-
     @BuildStep
     FeatureBuildItem feature() {
         return new FeatureBuildItem(FEATURE);
@@ -59,7 +54,8 @@ class LoggingJsonProcessor {
     }
 
     @BuildStep
-    void autoRegisterModules(BuildProducer<ClassPathJacksonModuleBuildItem> classPathJacksonModules) {
+    void autoRegisterModules(BuildProducer<ClassPathJacksonModuleBuildItem> classPathJacksonModules,
+            ConfigJackson configJackson) {
         List<String> moduleNames = new ArrayList<>(configJackson.baseModules());
         configJackson.additionalModules().ifPresent(moduleNames::addAll);
         for (String moduleClassName : moduleNames) {

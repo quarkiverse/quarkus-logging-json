@@ -124,6 +124,16 @@ public interface Config {
         MDCConfig mdc();
 
         /**
+         * Options for mdc.traceId
+         */
+        FieldConfig traceId();
+
+        /**
+         * Options for mdc.spanId
+         */
+        FieldConfig spanId();
+
+        /**
          * Options for ndc.
          */
         FieldConfig ndc();

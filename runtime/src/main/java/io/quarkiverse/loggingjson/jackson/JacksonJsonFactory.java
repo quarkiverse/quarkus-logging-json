@@ -3,8 +3,7 @@ package io.quarkiverse.loggingjson.jackson;
 import java.io.IOException;
 import java.util.ServiceConfigurationError;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.jboss.logging.Logger;
 
 import com.fasterxml.jackson.core.JsonFactoryBuilder;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -16,7 +15,7 @@ import io.quarkiverse.loggingjson.StringBuilderWriter;
 import io.quarkiverse.loggingjson.config.Config;
 
 public class JacksonJsonFactory implements JsonFactory {
-    private static final Logger log = LoggerFactory.getLogger(JacksonJsonFactory.class);
+    private static final Logger log = Logger.getLogger(JacksonJsonFactory.class);
     private final ObjectMapper objectMapper;
     private com.fasterxml.jackson.core.JsonFactory jsonFactory;
 

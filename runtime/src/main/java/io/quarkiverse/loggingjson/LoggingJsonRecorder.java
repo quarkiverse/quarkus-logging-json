@@ -5,8 +5,7 @@ import java.util.function.Supplier;
 import java.util.logging.Formatter;
 import java.util.stream.Collectors;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.jboss.logging.Logger;
 
 import io.quarkiverse.loggingjson.config.Config;
 import io.quarkiverse.loggingjson.config.ConfigFormatter;
@@ -20,7 +19,7 @@ import io.quarkus.runtime.annotations.Recorder;
 
 @Recorder
 public class LoggingJsonRecorder {
-    private static final Logger log = LoggerFactory.getLogger(LoggingJsonRecorder.class);
+    private static final Logger log = Logger.getLogger(LoggingJsonRecorder.class);
     private static final Map<Class<? extends JsonFactory>, Supplier<JsonFactory>> jsonFactories = Map.of(
             JacksonJsonFactory.class, LoggingJsonRecorder::initializeJacksonJsonFactory,
             JsonbJsonFactory.class, JsonbJsonFactory::new);
@@ -72,7 +71,7 @@ public class LoggingJsonRecorder {
         if (log.isDebugEnabled()) {
             String installedProviders = providers.stream().map(p -> p.getClass().toString())
                     .collect(Collectors.joining(", ", "[", "]"));
-            log.debug("Installed json providers {}", installedProviders);
+            log.debug("Installed json providers " + installedProviders);
         }
 
         return new RuntimeValue<>(Optional.of(new JsonFormatter(providers, jsonFactory, config)));

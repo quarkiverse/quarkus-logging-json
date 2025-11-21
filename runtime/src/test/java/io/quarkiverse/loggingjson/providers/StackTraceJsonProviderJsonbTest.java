@@ -2,7 +2,6 @@ package io.quarkiverse.loggingjson.providers;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.Optional;
 import java.util.logging.Level;
 
 import org.jboss.logmanager.ExtLogRecord;
@@ -21,7 +20,7 @@ public class StackTraceJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testDefaultConfig() throws Exception {
-        final Config.FieldConfig config = fieldConfig(Optional.empty(), Optional.empty());
+        final Config.FieldConfig config = fieldConfig(null, null);
         final StackTraceJsonProvider provider = new StackTraceJsonProvider(config);
 
         final RuntimeException t = new RuntimeException("Testing stackTrace");
@@ -42,7 +41,7 @@ public class StackTraceJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testCustomConfig() throws Exception {
-        Config.FieldConfig config = fieldConfig(Optional.of("st"), Optional.of(false));
+        Config.FieldConfig config = fieldConfig("st", false);
         final StackTraceJsonProvider provider = new StackTraceJsonProvider(config);
 
         final RuntimeException t = new RuntimeException("Testing stackTrace");
@@ -60,7 +59,7 @@ public class StackTraceJsonProviderJsonbTest extends JsonProviderBaseTest {
         Assertions.assertEquals(out.toString(), st);
         Assertions.assertFalse(provider.isEnabled());
 
-        config = fieldConfig(Optional.of("st"), Optional.of(true));
+        config = fieldConfig("st", true);
         Assertions.assertTrue(new StackTraceJsonProvider(config).isEnabled());
     }
 }

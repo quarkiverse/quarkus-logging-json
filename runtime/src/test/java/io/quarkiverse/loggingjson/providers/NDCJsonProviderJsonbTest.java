@@ -1,6 +1,5 @@
 package io.quarkiverse.loggingjson.providers;
 
-import java.util.Optional;
 import java.util.logging.Level;
 
 import org.jboss.logmanager.ExtLogRecord;
@@ -19,7 +18,7 @@ public class NDCJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testDefaultConfig() throws Exception {
-        final Config.FieldConfig config = fieldConfig(Optional.empty(), Optional.empty());
+        final Config.FieldConfig config = fieldConfig(null, null);
         final NDCJsonProvider provider = new NDCJsonProvider(config);
 
         final ExtLogRecord event = new ExtLogRecord(Level.ALL, "", "");
@@ -35,7 +34,7 @@ public class NDCJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testCustomConfig() throws Exception {
-        Config.FieldConfig config = fieldConfig(Optional.of("n"), Optional.of(false));
+        Config.FieldConfig config = fieldConfig("n", false);
         final NDCJsonProvider provider = new NDCJsonProvider(config);
 
         final ExtLogRecord event = new ExtLogRecord(Level.ALL, "", "");
@@ -48,7 +47,7 @@ public class NDCJsonProviderJsonbTest extends JsonProviderBaseTest {
         Assertions.assertEquals("NDCTest", n);
         Assertions.assertFalse(provider.isEnabled());
 
-        config = fieldConfig(Optional.of("n"), Optional.of(true));
+        config = fieldConfig("n", true);
         Assertions.assertTrue(new NDCJsonProvider(config).isEnabled());
     }
 }

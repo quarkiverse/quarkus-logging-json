@@ -1,5 +1,6 @@
 package io.quarkiverse.loggingjson.providers;
 
+import java.util.Optional;
 import java.util.logging.Level;
 
 import org.jboss.logmanager.ExtLogRecord;
@@ -18,7 +19,7 @@ public class ThreadNameJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testDefaultConfig() throws Exception {
-        final Config.FieldConfig config = fieldConfig(null, null);
+        final Config.FieldConfig config = fieldConfig(Optional.empty(), Optional.empty());
         final ThreadNameJsonProvider provider = new ThreadNameJsonProvider(config);
 
         final ExtLogRecord event = new ExtLogRecord(Level.ALL, "", "");
@@ -34,7 +35,7 @@ public class ThreadNameJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testCustomConfig() throws Exception {
-        Config.FieldConfig config = fieldConfig("tn", false);
+        Config.FieldConfig config = fieldConfig(Optional.of("tn"), Optional.of(false));
         final ThreadNameJsonProvider provider = new ThreadNameJsonProvider(config);
 
         final ExtLogRecord event = new ExtLogRecord(Level.ALL, "", "");
@@ -47,7 +48,7 @@ public class ThreadNameJsonProviderJsonbTest extends JsonProviderBaseTest {
         Assertions.assertEquals("TestThread", tn);
         Assertions.assertFalse(provider.isEnabled());
 
-        config = fieldConfig("tn", true);
+        config = fieldConfig(Optional.of("tn"), Optional.of(true));
         Assertions.assertTrue(new ThreadNameJsonProvider(config).isEnabled());
     }
 }

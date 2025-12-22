@@ -1,5 +1,6 @@
 package io.quarkiverse.loggingjson.providers;
 
+import java.util.Optional;
 import java.util.logging.Level;
 
 import org.jboss.logmanager.ExtLogRecord;
@@ -18,7 +19,7 @@ public class HostNameJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testDefaultConfig() throws Exception {
-        final Config.FieldConfig config = fieldConfig(null, null);
+        final Config.FieldConfig config = fieldConfig(Optional.empty(), Optional.empty());
         final HostNameJsonProvider provider = new HostNameJsonProvider(config);
 
         final JsonNode result = getResultAsJsonNode(provider, new ExtLogRecord(Level.ALL, "", ""));
@@ -31,7 +32,7 @@ public class HostNameJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testCustomConfig() throws Exception {
-        Config.FieldConfig config = fieldConfig("host", false);
+        Config.FieldConfig config = fieldConfig(Optional.of("host"), Optional.of(false));
         final HostNameJsonProvider provider = new HostNameJsonProvider(config);
 
         final JsonNode result = getResultAsJsonNode(provider, new ExtLogRecord(Level.ALL, "", ""));
@@ -41,7 +42,7 @@ public class HostNameJsonProviderJsonbTest extends JsonProviderBaseTest {
         Assertions.assertFalse(hostName.isEmpty());
         Assertions.assertFalse(provider.isEnabled());
 
-        config = fieldConfig("host", true);
+        config = fieldConfig(Optional.of("host"), Optional.of(true));
         Assertions.assertTrue(new HostNameJsonProvider(config).isEnabled());
     }
 }

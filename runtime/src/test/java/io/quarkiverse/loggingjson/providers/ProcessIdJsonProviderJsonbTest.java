@@ -1,5 +1,6 @@
 package io.quarkiverse.loggingjson.providers;
 
+import java.util.Optional;
 import java.util.logging.Level;
 
 import org.jboss.logmanager.ExtLogRecord;
@@ -18,7 +19,7 @@ public class ProcessIdJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testDefaultConfig() throws Exception {
-        final Config.FieldConfig config = fieldConfig(null, null);
+        final Config.FieldConfig config = fieldConfig(Optional.empty(), Optional.empty());
         final ProcessIdJsonProvider provider = new ProcessIdJsonProvider(config);
 
         final ExtLogRecord event = new ExtLogRecord(Level.ALL, "", "");
@@ -32,7 +33,7 @@ public class ProcessIdJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testCustomConfig() throws Exception {
-        Config.FieldConfig config = fieldConfig("pid", false);
+        Config.FieldConfig config = fieldConfig(Optional.of("pid"), Optional.of(false));
         final ProcessIdJsonProvider provider = new ProcessIdJsonProvider(config);
 
         final ExtLogRecord event = new ExtLogRecord(Level.ALL, "", "");
@@ -43,7 +44,7 @@ public class ProcessIdJsonProviderJsonbTest extends JsonProviderBaseTest {
         Assertions.assertEquals(23847, pid);
         Assertions.assertFalse(provider.isEnabled());
 
-        config = fieldConfig("pid", true);
+        config = fieldConfig(Optional.of("pid"), Optional.of(true));
         Assertions.assertTrue(new ProcessIdJsonProvider(config).isEnabled());
     }
 }

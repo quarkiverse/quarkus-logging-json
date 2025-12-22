@@ -1,5 +1,6 @@
 package io.quarkiverse.loggingjson.providers;
 
+import java.util.Optional;
 import java.util.logging.Level;
 
 import org.jboss.logmanager.ExtLogRecord;
@@ -18,7 +19,7 @@ public class ErrorMessageJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testDefaultConfig() throws Exception {
-        final Config.FieldConfig config = fieldConfig(null, null);
+        final Config.FieldConfig config = fieldConfig(Optional.empty(), Optional.empty());
         final ErrorMessageJsonProvider provider = new ErrorMessageJsonProvider(config);
 
         final RuntimeException t = new RuntimeException("Testing errorMessage");
@@ -36,7 +37,7 @@ public class ErrorMessageJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testCustomConfig() throws Exception {
-        Config.FieldConfig config = fieldConfig("em", false);
+        Config.FieldConfig config = fieldConfig(Optional.of("em"), Optional.of(false));
         final ErrorMessageJsonProvider provider = new ErrorMessageJsonProvider(config);
 
         final RuntimeException t = new RuntimeException("Testing errorMessage");
@@ -51,7 +52,7 @@ public class ErrorMessageJsonProviderJsonbTest extends JsonProviderBaseTest {
         Assertions.assertEquals("Testing errorMessage", em);
         Assertions.assertFalse(provider.isEnabled());
 
-        config = fieldConfig("em", true);
+        config = fieldConfig(Optional.of("em"), Optional.of(true));
         Assertions.assertTrue(new ErrorMessageJsonProvider(config).isEnabled());
     }
 }

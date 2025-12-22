@@ -1,5 +1,6 @@
 package io.quarkiverse.loggingjson.providers;
 
+import java.util.Optional;
 import java.util.logging.Level;
 
 import org.jboss.logmanager.ExtLogRecord;
@@ -18,7 +19,7 @@ public class LoggerClassNameJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testDefaultConfig() throws Exception {
-        final Config.FieldConfig config = fieldConfig(null, null);
+        final Config.FieldConfig config = fieldConfig(Optional.empty(), Optional.empty());
         final LoggerClassNameJsonProvider provider = new LoggerClassNameJsonProvider(config);
 
         final JsonNode result = getResultAsJsonNode(provider,
@@ -33,7 +34,7 @@ public class LoggerClassNameJsonProviderJsonbTest extends JsonProviderBaseTest {
 
     @Test
     void testCustomConfig() throws Exception {
-        Config.FieldConfig config = fieldConfig("loggerClass", false);
+        Config.FieldConfig config = fieldConfig(Optional.of("loggerClass"), Optional.of(false));
         final LoggerClassNameJsonProvider provider = new LoggerClassNameJsonProvider(config);
 
         final JsonNode result = getResultAsJsonNode(provider,
@@ -45,7 +46,7 @@ public class LoggerClassNameJsonProviderJsonbTest extends JsonProviderBaseTest {
         Assertions.assertEquals("LoggerClassNameJsonProviderTest", loggerClass);
         Assertions.assertFalse(provider.isEnabled());
 
-        config = fieldConfig("loggerClass", true);
+        config = fieldConfig(Optional.of("loggerClass"), Optional.of(true));
         Assertions.assertTrue(new LoggerClassNameJsonProvider(config).isEnabled());
     }
 }

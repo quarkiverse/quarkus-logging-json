@@ -69,17 +69,17 @@ public abstract class JsonProviderBaseTest {
         return mapper.readValue(getResult(jsonProvider, event), JsonNode.class);
     }
 
-    protected Config.FieldConfig fieldConfig(String fieldName, Boolean enabled) {
+    protected Config.FieldConfig fieldConfig(Optional<String> fieldName, Optional<Boolean> enabled) {
         return new Config.FieldConfig() {
 
             @Override
             public Optional<String> fieldName() {
-                return Optional.ofNullable(fieldName);
+                return fieldName;
             }
 
             @Override
             public Optional<Boolean> enabled() {
-                return Optional.ofNullable(enabled);
+                return enabled;
             }
         };
     }

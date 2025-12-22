@@ -30,6 +30,10 @@
             <artifactId>quarkus-jsonb</artifactId>
             <optional>true</optional>
         </dependency>
+        <dependency>
+            <groupId>org.eclipse</groupId>
+            <artifactId>yasson</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>io.quarkus</groupId>

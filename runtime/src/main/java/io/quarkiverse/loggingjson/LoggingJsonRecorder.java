@@ -1,16 +1,16 @@
 package io.quarkiverse.loggingjson;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.function.Supplier;
 import java.util.logging.Formatter;
 import java.util.stream.Collectors;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.jboss.logging.Logger;
 
 import io.quarkiverse.loggingjson.config.Config;
 import io.quarkiverse.loggingjson.config.ConfigFormatter;
+import io.quarkiverse.loggingjson.jackson.JacksonJsonFactory;
+import io.quarkiverse.loggingjson.jsonb.JsonbJsonFactory;
 import io.quarkiverse.loggingjson.providers.*;
 import io.quarkus.arc.Arc;
 import io.quarkus.arc.InjectableInstance;
@@ -19,31 +19,34 @@ import io.quarkus.runtime.annotations.Recorder;
 
 @Recorder
 public class LoggingJsonRecorder {
-    private static final Logger log = LoggerFactory.getLogger(LoggingJsonRecorder.class);
-
+    private static final Logger log = Logger.getLogger(LoggingJsonRecorder.class);
+    private static final Map<Class<? extends JsonFactory>, Supplier<JsonFactory>> jsonFactories = Map.of(
+            JacksonJsonFactory.class, LoggingJsonRecorder::initializeJacksonJsonFactory,
+            JsonbJsonFactory.class, JsonbJsonFactory::new);
     private final RuntimeValue<Config> config;
 
     public LoggingJsonRecorder(RuntimeValue<Config> config) {
         this.config = config;
     }
 
-    public RuntimeValue<Optional<Formatter>> initializeConsoleJsonLogging(JsonFactory jsonFactory) {
-        return initializeJsonLogging(config.getValue().console(), config.getValue(), jsonFactory);
+    public RuntimeValue<Optional<Formatter>> initializeConsoleJsonLogging(Class<? extends JsonFactory> jsonFactoryClass) {
+        return initializeJsonLogging(config.getValue().console(), config.getValue(), jsonFactoryClass);
     }
 
-    public RuntimeValue<Optional<Formatter>> initializeFileJsonLogging(JsonFactory jsonFactory) {
-        return initializeJsonLogging(config.getValue().file(), config.getValue(), jsonFactory);
+    public RuntimeValue<Optional<Formatter>> initializeFileJsonLogging(Class<? extends JsonFactory> jsonFactoryClass) {
+        return initializeJsonLogging(config.getValue().file(), config.getValue(), jsonFactoryClass);
     }
 
-    public RuntimeValue<Optional<Formatter>> initializeSocketJsonLogging(JsonFactory jsonFactory) {
-        return initializeJsonLogging(config.getValue().socket(), config.getValue(), jsonFactory);
+    public RuntimeValue<Optional<Formatter>> initializeSocketJsonLogging(Class<? extends JsonFactory> jsonFactoryClass) {
+        return initializeJsonLogging(config.getValue().socket(), config.getValue(), jsonFactoryClass);
     }
 
     public RuntimeValue<Optional<Formatter>> initializeJsonLogging(ConfigFormatter formatter, Config config,
-            JsonFactory jsonFactory) {
+            Class<? extends JsonFactory> jsonFactoryClass) {
         if (formatter == null || !formatter.isEnabled()) {
             return new RuntimeValue<>(Optional.empty());
         }
+        JsonFactory jsonFactory = getJsonFactory(jsonFactoryClass);
         jsonFactory.setConfig(config);
 
         List<JsonProvider> providers;
@@ -68,10 +71,27 @@ public class LoggingJsonRecorder {
         if (log.isDebugEnabled()) {
             String installedProviders = providers.stream().map(p -> p.getClass().toString())
                     .collect(Collectors.joining(", ", "[", "]"));
-            log.debug("Installed json providers {}", installedProviders);
+            log.debug("Installed json providers " + installedProviders);
         }
 
         return new RuntimeValue<>(Optional.of(new JsonFormatter(providers, jsonFactory, config)));
+    }
+
+    private JsonFactory getJsonFactory(Class<? extends JsonFactory> jsonFactoryType) {
+        Supplier<JsonFactory> jsonFactorySupplier = jsonFactories.get(jsonFactoryType);
+        if (jsonFactorySupplier == null) {
+            throw new IllegalArgumentException("Unsupported json factory type: " + jsonFactoryType);
+        }
+        return jsonFactorySupplier.get();
+    }
+
+    private static JacksonJsonFactory initializeJacksonJsonFactory() {
+        ObjectMapperProvider objectMapperProvider = Arc.container().instance(ObjectMapperProvider.class).orElse(null);
+        if (objectMapperProvider != null) {
+            return new JacksonJsonFactory(objectMapperProvider.get());
+        }
+        log.warn("ObjectMapperProvider not found, falling back to default ObjectMapper.");
+        return new JacksonJsonFactory();
     }
 
     private List<JsonProvider> defaultFormat(Config config) {

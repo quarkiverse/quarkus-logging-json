@@ -5,11 +5,11 @@
         <groupId>io.quarkiverse.loggingjson</groupId>
         <artifactId>quarkus-logging-json-parent</artifactId>
         <version>3.4.1-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
+        <relativePath>../../pom.xml</relativePath>
     </parent>
 
-    <artifactId>quarkus-logging-json-integration-tests</artifactId>
-    <name>Quarkus Logging JSON - Integration tests</name>
+    <artifactId>quarkus-logging-json-integration-tests-jackson</artifactId>
+    <name>Quarkus Logging JSON - Integration tests - Jackson</name>
 
     <properties>
         <maven.deploy.skip>true</maven.deploy.skip>

@@ -216,7 +216,8 @@
                 </property>
             </activation>
             <modules>
-                <module>integration-tests</module>
+                <module>integration-tests/jackson</module>
+                <module>integration-tests/jsonb</module>
             </modules>
         </profile>
     </profiles>

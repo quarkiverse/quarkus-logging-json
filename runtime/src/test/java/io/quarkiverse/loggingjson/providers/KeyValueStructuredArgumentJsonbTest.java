@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.time.LocalDate;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
@@ -35,6 +36,9 @@ public class KeyValueStructuredArgumentJsonbTest extends JsonProviderBaseTest {
         assertEquals("{\"key\":[\"value\",\"value2\"]}", run("key", Arrays.asList("value", "value2")));
         assertEquals("{\"key\":{}}", run("key", new Object()));
         assertEquals("{\"key\":{\"field1\":\"field1\",\"field2\":2389472389}}", run("key", new TestPojo()));
+        if (this.type() == Type.JSONB) {
+            assertEquals("{\"key\":\"2026-01-01\"}", run("key", LocalDate.parse("2026-01-01"))); // FIXME Jackson ObjectMapper
+        }
     }
 
     private String run(String key, Object value) throws IOException {

@@ -4,12 +4,12 @@
     <parent>
         <groupId>io.quarkiverse.loggingjson</groupId>
         <artifactId>quarkus-logging-json-parent</artifactId>
-        <version>3.4.1-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
+        <version>3.4.2-SNAPSHOT</version>
+        <relativePath>../../pom.xml</relativePath>
     </parent>
 
-    <artifactId>quarkus-logging-json-integration-tests</artifactId>
-    <name>Quarkus Logging JSON - Integration tests</name>
+    <artifactId>quarkus-logging-json-integration-tests-jsonb</artifactId>
+    <name>Quarkus Logging JSON - Integration tests - JsonB</name>
 
     <properties>
         <maven.deploy.skip>true</maven.deploy.skip>
@@ -25,7 +25,7 @@
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-jackson</artifactId>
+            <artifactId>quarkus-jsonb</artifactId>
         </dependency>
         <dependency>
             <groupId>io.quarkiverse.loggingjson</groupId>
@@ -61,7 +61,7 @@
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-jackson-deployment</artifactId>
+            <artifactId>quarkus-jsonb-deployment</artifactId>
             <version>${quarkus.version}</version>
             <type>pom</type>
             <scope>test</scope>

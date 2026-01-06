@@ -37,7 +37,7 @@ public class KeyValueStructuredArgumentJsonbTest extends JsonProviderBaseTest {
         assertEquals("{\"key\":{}}", run("key", new Object()));
         assertEquals("{\"key\":{\"field1\":\"field1\",\"field2\":2389472389}}", run("key", new TestPojo()));
         if (this.type() == Type.JSONB) {
-            assertEquals("{\"key\":\"2026-01-01\"}", run("key", LocalDate.parse("2026-01-01"))); // FIXME Jackson ObjectMapper
+            assertEquals("{\"key\":\"2026-01-01\"}", run("key", LocalDate.parse("2026-01-01")));
         }
     }
 

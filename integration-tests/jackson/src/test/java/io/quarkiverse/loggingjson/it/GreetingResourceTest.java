@@ -58,7 +58,7 @@ class GreetingResourceTest {
                     final List<String> matchingLines = reader.lines()
                             .filter(line -> line.startsWith("{") && line.contains("\"Mapper test\""))
                             .collect(Collectors.toList());
-                    // Assertions.assertEquals(1, matchingLines.size()); // FIXME Fails in native
+                    Assertions.assertEquals(1, matchingLines.size());
                     // TODO Test expected json log for (OffsetDateTime, empty, testObj)
                 }
 

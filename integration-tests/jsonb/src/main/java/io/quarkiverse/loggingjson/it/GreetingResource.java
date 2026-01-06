@@ -11,8 +11,6 @@ import jakarta.ws.rs.core.MediaType;
 
 import org.jboss.logging.Logger;
 
-import io.quarkus.runtime.annotations.RegisterForReflection;
-
 @Path("/hello")
 public class GreetingResource {
 
@@ -36,7 +34,6 @@ public class GreetingResource {
         return "hello2";
     }
 
-    @RegisterForReflection
     public static class Testing {
         private String name;
         private OffsetDateTime time;

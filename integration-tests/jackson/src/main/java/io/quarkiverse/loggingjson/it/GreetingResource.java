@@ -29,12 +29,12 @@ public class GreetingResource {
     public String mapper() {
         logger.infov("Mapper test",
                 kv("OffsetDateTime", OffsetDateTime.parse("2026-01-01T01:00:00.000Z")),
-                kv("empty", new Object()),
+                kv("empty", "{}"),
                 kv("testObj", new Testing()));
         return "hello2";
     }
 
-    public class Testing {
+    public static class Testing {
         private String name;
         private OffsetDateTime time;
 

@@ -70,7 +70,6 @@ class GreetingResourceTest {
 
                     JsonNode testObj = jsonNode.get("testObj");
                     Assertions.assertEquals("asdf", testObj.get("name").asText());
-
                     Assertions.assertTrue(testObj.has("time"));
                     Assertions.assertTrue(testObj.get("time").isTextual());
                 }

@@ -55,6 +55,16 @@ log.info("Test log of structured arg {}", kv("key2", "value2", "%s: %s")); // (2
 
 Message `(1)` is formatted as `"Test log of structured arg key1=value1"` and `(2)` as `"Test log of structured arg key2: value2"`.
 
+If only the value in the message is required use `io.quarkiverse.loggingjson.providers.KeyValueStructuredArgument.v`.
+
+```java
+import static io.quarkiverse.loggingjson.providers.KeyValueStructuredArgument.*;
+...
+log.info("Test log of structured arg {}", v("key1", "value1")); // (3)
+```
+
+The formatted message of `(3)` is `"Test log of structured arg value"`.
+
 # Custom log handler
 If you want to add your own custom way to handle the LogRecords.
 You can create your own implementations of `io.quarkiverse.loggingjson.JsonProvider`, and provide it using CDI.

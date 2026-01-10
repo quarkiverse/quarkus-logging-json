@@ -1,6 +1,7 @@
 package io.quarkiverse.loggingjson.providers;
 
 import java.io.IOException;
+import java.util.Objects;
 
 import io.quarkiverse.loggingjson.JsonGenerator;
 
@@ -23,6 +24,10 @@ public class KeyValueStructuredArgument implements StructuredArgument {
         return new KeyValueStructuredArgument(key, value);
     }
 
+    public static StructuredArgument v(String key, Object value) {
+        return new KeyValueStructuredArgument(key, value, null);
+    }
+
     public static StructuredArgument kv(String key, Object value, String format) {
         return new KeyValueStructuredArgument(key, value, format);
     }
@@ -34,6 +39,6 @@ public class KeyValueStructuredArgument implements StructuredArgument {
 
     @Override
     public String toString() {
-        return String.format(format, key, value);
+        return format == null ? Objects.toString(value) : String.format(format, key, value);
     }
 }

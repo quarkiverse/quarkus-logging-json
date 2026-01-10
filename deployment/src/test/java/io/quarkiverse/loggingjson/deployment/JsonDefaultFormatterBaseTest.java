@@ -74,7 +74,8 @@ public abstract class JsonDefaultFormatterBaseTest {
         OffsetDateTime beforeFirstLog = OffsetDateTime.now().minusSeconds(1);
 
         try (MDC.MDCCloseable closeable = MDC.putCloseable("mdcKey", "mdcVal")) {
-            log.error("Test {}", "message",
+            log.error("Test {} {}", "message",
+                    KeyValueStructuredArgument.kv("keyOne", "valueOne"),
                     KeyValueStructuredArgument.kv("structuredKey", "structuredValue"),
                     new RuntimeException("Testing stackTrace"));
         }
@@ -103,6 +104,7 @@ public abstract class JsonDefaultFormatterBaseTest {
                 "errorType",
                 "errorMessage",
                 "arg0",
+                "keyOne",
                 "structuredKey",
                 "serviceName");
         Assertions.assertEquals(expectedFields, ImmutableList.copyOf(jsonNode.fieldNames()));
@@ -125,7 +127,7 @@ public abstract class JsonDefaultFormatterBaseTest {
         Assertions.assertEquals("ERROR", jsonNode.findValue("level").asText());
 
         Assertions.assertTrue(jsonNode.findValue("message").isTextual());
-        Assertions.assertEquals("Test message", jsonNode.findValue("message").asText());
+        Assertions.assertEquals("Test message keyOne=valueOne", jsonNode.findValue("message").asText());
 
         Assertions.assertTrue(jsonNode.findValue("threadName").isTextual());
         Assertions.assertEquals("main", jsonNode.findValue("threadName").asText());

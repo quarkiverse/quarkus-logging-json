@@ -65,6 +65,12 @@ public class MyJsonProvider implements JsonProvider {
 }
 ```
 
+If you need a fully customized json output (e.g. for support of corporate json log format), you can start off by using the above implementation in conjunction with the empty log format:
+
+```properties
+quarkus.log.json.log-format=empty
+```
+
 ## Configuration Properties Relocation
 
 In 3.2.0, two configuration properties were renamed to be more consistent with Quarkus configuration.

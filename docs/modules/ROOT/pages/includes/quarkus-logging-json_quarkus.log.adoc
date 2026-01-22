@@ -997,7 +997,7 @@ ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_LOG_FORMAT+++`
 endif::add-copy-button-to-env-var[]
 --
-a|`default`, `ecs`
+a|`default`, `ecs`, `empty`
 |`+++default+++`
 
 |===

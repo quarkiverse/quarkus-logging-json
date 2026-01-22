@@ -50,6 +50,8 @@ public class LoggingJsonRecorder {
 
         if (config.logFormat() == Config.LogFormat.ECS) {
             providers = ecsFormat(config);
+        } else if (config.logFormat() == Config.LogFormat.EMPTY) {
+            providers = emptyFormat(config);
         } else {
             providers = defaultFormat(config);
         }
@@ -113,6 +115,13 @@ public class LoggingJsonRecorder {
         providers.add(new AdditionalFieldsJsonProvider(config.additionalField()));
         providers.add(new MessageJsonProvider(config.fields().message()));
         providers.add(new StaticKeyValueProvider("ecs.version", "9.0.0"));
+        return providers;
+    }
+
+    private List<JsonProvider> emptyFormat(Config config) {
+        List<JsonProvider> providers = new ArrayList<>();
+        providers.add(new ArgumentsJsonProvider(config.fields().arguments()));
+        providers.add(new AdditionalFieldsJsonProvider(config.additionalField()));
         return providers;
     }
 }

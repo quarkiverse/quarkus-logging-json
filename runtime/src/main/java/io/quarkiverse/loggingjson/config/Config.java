@@ -266,6 +266,7 @@ public interface Config {
 
     enum LogFormat {
         DEFAULT,
-        ECS
+        ECS,
+        EMPTY
     }
 }

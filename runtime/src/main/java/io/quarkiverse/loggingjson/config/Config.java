@@ -152,6 +152,27 @@ public interface Config {
          * Options for errorMessage.
          */
         FieldConfig errorMessage();
+
+        /**
+         * Options for gcpSpanId.
+         */
+        GcpSpanIdConfig gcpSpanId();
+
+        /**
+         * Options for gcpTraceId.
+         */
+        GcpTraceIdConfig gcpTraceId();
+
+        /**
+         * Options for epochSecond.
+         */
+        FieldConfig epochSecond();
+
+        /**
+         * Options for nanoSecond.
+         */
+        FieldConfig nanoSecond();
+
     }
 
     @ConfigGroup
@@ -256,6 +277,49 @@ public interface Config {
         AdditionalFieldType type();
     }
 
+    @ConfigGroup
+    interface GcpSpanIdConfig {
+
+        /**
+         * Used to change the json key for the field.
+         */
+        Optional<String> fieldName();
+
+        /**
+         * Enable or disable the field.
+         */
+        Optional<Boolean> enabled();
+
+        /**
+         * Key to lookup from mdc.
+         */
+        Optional<String> mdcKey();
+    }
+
+    @ConfigGroup
+    interface GcpTraceIdConfig {
+
+        /**
+         * Used to change the json key for the field.
+         */
+        Optional<String> fieldName();
+
+        /**
+         * Enable or disable the field.
+         */
+        Optional<Boolean> enabled();
+
+        /**
+         * Will write the values at the top level of the JSON log object.
+         */
+        Optional<String> projectId();
+
+        /**
+         * Key to lookup from mdc.
+         */
+        Optional<String> mdcKey();
+    }
+
     enum AdditionalFieldType {
         STRING,
         INT,
@@ -266,6 +330,7 @@ public interface Config {
 
     enum LogFormat {
         DEFAULT,
-        ECS
+        ECS,
+        GCP
     }
 }

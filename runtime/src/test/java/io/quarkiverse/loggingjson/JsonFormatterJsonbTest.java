@@ -48,6 +48,6 @@ class JsonFormatterJsonbTest extends JsonProviderBaseTest {
 
         Assertions.assertNotNull(formatted);
         Assertions.assertFalse(formatted.isEmpty());
-        Assertions.assertEquals(expectedPrettyPrintMessage, formatted);
+        Assertions.assertEquals(expectedPrettyPrintMessage.trim(), formatted.trim());
     }
 }

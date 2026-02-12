@@ -36,6 +36,7 @@ class JsonFormatterJsonbTest extends JsonProviderBaseTest {
         Assertions.assertEquals("{\"message\":\"TestMessage\"}\n", formatted);
     }
 
+    @Test
     void formatPrettyPrint() {
         final Config config = GetConfig(Map.of("quarkus.log.json.pretty-print", "true"));
 

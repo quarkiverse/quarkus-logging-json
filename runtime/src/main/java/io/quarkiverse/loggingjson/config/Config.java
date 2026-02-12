@@ -61,6 +61,9 @@ public interface Config {
 
     /**
      * Support changing logging format.
+     * <p>
+     * When set to none, configs for fields will have no effect.
+     * Instead, the output has to be defined by code using a custom `JsonProvider`.
      */
     @WithDefault("DEFAULT")
     LogFormat logFormat();
@@ -267,6 +270,6 @@ public interface Config {
     enum LogFormat {
         DEFAULT,
         ECS,
-        EMPTY
+        NONE
     }
 }

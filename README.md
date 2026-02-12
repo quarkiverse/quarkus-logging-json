@@ -65,11 +65,36 @@ public class MyJsonProvider implements JsonProvider {
 }
 ```
 
-If you need a fully customized json output (e.g. for support of corporate json log format), you can start off by using the above implementation in conjunction with the empty log format:
+## Fully customized json output without providers (`log-format=none`)
+Sometimes there is a need for a fully customized json output (e.g. for support of corporate json log format): The usual adjustment methods of the log output are not sufficient, if some of the existing providers are needed to be moved down the json object tree to some subobject inside attributes (e.g. put the message inside a json `data` object `data.message`). 
+
+In such cases the idea is to start with an empty format by adding
 
 ```properties
-quarkus.log.json.log-format=empty
+quarkus.log.json.log-format=none
 ```
+
+to the configuration. This format doesn't add any fields to the json output and ignores any field specific configuration. Next you need to implement the full json output yourself, by writing a custom `JsonProvider` implementation (here putting the message inside the `data` object):
+
+```java
+import jakarta.inject.Singleton;
+import java.io.IOException;
+
+import io.quarkiverse.loggingjson.JsonProvider;
+import io.quarkiverse.loggingjson.JsonGenerator;
+import org.jboss.logmanager.ExtLogRecord;
+
+@Singleton
+public class FullyCustomizedJsonProvider implements JsonProvider {
+
+    @Override
+    public void writeTo(JsonGenerator generator, ExtLogRecord event) throws IOException {
+        generator.writeObjectField("data", Map.of("message", event.getMessage())); // outputs the message inside a data object
+    }
+}
+```
+
+In the above example, the `message` is just written plain, see `MessageJsonProvider` for an example on how to write the message formatted for being written into json.
 
 ## Configuration Properties Relocation
 

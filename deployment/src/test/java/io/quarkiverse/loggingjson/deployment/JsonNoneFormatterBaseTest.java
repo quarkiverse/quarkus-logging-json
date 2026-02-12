@@ -2,7 +2,6 @@ package io.quarkiverse.loggingjson.deployment;
 
 import java.io.StringWriter;
 import java.util.Arrays;
-import java.util.List;
 import java.util.logging.*;
 
 import org.jboss.logmanager.handlers.ConsoleHandler;
@@ -20,7 +19,7 @@ import io.quarkiverse.loggingjson.providers.KeyValueStructuredArgument;
 import io.quarkus.bootstrap.logging.InitialConfigurator;
 import io.quarkus.bootstrap.logging.QuarkusDelayedHandler;
 
-public abstract class JsonEmptyFormatterBaseTest {
+public abstract class JsonNoneFormatterBaseTest {
     private static final StringWriter writer = new StringWriter();
     private static WriterHandler handler;
 
@@ -75,20 +74,6 @@ public abstract class JsonEmptyFormatterBaseTest {
         Assertions.assertEquals(1, lines.length);
         JsonNode jsonNode = new ObjectMapper().readValue(lines[0], JsonNode.class);
         Assertions.assertTrue(jsonNode.isObject());
-
-        List<String> expectedFields = Arrays.asList(
-                "arg0",
-                "structuredKey",
-                "service.name");
-        Assertions.assertEquals(expectedFields, ImmutableList.copyOf(jsonNode.fieldNames()));
-
-        Assertions.assertTrue(jsonNode.findValue("arg0").isTextual());
-        Assertions.assertEquals("message", jsonNode.findValue("arg0").asText());
-
-        Assertions.assertTrue(jsonNode.findValue("structuredKey").isTextual());
-        Assertions.assertEquals("structuredValue", jsonNode.findValue("structuredKey").asText());
-
-        Assertions.assertTrue(jsonNode.findValue("service.name").isTextual());
-        Assertions.assertEquals("deployment-test", jsonNode.findValue("service.name").asText());
+        Assertions.assertTrue(ImmutableList.copyOf(jsonNode.fieldNames()).isEmpty());
     }
 }

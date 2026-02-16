@@ -637,6 +637,90 @@ endif::add-copy-button-to-env-var[]
 |boolean
 |`+++false+++`
 
+a| [[quarkus-logging-json_quarkus-log-json-fields-trace-id-field-name]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-fields-trace-id-field-name[`quarkus.log.json.fields.trace-id.field-name`]##
+ifdef::add-copy-button-to-config-props[]
+config_property_copy_button:+++quarkus.log.json.fields.trace-id.field-name+++[]
+endif::add-copy-button-to-config-props[]
+
+
+[.description]
+--
+Used to change the json key for the field.
+
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FIELDS_TRACE_ID_FIELD_NAME+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_TRACE_ID_FIELD_NAME+++`
+endif::add-copy-button-to-env-var[]
+--
+|string
+|
+
+a| [[quarkus-logging-json_quarkus-log-json-fields-trace-id-enabled]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-fields-trace-id-enabled[`quarkus.log.json.fields.trace-id.enabled`]##
+ifdef::add-copy-button-to-config-props[]
+config_property_copy_button:+++quarkus.log.json.fields.trace-id.enabled+++[]
+endif::add-copy-button-to-config-props[]
+
+
+[.description]
+--
+Enable or disable the field.
+
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FIELDS_TRACE_ID_ENABLED+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_TRACE_ID_ENABLED+++`
+endif::add-copy-button-to-env-var[]
+--
+|boolean
+|
+
+a| [[quarkus-logging-json_quarkus-log-json-fields-span-id-field-name]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-fields-span-id-field-name[`quarkus.log.json.fields.span-id.field-name`]##
+ifdef::add-copy-button-to-config-props[]
+config_property_copy_button:+++quarkus.log.json.fields.span-id.field-name+++[]
+endif::add-copy-button-to-config-props[]
+
+
+[.description]
+--
+Used to change the json key for the field.
+
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FIELDS_SPAN_ID_FIELD_NAME+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_SPAN_ID_FIELD_NAME+++`
+endif::add-copy-button-to-env-var[]
+--
+|string
+|
+
+a| [[quarkus-logging-json_quarkus-log-json-fields-span-id-enabled]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-fields-span-id-enabled[`quarkus.log.json.fields.span-id.enabled`]##
+ifdef::add-copy-button-to-config-props[]
+config_property_copy_button:+++quarkus.log.json.fields.span-id.enabled+++[]
+endif::add-copy-button-to-config-props[]
+
+
+[.description]
+--
+Enable or disable the field.
+
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_FIELDS_SPAN_ID_ENABLED+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_LOG_JSON_FIELDS_SPAN_ID_ENABLED+++`
+endif::add-copy-button-to-env-var[]
+--
+|boolean
+|
+
 a| [[quarkus-logging-json_quarkus-log-json-fields-ndc-field-name]] [.property-path]##link:#quarkus-logging-json_quarkus-log-json-fields-ndc-field-name[`quarkus.log.json.fields.ndc.field-name`]##
 ifdef::add-copy-button-to-config-props[]
 config_property_copy_button:+++quarkus.log.json.fields.ndc.field-name+++[]

@@ -100,6 +100,8 @@ public class LoggingJsonRecorder {
     private List<JsonProvider> ecsFormat(Config config) {
         List<JsonProvider> providers = new ArrayList<>();
         providers.add(new TimestampJsonProvider(config.fields().timestamp(), "@timestamp"));
+        // @see <a href="https://www.elastic.co/guide/en/ecs/current/ecs-event.html#field-event-id"><abbr title="Elastic Common Schema">ECS</abbr> Field Reference - <code>event.id</code></a>
+        providers.add(new EventIdJsonProvider(config.fields().eventId(), "event.id"));
         providers.add(new LoggerNameJsonProvider(config.fields().loggerName(), "log.logger"));
         providers.add(new LogLevelJsonProvider(config.fields().level(), "log.level"));
         providers.add(new ThreadNameJsonProvider(config.fields().threadName(), "process.thread.name"));

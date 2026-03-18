@@ -989,6 +989,8 @@ endif::add-copy-button-to-config-props[]
 --
 Support changing logging format.
 
+When set to none, configs for fields will have no effect. Instead, the output has to be defined by code using a custom `JsonProvider`.
+
 
 ifdef::add-copy-button-to-env-var[]
 Environment variable: env_var_with_copy_button:+++QUARKUS_LOG_JSON_LOG_FORMAT+++[]
@@ -997,7 +999,7 @@ ifndef::add-copy-button-to-env-var[]
 Environment variable: `+++QUARKUS_LOG_JSON_LOG_FORMAT+++`
 endif::add-copy-button-to-env-var[]
 --
-a|`default`, `ecs`
+a|`default`, `ecs`, `none`
 |`+++default+++`
 
 |===

@@ -50,6 +50,8 @@ public class LoggingJsonRecorder {
 
         if (config.logFormat() == Config.LogFormat.ECS) {
             providers = ecsFormat(config);
+        } else if (config.logFormat() == Config.LogFormat.NONE) {
+            providers = new ArrayList<>();
         } else {
             providers = defaultFormat(config);
         }

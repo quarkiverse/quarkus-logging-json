@@ -34,6 +34,8 @@ public class LoggingJsonRecorderUtils {
 
         if (config.logFormat() == Config.LogFormat.ECS) {
             providers = getProvidersInEcsFormat(config);
+        } else if (config.logFormat() == Config.LogFormat.NONE) {
+            providers = new ArrayList<>();
         } else {
             providers = getProvidersInDefaultFormat(config);
         }

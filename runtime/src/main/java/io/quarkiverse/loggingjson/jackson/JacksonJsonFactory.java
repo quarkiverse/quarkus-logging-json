@@ -3,6 +3,8 @@ package io.quarkiverse.loggingjson.jackson;
 import java.io.IOException;
 import java.util.ServiceConfigurationError;
 
+import org.jboss.logging.Logger;
+
 import com.fasterxml.jackson.core.JsonFactoryBuilder;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -14,28 +16,32 @@ import io.quarkiverse.loggingjson.config.Config;
 
 public class JacksonJsonFactory implements JsonFactory {
 
+    private static final Logger log = Logger.getLogger(JacksonJsonFactory.class);
+    private final ObjectMapper objectMapper;
     private com.fasterxml.jackson.core.JsonFactory jsonFactory;
 
+    public JacksonJsonFactory(ObjectMapper objectMapper) {
+        this.objectMapper = objectMapper == null ? initializeObjectMapper() : objectMapper;
+        this.jsonFactory = createJsonFactory(false);
+    }
+
     public JacksonJsonFactory() {
-        jsonFactory = createJsonFactory(false);
+        this.objectMapper = initializeObjectMapper();
+        this.jsonFactory = createJsonFactory(false);
+    }
+
+    private ObjectMapper initializeObjectMapper() {
+        ObjectMapper defaultObjectMapper = new ObjectMapper();
+        defaultObjectMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
+        try {
+            defaultObjectMapper.findAndRegisterModules();
+        } catch (ServiceConfigurationError serviceConfigurationError) {
+            log.error("Error occurred while dynamically loading jackson modules.", serviceConfigurationError);
+        }
+        return defaultObjectMapper;
     }
 
     private com.fasterxml.jackson.core.JsonFactory createJsonFactory(boolean prettyPrint) {
-        ObjectMapper objectMapper = new ObjectMapper()
-                /*
-                 * Assume empty beans are ok.
-                 */
-                .disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
-
-        try {
-            objectMapper.findAndRegisterModules();
-        } catch (ServiceConfigurationError serviceConfigurationError) {
-            // TODO Fix output of error message
-
-            System.err.println("Error occurred while dynamically loading jackson modules");
-            serviceConfigurationError.printStackTrace();
-        }
-
         final JsonFactoryBuilder builder = new JsonFactoryBuilder(objectMapper.getFactory());
         if (prettyPrint) {
             builder.addDecorator((factory, generator) -> generator.useDefaultPrettyPrinter());

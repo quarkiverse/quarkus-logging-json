@@ -18,6 +18,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import io.quarkus.test.junit.QuarkusTest;
 
 @QuarkusTest
@@ -55,11 +58,20 @@ class GreetingResourceTest {
                 try (BufferedReader reader = new BufferedReader(
                         new InputStreamReader(new ByteArrayInputStream(bytes.toByteArray()), StandardCharsets.UTF_8))) {
 
-                    final List<String> matchingLines = reader.lines()
+                    final List<String> lines = reader.lines().collect(Collectors.toList());
+                    final List<String> matchingLines = lines.stream()
                             .filter(line -> line.startsWith("{") && line.contains("\"Mapper test\""))
                             .collect(Collectors.toList());
-                    // Assertions.assertEquals(1, matchingLines.size()); // FIXME Fails in native
-                    // TODO Test expected json log for (OffsetDateTime, empty, testObj)
+                    Assertions.assertEquals(1, matchingLines.size());
+
+                    JsonNode jsonNode = new ObjectMapper().readTree(lines.get(0));
+                    Assertions.assertEquals("Mapper test", jsonNode.get("message").asText());
+                    Assertions.assertEquals("2026-01-01T01:00:00Z", jsonNode.get("OffsetDateTime").asText());
+
+                    JsonNode testObj = jsonNode.get("testObj");
+                    Assertions.assertEquals("asdf", testObj.get("name").asText());
+                    Assertions.assertTrue(testObj.has("time"));
+                    Assertions.assertTrue(testObj.get("time").isTextual());
                 }
 
             }

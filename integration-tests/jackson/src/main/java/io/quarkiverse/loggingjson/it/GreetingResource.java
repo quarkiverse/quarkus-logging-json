@@ -3,6 +3,7 @@ package io.quarkiverse.loggingjson.it;
 import static io.quarkiverse.loggingjson.providers.KeyValueStructuredArgument.kv;
 
 import java.time.OffsetDateTime;
+import java.util.HashMap;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
@@ -10,6 +11,8 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 
 import org.jboss.logging.Logger;
+
+import io.quarkus.runtime.annotations.RegisterForReflection;
 
 @Path("/hello")
 public class GreetingResource {
@@ -29,12 +32,13 @@ public class GreetingResource {
     public String mapper() {
         logger.infov("Mapper test",
                 kv("OffsetDateTime", OffsetDateTime.parse("2026-01-01T01:00:00.000Z")),
-                kv("empty", new Object()),
+                kv("empty", new HashMap<>()),
                 kv("testObj", new Testing()));
         return "hello2";
     }
 
-    public class Testing {
+    @RegisterForReflection
+    public static class Testing {
         private String name;
         private OffsetDateTime time;
 

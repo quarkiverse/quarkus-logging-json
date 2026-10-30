@@ -102,8 +102,9 @@ public class LoggingJsonRecorder {
     private List<JsonProvider> ecsFormat(Config config) {
         List<JsonProvider> providers = new ArrayList<>();
         providers.add(new TimestampJsonProvider(config.fields().timestamp(), "@timestamp"));
-        providers.add(new LoggerNameJsonProvider(config.fields().loggerName(), "log.logger"));
         providers.add(new LogLevelJsonProvider(config.fields().level(), "log.level"));
+        providers.add(new MessageJsonProvider(config.fields().message()));
+        providers.add(new LoggerNameJsonProvider(config.fields().loggerName(), "log.logger"));
         providers.add(new ThreadNameJsonProvider(config.fields().threadName(), "process.thread.name"));
         providers.add(new ThreadIdJsonProvider(config.fields().threadId(), "process.thread.id"));
         providers.add(new MDCJsonProvider(config.fields().mdc()));
@@ -113,7 +114,6 @@ public class LoggingJsonRecorder {
         providers.add(new ErrorMessageJsonProvider(config.fields().errorMessage(), "error.message"));
         providers.add(new ArgumentsJsonProvider(config.fields().arguments()));
         providers.add(new AdditionalFieldsJsonProvider(config.additionalField()));
-        providers.add(new MessageJsonProvider(config.fields().message()));
         providers.add(new StaticKeyValueProvider("ecs.version", "9.0.0"));
         return providers;
     }

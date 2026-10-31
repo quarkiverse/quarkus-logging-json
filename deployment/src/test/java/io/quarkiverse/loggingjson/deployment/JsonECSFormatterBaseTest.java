@@ -84,8 +84,9 @@ public abstract class JsonECSFormatterBaseTest {
 
         List<String> expectedFields = Arrays.asList(
                 "@timestamp",
-                "log.logger",
                 "log.level",
+                "message",
+                "log.logger",
                 "process.thread.name",
                 "process.thread.id",
                 "mdc",
@@ -96,7 +97,6 @@ public abstract class JsonECSFormatterBaseTest {
                 "arg0",
                 "structuredKey",
                 "service.name",
-                "message",
                 "ecs.version");
         Assertions.assertEquals(expectedFields, ImmutableList.copyOf(jsonNode.fieldNames()));
 

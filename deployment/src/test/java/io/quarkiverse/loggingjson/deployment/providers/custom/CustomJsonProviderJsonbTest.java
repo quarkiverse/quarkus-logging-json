@@ -17,12 +17,12 @@ import com.google.common.collect.ImmutableList;
 
 import io.quarkiverse.loggingjson.deployment.JsonDefaultFormatterBaseTest;
 import io.quarkus.maven.dependency.Dependency;
-import io.quarkus.test.QuarkusUnitTest;
+import io.quarkus.test.QuarkusExtensionTest;
 
 class CustomJsonProviderJsonbTest extends JsonDefaultFormatterBaseTest {
 
     @RegisterExtension
-    static final QuarkusUnitTest config = new QuarkusUnitTest()
+    static final QuarkusExtensionTest config = new QuarkusExtensionTest()
             .setArchiveProducer(() -> ShrinkWrap.create(JavaArchive.class)
                     .addClasses(FirstCustomJsonProvider.class, SecondCustomJsonProvider.class, ThirdCustomJsonProvider.class))
             .setForcedDependencies(Collections.singletonList(

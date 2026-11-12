@@ -19,7 +19,7 @@ import io.quarkiverse.loggingjson.JsonFormatter;
 import io.quarkus.bootstrap.logging.InitialConfigurator;
 import io.quarkus.bootstrap.logging.QuarkusDelayedHandler;
 import io.quarkus.maven.dependency.Dependency;
-import io.quarkus.test.QuarkusUnitTest;
+import io.quarkus.test.QuarkusExtensionTest;
 
 /**
  * In this test, we check that the feature is disabled as it is the only way to check the relocation/fallback works.
@@ -27,7 +27,7 @@ import io.quarkus.test.QuarkusUnitTest;
 class JsonDeprecatedConfigTest {
 
     @RegisterExtension
-    static final QuarkusUnitTest config = new QuarkusUnitTest()
+    static final QuarkusExtensionTest config = new QuarkusExtensionTest()
             .setArchiveProducer(() -> ShrinkWrap.create(JavaArchive.class))
             .setForcedDependencies(Collections
                     .singletonList(Dependency.of("io.quarkus", "quarkus-jackson", System.getProperty("test.quarkus.version"))))

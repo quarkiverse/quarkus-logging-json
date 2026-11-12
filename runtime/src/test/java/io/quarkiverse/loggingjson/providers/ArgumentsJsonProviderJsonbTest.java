@@ -9,10 +9,10 @@ import org.jboss.logmanager.ExtLogRecord;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.collect.ImmutableList;
 
 import io.quarkiverse.loggingjson.config.Config;
+import tools.jackson.databind.JsonNode;
 
 public class ArgumentsJsonProviderJsonbTest extends JsonProviderBaseTest {
     @Override
@@ -27,7 +27,7 @@ public class ArgumentsJsonProviderJsonbTest extends JsonProviderBaseTest {
 
         final ExtLogRecord event = new ExtLogRecord(Level.ALL, "", "");
         final JsonNode result = getResultAsJsonNode(provider, event);
-        Assertions.assertEquals(0, ImmutableList.copyOf(result.fieldNames()).size());
+        Assertions.assertEquals(0, ImmutableList.copyOf(result.propertyNames()).size());
 
         event.setParameters(new Object[] {
                 "nonIncluded",
@@ -36,7 +36,7 @@ public class ArgumentsJsonProviderJsonbTest extends JsonProviderBaseTest {
         });
         final JsonNode result2 = getResultAsJsonNode(provider, event);
 
-        Assertions.assertEquals(Collections.singletonList("key"), ImmutableList.copyOf(result2.fieldNames()));
+        Assertions.assertEquals(Collections.singletonList("key"), ImmutableList.copyOf(result2.propertyNames()));
 
         String key = result2.findValue("key").asText();
         Assertions.assertNotNull(key);
@@ -56,7 +56,7 @@ public class ArgumentsJsonProviderJsonbTest extends JsonProviderBaseTest {
                 new RuntimeException("Should not be included")
         });
         final JsonNode result = getResultAsJsonNode(provider, event);
-        Assertions.assertEquals(0, ImmutableList.copyOf(result.fieldNames()).size());
+        Assertions.assertEquals(0, ImmutableList.copyOf(result.propertyNames()).size());
         Assertions.assertFalse(provider.isEnabled());
     }
 
@@ -72,8 +72,8 @@ public class ArgumentsJsonProviderJsonbTest extends JsonProviderBaseTest {
                 new RuntimeException("Should not be included")
         });
         final JsonNode result = getResultAsJsonNode(provider, event);
-        Assertions.assertEquals(Collections.singletonList("arguments"), ImmutableList.copyOf(result.fieldNames()));
-        Assertions.assertEquals(Arrays.asList("arg0", "key"), ImmutableList.copyOf(result.get("arguments").fieldNames()));
+        Assertions.assertEquals(Collections.singletonList("arguments"), ImmutableList.copyOf(result.propertyNames()));
+        Assertions.assertEquals(Arrays.asList("arg0", "key"), ImmutableList.copyOf(result.get("arguments").propertyNames()));
         Assertions.assertEquals("included", result.get("arguments").get("arg0").asText());
         Assertions.assertEquals("value", result.get("arguments").get("key").asText());
 
@@ -83,8 +83,8 @@ public class ArgumentsJsonProviderJsonbTest extends JsonProviderBaseTest {
                 new RuntimeException("Should not be included")
         });
         final JsonNode result2 = getResultAsJsonNode(provider, event);
-        Assertions.assertEquals(Collections.singletonList("arguments"), ImmutableList.copyOf(result2.fieldNames()));
-        Assertions.assertEquals(Arrays.asList("key", "arg1"), ImmutableList.copyOf(result2.get("arguments").fieldNames()));
+        Assertions.assertEquals(Collections.singletonList("arguments"), ImmutableList.copyOf(result2.propertyNames()));
+        Assertions.assertEquals(Arrays.asList("key", "arg1"), ImmutableList.copyOf(result2.get("arguments").propertyNames()));
         Assertions.assertEquals("included", result2.get("arguments").get("arg1").asText());
         Assertions.assertEquals("value", result2.get("arguments").get("key").asText());
 

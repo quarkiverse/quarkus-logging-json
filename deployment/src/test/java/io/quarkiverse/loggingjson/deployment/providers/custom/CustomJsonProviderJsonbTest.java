@@ -11,13 +11,13 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.slf4j.LoggerFactory;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableList;
 
 import io.quarkiverse.loggingjson.deployment.JsonDefaultFormatterBaseTest;
 import io.quarkus.maven.dependency.Dependency;
 import io.quarkus.test.QuarkusExtensionTest;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
 
 class CustomJsonProviderJsonbTest extends JsonDefaultFormatterBaseTest {
 
@@ -50,7 +50,7 @@ class CustomJsonProviderJsonbTest extends JsonDefaultFormatterBaseTest {
         JsonNode jsonNode = mapper.readValue(lines[lines.length - 1], JsonNode.class);
         Assertions.assertTrue(jsonNode.isObject());
 
-        ImmutableList<String> fields = ImmutableList.copyOf(jsonNode.fieldNames());
+        ImmutableList<String> fields = ImmutableList.copyOf(jsonNode.propertyNames());
         Assertions.assertTrue(fields.contains("first"));
         Assertions.assertTrue(firstCustomJsonProvider.getWriteToNumberOfCalls() > 0);
 

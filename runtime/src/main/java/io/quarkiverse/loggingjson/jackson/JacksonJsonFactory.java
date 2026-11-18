@@ -3,32 +3,33 @@ package io.quarkiverse.loggingjson.jackson;
 import java.io.IOException;
 import java.util.ServiceConfigurationError;
 
-import com.fasterxml.jackson.core.JsonFactoryBuilder;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-
 import io.quarkiverse.loggingjson.JsonFactory;
 import io.quarkiverse.loggingjson.JsonGenerator;
 import io.quarkiverse.loggingjson.StringBuilderWriter;
 import io.quarkiverse.loggingjson.config.Config;
+import tools.jackson.core.StreamWriteFeature;
+import tools.jackson.databind.ObjectWriter;
+import tools.jackson.databind.SerializationFeature;
+import tools.jackson.databind.json.JsonMapper;
 
 public class JacksonJsonFactory implements JsonFactory {
 
-    private com.fasterxml.jackson.core.JsonFactory jsonFactory;
+    private ObjectWriter objectWriter;
 
     public JacksonJsonFactory() {
-        jsonFactory = createJsonFactory(false);
+        objectWriter = createObjectWriter(false);
     }
 
-    private com.fasterxml.jackson.core.JsonFactory createJsonFactory(boolean prettyPrint) {
-        ObjectMapper objectMapper = new ObjectMapper()
+    private ObjectWriter createObjectWriter(boolean prettyPrint) {
+        JsonMapper.Builder builder = JsonMapper.builder()
                 /*
                  * Assume empty beans are ok.
                  */
-                .disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
+                .disable(SerializationFeature.FAIL_ON_EMPTY_BEANS)
+                .disable(StreamWriteFeature.FLUSH_PASSED_TO_STREAM);
 
         try {
-            objectMapper.findAndRegisterModules();
+            builder.findAndAddModules();
         } catch (ServiceConfigurationError serviceConfigurationError) {
             // TODO Fix output of error message
 
@@ -36,23 +37,17 @@ public class JacksonJsonFactory implements JsonFactory {
             serviceConfigurationError.printStackTrace();
         }
 
-        final JsonFactoryBuilder builder = new JsonFactoryBuilder(objectMapper.getFactory());
-        if (prettyPrint) {
-            builder.addDecorator((factory, generator) -> generator.useDefaultPrettyPrinter());
-        }
-        return builder
-                .build()
-                .setCodec(objectMapper)
-                .disable(com.fasterxml.jackson.core.JsonGenerator.Feature.FLUSH_PASSED_TO_STREAM);
+        JsonMapper mapper = builder.build();
+        return prettyPrint ? mapper.writerWithDefaultPrettyPrinter() : mapper.writer();
     }
 
     @Override
     public void setConfig(Config config) {
-        jsonFactory = createJsonFactory(config.prettyPrint());
+        objectWriter = createObjectWriter(config.prettyPrint());
     }
 
     @Override
     public JsonGenerator createGenerator(StringBuilderWriter writer) throws IOException {
-        return new JacksonJsonGenerator(jsonFactory.createGenerator(writer));
+        return new JacksonJsonGenerator(objectWriter.createGenerator(writer));
     }
 }

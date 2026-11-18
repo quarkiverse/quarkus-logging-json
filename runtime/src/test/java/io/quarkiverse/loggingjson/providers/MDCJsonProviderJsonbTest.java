@@ -8,10 +8,10 @@ import org.jboss.logmanager.ExtLogRecord;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.collect.ImmutableList;
 
 import io.quarkiverse.loggingjson.config.Config;
+import tools.jackson.databind.JsonNode;
 
 public class MDCJsonProviderJsonbTest extends JsonProviderBaseTest {
     @Override
@@ -32,7 +32,7 @@ public class MDCJsonProviderJsonbTest extends JsonProviderBaseTest {
         final JsonNode mdc = result.findValue("mdc");
         Assertions.assertNotNull(mdc);
         Assertions.assertTrue(mdc.isObject());
-        Assertions.assertEquals(Arrays.asList("mdcKey1", "mdcKey2"), ImmutableList.copyOf(mdc.fieldNames()));
+        Assertions.assertEquals(Arrays.asList("mdcKey1", "mdcKey2"), ImmutableList.copyOf(mdc.propertyNames()));
         Assertions.assertEquals("mdcValue1", mdc.get("mdcKey1").asText());
         Assertions.assertEquals("mdcValue2", mdc.get("mdcKey2").asText());
         Assertions.assertTrue(provider.isEnabled());
@@ -51,7 +51,7 @@ public class MDCJsonProviderJsonbTest extends JsonProviderBaseTest {
         final JsonNode mdc = result.findValue("m");
         Assertions.assertNotNull(mdc);
         Assertions.assertTrue(mdc.isObject());
-        Assertions.assertEquals(Arrays.asList("mdcKey1", "mdcKey2"), ImmutableList.copyOf(mdc.fieldNames()));
+        Assertions.assertEquals(Arrays.asList("mdcKey1", "mdcKey2"), ImmutableList.copyOf(mdc.propertyNames()));
         Assertions.assertEquals("mdcValue1", mdc.get("mdcKey1").asText());
         Assertions.assertEquals("mdcValue2", mdc.get("mdcKey2").asText());
 
@@ -72,7 +72,7 @@ public class MDCJsonProviderJsonbTest extends JsonProviderBaseTest {
         final JsonNode result = getResultAsJsonNode(provider, event);
 
         Assertions.assertFalse(result.has("m"));
-        Assertions.assertEquals(Arrays.asList("mdcKey1", "mdcKey2"), ImmutableList.copyOf(result.fieldNames()));
+        Assertions.assertEquals(Arrays.asList("mdcKey1", "mdcKey2"), ImmutableList.copyOf(result.propertyNames()));
         Assertions.assertEquals("mdcValue1", result.get("mdcKey1").asText());
         Assertions.assertEquals("mdcValue2", result.get("mdcKey2").asText());
     }

@@ -9,12 +9,12 @@ import org.jboss.logmanager.ExtLogRecord;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.collect.ImmutableList;
 
 import io.quarkiverse.loggingjson.config.Config;
 import io.quarkiverse.loggingjson.config.Config.AdditionalFieldConfig;
 import io.quarkiverse.loggingjson.config.Config.AdditionalFieldType;
+import tools.jackson.databind.JsonNode;
 
 public class AdditionalFieldsJsonProviderJsonbTest extends JsonProviderBaseTest {
     @Override
@@ -31,7 +31,7 @@ public class AdditionalFieldsJsonProviderJsonbTest extends JsonProviderBaseTest 
         final JsonNode result = getResultAsJsonNode(provider, event);
 
         Assertions.assertTrue(result.isObject());
-        Assertions.assertEquals(0, ImmutableList.copyOf(result.fieldNames()).size());
+        Assertions.assertEquals(0, ImmutableList.copyOf(result.propertyNames()).size());
         Assertions.assertFalse(provider.isEnabled());
         Assertions.assertFalse(new AdditionalFieldsJsonProvider(null).isEnabled());
     }
@@ -51,7 +51,7 @@ public class AdditionalFieldsJsonProviderJsonbTest extends JsonProviderBaseTest 
 
         Assertions.assertTrue(result.isObject());
         Assertions.assertEquals(Arrays.asList("string", "double", "float", "int", "long"),
-                ImmutableList.copyOf(result.fieldNames()));
+                ImmutableList.copyOf(result.propertyNames()));
         Assertions.assertTrue(provider.isEnabled());
         Assertions.assertEquals("stringType", result.get("string").asText());
         Assertions.assertEquals(123, result.get("int").asInt());

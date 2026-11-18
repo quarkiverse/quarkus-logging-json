@@ -10,14 +10,14 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.slf4j.LoggerFactory;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableList;
 
 import io.quarkiverse.loggingjson.JsonFormatter;
 import io.quarkiverse.loggingjson.providers.KeyValueStructuredArgument;
 import io.quarkus.bootstrap.logging.InitialConfigurator;
 import io.quarkus.bootstrap.logging.QuarkusDelayedHandler;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
 
 public abstract class JsonNoneFormatterBaseTest {
     private static final StringWriter writer = new StringWriter();
@@ -74,6 +74,6 @@ public abstract class JsonNoneFormatterBaseTest {
         Assertions.assertEquals(1, lines.length);
         JsonNode jsonNode = new ObjectMapper().readValue(lines[0], JsonNode.class);
         Assertions.assertTrue(jsonNode.isObject());
-        Assertions.assertTrue(ImmutableList.copyOf(jsonNode.fieldNames()).isEmpty());
+        Assertions.assertTrue(ImmutableList.copyOf(jsonNode.propertyNames()).isEmpty());
     }
 }

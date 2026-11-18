@@ -13,14 +13,14 @@ import org.junit.jupiter.api.BeforeAll;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableList;
 
 import io.quarkiverse.loggingjson.JsonFormatter;
 import io.quarkiverse.loggingjson.providers.KeyValueStructuredArgument;
 import io.quarkus.bootstrap.logging.InitialConfigurator;
 import io.quarkus.bootstrap.logging.QuarkusDelayedHandler;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
 
 public abstract class JsonECSFormatterBaseTest {
     private static final StringWriter writer = new StringWriter();
@@ -98,7 +98,7 @@ public abstract class JsonECSFormatterBaseTest {
                 "structuredKey",
                 "service.name",
                 "ecs.version");
-        Assertions.assertEquals(expectedFields, ImmutableList.copyOf(jsonNode.fieldNames()));
+        Assertions.assertEquals(expectedFields, ImmutableList.copyOf(jsonNode.propertyNames()));
 
         String timestamp = jsonNode.findValue("@timestamp").asText();
         Assertions.assertNotNull(timestamp);

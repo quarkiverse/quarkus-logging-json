@@ -16,10 +16,10 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <maven.compiler.release>11</maven.compiler.release>
+        <maven.compiler.release>21</maven.compiler.release>
         <maven.compiler.parameters>true</maven.compiler.parameters>
         <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
-        <quarkus.version>3.35.3</quarkus.version>
+        <quarkus.version>4.0.0</quarkus.version>
         <jacoco.version>0.8.16</jacoco.version>
         <!-- Sonar properties -->
         <sonar.projectKey>quarkiverse_quarkus-logging-json</sonar.projectKey>

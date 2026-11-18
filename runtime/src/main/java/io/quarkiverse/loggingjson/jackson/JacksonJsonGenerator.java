@@ -7,9 +7,9 @@ import java.math.BigInteger;
 import io.quarkiverse.loggingjson.JsonGenerator;
 
 public class JacksonJsonGenerator implements JsonGenerator {
-    private final com.fasterxml.jackson.core.JsonGenerator generator;
+    private final tools.jackson.core.JsonGenerator generator;
 
-    JacksonJsonGenerator(com.fasterxml.jackson.core.JsonGenerator generator) {
+    JacksonJsonGenerator(tools.jackson.core.JsonGenerator generator) {
         this.generator = generator;
     }
 
@@ -35,27 +35,27 @@ public class JacksonJsonGenerator implements JsonGenerator {
 
     @Override
     public void writeFieldName(String name) throws IOException {
-        this.generator.writeFieldName(name);
+        this.generator.writeName(name);
     }
 
     @Override
     public void writeObject(Object pojo) throws IOException {
-        this.generator.writeObject(pojo);
+        this.generator.writePOJO(pojo);
     }
 
     @Override
     public void writeObjectFieldStart(String fieldName) throws IOException {
-        this.generator.writeObjectFieldStart(fieldName);
+        this.generator.writeObjectPropertyStart(fieldName);
     }
 
     @Override
     public void writeObjectField(String fieldName, Object pojo) throws IOException {
-        this.generator.writeObjectField(fieldName, pojo);
+        this.generator.writePOJOProperty(fieldName, pojo);
     }
 
     @Override
     public void writeArrayFieldStart(String fieldName) throws IOException {
-        this.generator.writeArrayFieldStart(fieldName);
+        this.generator.writeArrayPropertyStart(fieldName);
     }
 
     @Override
@@ -70,41 +70,41 @@ public class JacksonJsonGenerator implements JsonGenerator {
 
     @Override
     public void writeStringField(String fieldName, String value) throws IOException {
-        this.generator.writeStringField(fieldName, value);
+        this.generator.writeStringProperty(fieldName, value);
     }
 
     @Override
     public void writeNumberField(String fieldName, short value) throws IOException {
-        this.generator.writeNumberField(fieldName, value);
+        this.generator.writeNumberProperty(fieldName, value);
     }
 
     @Override
     public void writeNumberField(String fieldName, int value) throws IOException {
-        this.generator.writeNumberField(fieldName, value);
+        this.generator.writeNumberProperty(fieldName, value);
     }
 
     @Override
     public void writeNumberField(String fieldName, long value) throws IOException {
-        this.generator.writeNumberField(fieldName, value);
+        this.generator.writeNumberProperty(fieldName, value);
     }
 
     @Override
     public void writeNumberField(String fieldName, BigInteger value) throws IOException {
-        this.generator.writeNumberField(fieldName, value);
+        this.generator.writeNumberProperty(fieldName, value);
     }
 
     @Override
     public void writeNumberField(String fieldName, float value) throws IOException {
-        this.generator.writeNumberField(fieldName, value);
+        this.generator.writeNumberProperty(fieldName, value);
     }
 
     @Override
     public void writeNumberField(String fieldName, double value) throws IOException {
-        this.generator.writeNumberField(fieldName, value);
+        this.generator.writeNumberProperty(fieldName, value);
     }
 
     @Override
     public void writeNumberField(String fieldName, BigDecimal value) throws IOException {
-        this.generator.writeNumberField(fieldName, value);
+        this.generator.writeNumberProperty(fieldName, value);
     }
 }

@@ -7,7 +7,6 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -18,11 +17,15 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+import io.quarkus.test.common.TestLog;
 import io.quarkus.test.junit.QuarkusTest;
 
 @QuarkusTest
 @Tag("integration")
 class GreetingResourceTest {
+
+    // injected by Quarkus, gives the log file of the application under test
+    protected TestLog testLog;
 
     @Test
     void testHelloEndpoint() {
@@ -35,7 +38,7 @@ class GreetingResourceTest {
 
     @Test
     void testMapperEndpoint() throws IOException {
-        final Path logFile = Paths.get("target/quarkus.log");
+        final Path logFile = testLog.getLogFilePath();
         try (FileInputStream is = new FileInputStream(logFile.toFile())) {
             while (is.available() > 0) {
                 is.skip(is.available());
@@ -68,7 +71,7 @@ class GreetingResourceTest {
 
     @Test
     void testNoRemovedJsonProviders() throws Exception {
-        final Path logFile = Paths.get("target/quarkus.log");
+        final Path logFile = testLog.getLogFilePath();
 
         Matcher m = Pattern.compile("Removed beans:").matcher("");
         try (Stream<String> lines = Files.lines(logFile)) {
